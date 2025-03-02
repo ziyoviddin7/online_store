@@ -22,9 +22,11 @@ Route::group(['namespace' => 'App\Http\Controllers\User'], function() {
 
     Route::get('/login', [LoginController::class, 'create'])->middleware('guest')->name('user.login');
     Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
+
+    Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('user.logout');
 });
 
 
 Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
-    Route::get('/home', IndexController::class)->middleware('auth')->name('product.index');
+    Route::get('/home', IndexController::class)->name('product.index');
 });
