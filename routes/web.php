@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Product\IndexController;
+use App\Http\Controllers\User\LoginController;
+use App\Http\Controllers\User\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'App\Http\Controllers\User'], function() {
+    Route::get('/login', [LoginController::class, 'create'])->name('user.login');
+    Route::get('/register', [RegisterController::class, 'create'])->name('user.register');
+});
+
+
+Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
+    Route::get('/home', IndexController::class)->name('product.index');
 });

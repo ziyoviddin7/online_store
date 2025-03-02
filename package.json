@@ -6,8 +6,34 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.20",
         "axios": "^1.6.4",
+        "flowbite": "^3.1.2",
         "laravel-vite-plugin": "^1.0.0",
+        "postcss": "^8.5.3",
+        "tailwindcss": "^4.0.9",
         "vite": "^5.0.0"
-    }
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.0.9",
+        "preline": "^2.7.0"
+    },
+    "name": "online_store",
+    "version": "1.0.0",
+    "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",
+    "main": "tailwind.config.js",
+    "directories": {
+        "test": "tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ziyoviddin7/social_media.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ziyoviddin7/social_media/issues"
+    },
+    "homepage": "https://github.com/ziyoviddin7/social_media#readme"
 }
