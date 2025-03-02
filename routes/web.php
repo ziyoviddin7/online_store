@@ -20,7 +20,8 @@ Route::group(['namespace' => 'App\Http\Controllers\User'], function() {
     Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('user.register');
     Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
-    Route::get('/login', [LoginController::class, 'create'])->name('user.login');
+    Route::get('/login', [LoginController::class, 'create'])->middleware('guest')->name('user.login');
+    Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 });
 
 
