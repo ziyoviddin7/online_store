@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'App\Http\Controllers\User'], function() {
+    Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('user.register');
+    Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+
     Route::get('/login', [LoginController::class, 'create'])->name('user.login');
-    Route::get('/register', [RegisterController::class, 'create'])->name('user.register');
 });
 
 
 Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
-    Route::get('/home', IndexController::class)->name('product.index');
+    Route::get('/home', IndexController::class)->middleware('auth')->name('product.index');
 });
