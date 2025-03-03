@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -25,6 +26,7 @@ class RegisterController extends Controller
             'email' => $registerStoreRequest->email,
             'password' => Hash::make($registerStoreRequest->password),
         ]);
+        event(new Registered($user));
 
         Auth::login($user);
         
