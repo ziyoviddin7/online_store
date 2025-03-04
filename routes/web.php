@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,23 +35,23 @@ Route::group(['namespace' => 'App\Http\Controllers\User'], function() {
 
 
 Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
-    Route::get('/home', IndexController::class)->middleware('auth', 'verified')->name('product.index');
+    Route::get('/home', IndexController::class)->middleware('auth')->name('product.index');
 });
 
 
 // Email Verification
-Route::get('/email/verify', function() {
-    return view('user.verify-email'); 
-})->middleware('auth')->name('verification.notice');
+// Route::get('/email/verify', function() {
+//     return view('user.verify-email'); 
+// })->middleware('auth')->name('verification.notice');
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+//     $request->fulfill();
 
-    return redirect()->intended(RouteServiceProvider::HOME);
-})->middleware(['auth', 'signed'])->name('verification.verify');
+//     return redirect()->intended(RouteServiceProvider::HOME);
+// })->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
+// Route::post('/email/verification-notification', function (Request $request) {
+//     $request->user()->sendEmailVerificationNotification();
 
-    return back()->with('message', 'Ссылка на верификацию отправлена!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+//     return back()->with('message', 'Ссылка на верификацию отправлена!');
+// })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
