@@ -50,7 +50,6 @@ services:
     volumes:
     - database:/var/lib/mysql
     environment:
-      - "MYSQL_ROOT_PASSWORD=secret"
       - "MYSQL_USER=root"
       - "MYSQL_PASSWORD=root"
       - "MYSQL_DATABASE=online_store"
