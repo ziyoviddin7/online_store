@@ -7,8 +7,7 @@ services:
     volumes:
     - ./:/var/www
     environment:
-      - "DB_PORT=3306"
-      - "DB_HOST=mysql"
+      - "DB_HOST=mysql_db"
       - "XDG_CONFIG_HOME=/app"
     ports:
     - "8080:80"
@@ -23,12 +22,9 @@ services:
     volumes:
       - ./:/var/www
     environment:
-      - "DB_PORT=3306"
-      - "DB_HOST=mysql"
-      - "REDIS_PORT=6379"
-      - "REDIS_HOST=redis"
+      - "DB_HOST=mysql_db"
     links:
-      - mysql
+      - mysql_db
       - node
 
   php-cli:
@@ -38,23 +34,23 @@ services:
     volumes:
     - ./:/var/www
     environment:
-      - "DB_PORT=3306"
-      - "DB_HOST=mysql"
+      - "DB_HOST=mysql_db"
       - "COMPOSER_MEMORY_LIMIT=-1"
     links:
-      - mysql
+      - mysql_db
     tty: true
 
-  mysql:
+  mysql_db:
     image: mysql:8.0
+    restart: always
     volumes:
-    - database:/var/lib/mysql
+      - ./tmp/db:/var/lib/mysql
     environment:
-      - "MYSQL_USER=root"
-      - "MYSQL_PASSWORD=root"
-      - "MYSQL_DATABASE=online_store"
+      MYSQL_DATABASE: online_store_db
+      MYSQL_ROOT_PASSWORD: root
     ports:
-    - "33061:3306"
+      - 8101:3306
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     
   node:
     image: node:18-alpine
@@ -64,6 +60,3 @@ services:
     - ./:/var/www
     working_dir: /var/www
     tty: true
-
-volumes:
-  database:
