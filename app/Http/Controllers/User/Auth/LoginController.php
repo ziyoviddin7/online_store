@@ -27,7 +27,7 @@ class LoginController extends Controller
         return back()
             ->withInput()
             ->withErrors([
-                'email' => 'Эти данные не совпадают с нашими записями.'
+                'email' => 'These data do not match our records.'
             ]);
     }
 

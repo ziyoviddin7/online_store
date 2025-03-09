@@ -1,4 +1,5 @@
 version: '3.2'
+
 services:
   nginx:
     build:
@@ -60,3 +61,11 @@ services:
     - ./:/var/www
     working_dir: /var/www
     tty: true
+
+  mailpit:
+    image: axllent/mailpit
+    container_name: mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
