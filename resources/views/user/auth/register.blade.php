@@ -117,7 +117,7 @@
 
                     <h1 class="mb-0 mb-sm-24">Create Account</h1>
 
-                    <form action="{{ route('user.register.store') }}" method="post" class="mt-16 mt-sm-32 mb-8">
+                    <form action="{{ route('user.register') }}" method="post" class="mt-16 mt-sm-32 mb-8">
                         @csrf
 
                         <div class="mb-16">

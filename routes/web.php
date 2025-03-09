@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->middleware('auth');
 
 // User Auth
 Route::group(['namespace' => 'App\Http\Controllers\User\Auth'], function() {
-    Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('user.register');
-    Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('user.register.store');
+    Route::get('/register', [RegisterController::class, 'index'])->middleware('guest')->name('user.register');
+    Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
-    Route::get('/login', [LoginController::class, 'index'])->name('user.login');
+    Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('user.login');
+    Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
 });

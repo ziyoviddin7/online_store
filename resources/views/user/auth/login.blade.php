@@ -85,10 +85,6 @@
                             <img class="hp-logo hp-sidebar-hidden hp-dir-block hp-dark-block"
                                 src="../../../app-assets/img/logo/logo-rtl-dark.svg" alt="logo">
                         </a>
-
-                        <a href="https://hypeople-studio.gitbook.io/yoda/change-log" target="_blank" class="d-flex">
-                            <span class="hp-sidebar-hidden hp-caption fw-normal hp-text-color-primary-1">v.3.2</span>
-                        </a>
                     </div>
                 </div>
 
@@ -121,22 +117,30 @@
                     <h1 class="mb-0 mb-sm-24">Login</h1>
                     <p class="mt-sm-8 mt-sm-0 text-black-60">Welcome back, please login to your account.</p>
 
-                    <form class="mt-16 mt-sm-32 mb-8">
+                    <form action="{{ route('user.login') }}" method="post" class="mt-16 mt-sm-32 mb-8">
+                        @csrf
+
                         <div class="mb-16">
-                            <label for="loginUsername" class="form-label">Username :</label>
-                            <input type="text" class="form-control" id="loginUsername">
+                            <label for="registerEmail" class="form-label">E-mail :</label>
+                            <input value="{{ old('email') }}" name="email" type="email" class="form-control" id="registerEmail">
+                            @error('email')
+                                <p style="color: red"> {{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="mb-16">
-                            <label for="loginPassword" class="form-label">Password :</label>
-                            <input type="password" class="form-control" id="loginPassword">
+                            <label for="registerPassword" class="form-label">Password :</label>
+                            <input name="password" type="password" class="form-control" id="registerPassword">
+                            @error('password')
+                                <p style="color: red"> {{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="row align-items-center justify-content-between mb-16">
                             <div class="col hp-flex-none w-auto">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label ps-4" for="exampleCheck1">Remember me</label>
+                                    <input name="remember" type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label  class="form-check-label ps-4" for="remember">Remember me</label>
                                 </div>
                             </div>
 
@@ -147,7 +151,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">
-                            <a href="index.html" class="d-block w-100" style="color: inherit;">Sign in</a>
+                            Sign in
                         </button>
                     </form>
 
