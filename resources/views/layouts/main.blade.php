@@ -1074,9 +1074,12 @@
                                                             href="profile-information.html">Account Settings</a>
                                                     </div>
 
-                                                    <div class="col-12 mt-24">
-                                                        <a class="hp-p1-body fw-medium" href="index.html">Logout</a>
-                                                    </div>
+                                                    <form action="{{ route('user.logout') }}" method="post">
+                                                        @csrf
+                                                        <div class="col-12 mt-24">
+                                                            <a class="hp-p1-body fw-medium" href="{{ route('user.logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
