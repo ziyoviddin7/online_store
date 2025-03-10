@@ -51,12 +51,18 @@
                             <h3>Login to Admin</h3>
                             <div class="body-text">Enter your email & password to login</div>
                         </div>
-                        <form class="form-login flex flex-column gap24">
+                        <form action="{{ route('admin.login_process') }}" method="post"
+                            class="form-login flex flex-column gap24">
+                            @csrf
                             <fieldset class="email">
                                 <div class="body-title mb-10">Email address <span class="tf-color-1">*</span></div>
                                 <input class="flex-grow" type="email" placeholder="Enter your email address"
-                                    name="email" tabindex="0" value="" aria-required="true" required="">
+                                    name="email" tabindex="0" value="{{ old('email') }}" aria-required="true" required="">
+                                @error('email')
+                                    <p style="color: red"> {{ $message }}</p>
+                                @enderror
                             </fieldset>
+
                             <fieldset class="password">
                                 <div class="body-title mb-10">Password <span class="tf-color-1">*</span></div>
                                 <input class="password-input" type="password" placeholder="Enter your password"
@@ -65,15 +71,19 @@
                                     <i class="icon-eye view"></i>
                                     <i class="icon-eye-off hide"></i>
                                 </span>
+                                @error('password')
+                                    <p style="color: red"> {{ $message }}</p>
+                                @enderror
                             </fieldset>
+
                             <div class="flex justify-between items-center">
                                 <div class="flex gap10">
-                                    <input class="" type="checkbox" id="signed">
-                                    <label class="body-text" for="signed">Keep me signed in</label>
+                                    <input name="remember" class="" type="checkbox" id="signed">
+                                    <label class="body-text" for="remember">Remember me</label>
                                 </div>
                                 <a href="#" class="body-text tf-color">Forgot password?</a>
                             </div>
-                            <a href="index.html" class="tf-button w-full">Login</a>
+                            <button type="submit" href="index.html" class="tf-button w-full">Login</button>
                         </form>
                     </div>
                 </div>
