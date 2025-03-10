@@ -50,7 +50,7 @@
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
 
-    <title>Recover - Yoda Admin Html Template</title>
+    <title>Recover</title>
 </head>
 
 <body>
