@@ -75,14 +75,6 @@
                                     <p style="color: red"> {{ $message }}</p>
                                 @enderror
                             </fieldset>
-
-                            <div class="flex justify-between items-center">
-                                <div class="flex gap10">
-                                    <input name="remember" class="" type="checkbox" id="signed">
-                                    <label class="body-text" for="remember">Remember me</label>
-                                </div>
-                                <a href="#" class="body-text tf-color">Forgot password?</a>
-                            </div>
                             <button type="submit" href="index.html" class="tf-button w-full">Login</button>
                         </form>
                     </div>

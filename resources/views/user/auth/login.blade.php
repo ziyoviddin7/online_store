@@ -52,7 +52,7 @@
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
 
-    <title>Login - Yoda Admin Html Template</title>
+    <title>Login</title>
 </head>
 
 <body>

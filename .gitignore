@@ -4,6 +4,7 @@
 /public/hot
 /public/storage
 /storage/*.key
+/tmp/db
 /vendor
 .env
 .env.backup
@@ -16,5 +17,4 @@ npm-debug.log
 yarn-error.log
 /.fleet
 /.idea
-/.vscode
-/tmp/db
+/.vscode``

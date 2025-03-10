@@ -50,7 +50,7 @@
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
 
-    <title>Reset - Yoda Admin Html Template</title>
+    <title>Reset</title>
 </head>
 
 <body>
