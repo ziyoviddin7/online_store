@@ -17,4 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/tmp
+/tmp/db/#innodb_redo/
+/tmp/db/#innodb_temp/
+/tmp/db/online_store_db/*.ibd
