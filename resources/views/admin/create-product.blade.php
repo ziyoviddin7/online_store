@@ -46,14 +46,15 @@
                             flex: 1;
                         }
                     </style>
-                    <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data" class="tf-section-2 form-add-product">
+                    <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data"
+                        class="tf-section-2 form-add-product">
                         @csrf
                         <div class="wg-box">
                             <div class="row">
                                 <fieldset class="name">
                                     <div class="body-title mb-10">Name <span class="tf-color-1">*</span></div>
                                     <input class="mb-10" type="text" placeholder="Enter product name" name="name"
-                                        tabindex="0" value="" aria-required="true" required>
+                                        tabindex="0" value="{{ old('name') }}" aria-required="true" required>
                                 </fieldset>
                                 @error('name')
                                     <p style="color: red"> {{ $message }}</p>
@@ -64,7 +65,7 @@
                                 <fieldset class="name">
                                     <div class="body-title mb-10">Price <span class="tf-color-1">*</span></div>
                                     <input class="mb-10" type="number" placeholder="0" name="price" tabindex="0"
-                                        value="" aria-required="true" required>
+                                        value="{{ old('price') }}" aria-required="true" required>
                                     @error('price')
                                         <p style="color: red"> {{ $message }}</p>
                                     @enderror
@@ -72,7 +73,7 @@
                                 <fieldset class="name">
                                     <div class="body-title mb-10">Stock <span class="tf-color-1">*</span></div>
                                     <input class="mb-10" type="number" placeholder="0" name="stock" tabindex="0"
-                                        value="" aria-required="true" required>
+                                        value="{{ old('stock') }}" aria-required="true" required>
                                     @error('stock')
                                         <p style="color: red"> {{ $message }}</p>
                                     @enderror
@@ -111,7 +112,7 @@
                             <fieldset class="description">
                                 <div class="body-title mb-10">Description <span class="tf-color-1">*</span></div>
                                 <textarea class="mb-10" name="description" placeholder="Description" tabindex="0" aria-required="true"
-                                    required=""></textarea>
+                                    required="">{{ old('description') }}</textarea>
                                 @error('description')
                                     <p style="color: red"> {{ $message }}</p>
                                 @enderror
@@ -127,14 +128,14 @@
                                             <span class="icon">
                                                 <i class="icon-upload-cloud"></i>
                                             </span>
-                                            <span class="text-tiny">Drop your image here or select 
+                                            <span class="text-tiny">Drop your image here or select
                                                 <span class="tf-color">click to browse</span>
                                             </span>
                                         </label>
                                         <input type="file" name="image">
 
                                     </div>
-                                    
+
                                 </div>
                                 @error('image')
                                     <p style="color: red"> {{ $message }}</p>
@@ -157,7 +158,7 @@
                                 <fieldset class="name">
                                     <div class="body-title mb-10">Discount</div>
                                     <input class="mb-10" type="number" placeholder="1-100" name="discount"
-                                        tabindex="0" value="" required min="1" max="100">
+                                        tabindex="0" value="{{ old('discount') }}" min="1" max="100">
                                     @error('discount')
                                         <p style="color: red"> {{ $message }}</p>
                                     @enderror
@@ -168,8 +169,7 @@
                                 <!-- Поле для discount_start -->
                                 <fieldset class="name">
                                     <div class="body-title mb-10">Discount Start</div>
-                                    <input class="mb-10" type="datetime-local" name="discount_start" tabindex="0"
-                                        aria-required="true" required>
+                                    <input class="mb-10" type="datetime-local" name="discount_start" tabindex="0">
                                     @error('discount_start')
                                         <p style="color: red"> {{ $message }}</p>
                                     @enderror
@@ -178,8 +178,7 @@
                                 <!-- Поле для discount_end -->
                                 <fieldset class="name">
                                     <div class="body-title mb-10">Discount End</div>
-                                    <input class="mb-10" type="datetime-local" name="discount_end" tabindex="0"
-                                        aria-required="true" required>
+                                    <input class="mb-10" type="datetime-local" name="discount_end" tabindex="0">
                                     @error('discount_end')
                                         <p style="color: red"> {{ $message }}</p>
                                     @enderror

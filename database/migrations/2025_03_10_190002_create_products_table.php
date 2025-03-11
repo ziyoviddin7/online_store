@@ -18,12 +18,12 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 10, 2);
             $table->integer('stock')->default(0);
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->unsignedTinyInteger('discount')->nullable();
             $table->dateTime('discount_start')->nullable();
             $table->dateTime('discount_end')->nullable();
             $table->foreignId('category_id')->constrained();
-            $table->foreignId('brand_id')->nullable()->constrained();
+            $table->foreignId('brand_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
