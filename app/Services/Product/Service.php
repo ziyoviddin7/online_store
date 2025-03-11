@@ -4,11 +4,14 @@
 namespace App\Services\Product;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 class Service
 {
-    public function store($request, $data)
+    public function store($data)
     {
+        $data['image'] = Storage::put('/product_images', $data['image']);
+
         $tag_id = $data['tag_id'];
 
         $product = Product::create($data);

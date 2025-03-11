@@ -46,7 +46,7 @@
                             flex: 1;
                         }
                     </style>
-                    <form action="{{ route('admin.product.store') }}" method="post" class="tf-section-2 form-add-product">
+                    <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data" class="tf-section-2 form-add-product">
                         @csrf
                         <div class="wg-box">
                             <div class="row">
@@ -123,15 +123,18 @@
                                 <div class="body-title mb-10">Upload image</div>
                                 <div class="upload-image mb-16">
                                     <div class="item up-load">
-                                        <label class="uploadfile" for="myFile">
+                                        <label class="uploadfile">
                                             <span class="icon">
                                                 <i class="icon-upload-cloud"></i>
                                             </span>
-                                            <span class="text-tiny">Drop your image here or select <span
-                                                    class="tf-color">click to browse</span></span>
-                                            <input type="file" id="myFile" name="image" accept="image/jpeg, image/png, image/jpg">
+                                            <span class="text-tiny">Drop your image here or select 
+                                                <span class="tf-color">click to browse</span>
+                                            </span>
                                         </label>
+                                        <input type="file" name="image">
+
                                     </div>
+                                    
                                 </div>
                                 @error('image')
                                     <p style="color: red"> {{ $message }}</p>
