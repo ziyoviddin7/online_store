@@ -19,7 +19,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <div class="text-tiny">Ecommerce</div>
+                            <div class="text-tiny">Product</div>
                         </a>
                     </li>
                     <li>
@@ -44,6 +44,7 @@
                             <div class="select">
                                 <select class="">
                                     <option>10</option>
+                                    <option>20</option>
                                     <option>20</option>
                                     <option>30</option>
                                 </select>

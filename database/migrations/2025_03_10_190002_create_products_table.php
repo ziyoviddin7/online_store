@@ -22,8 +22,8 @@ return new class extends Migration
             $table->unsignedTinyInteger('discount')->nullable();
             $table->dateTime('discount_start')->nullable();
             $table->dateTime('discount_end')->nullable();
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('brand_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained();
+            $table->foreignId('brand_id')->nullable()->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
