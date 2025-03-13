@@ -20,7 +20,6 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(3), // Название продукта
-            'slug' => $this->faker->unique()->slug, // Уникальный slug
             'description' => $this->faker->paragraph, // Описание продукта
             'price' => $this->faker->randomFloat(2, 10, 1000), // Цена от 10 до 1000
             'stock' => $this->faker->numberBetween(0, 100), // Количество на складе

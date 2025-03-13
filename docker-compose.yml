@@ -6,12 +6,13 @@ services:
       context: ./_docker/nginx
       dockerfile: Dockerfile
     volumes:
-    - ./:/var/www
+      - ./:/var/www
+      - ./storage/app/product_images:/var/www/storage/app/product_images 
     environment:
       - "DB_HOST=mysql_db"
       - "XDG_CONFIG_HOME=/app"
     ports:
-    - "8080:80"
+      - "8080:80"
     links:
       - php-fpm
       - node
@@ -22,6 +23,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www
+      - ./storage/app/product_images:/var/www/storage/app/product_images 
     environment:
       - "DB_HOST=mysql_db"
     links:
@@ -33,7 +35,8 @@ services:
       context: ./_docker/php-cli
       dockerfile: Dockerfile
     volumes:
-    - ./:/var/www
+      - ./:/var/www
+      - ./storage/app/product_images:/var/www/storage/app/product_images 
     environment:
       - "DB_HOST=mysql_db"
       - "COMPOSER_MEMORY_LIMIT=-1"
@@ -58,7 +61,7 @@ services:
     ports:
         - "3000:3000"
     volumes:
-    - ./:/var/www
+      - ./:/var/www
     working_dir: /var/www
     tty: true
 

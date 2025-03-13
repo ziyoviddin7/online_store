@@ -59,17 +59,17 @@
                                 <li class="menu-item has-children active">
                                     <a href="javascript:void(0);" class="menu-item-button">
                                         <div class="icon"><i class="icon-shopping-cart"></i></div>
-                                        <div class="text">Products</div>
+                                        <div class="text">Product</div>
                                     </a>
                                     <ul class="sub-menu" style="display: block;">
                                         <li class="sub-menu-item">
-                                            <a href="add-product.html" class="">
+                                            <a href="{{ route('admin.product.create') }}" class="">
                                                 <div class="text">Add Product</div>
                                             </a>
                                         </li>
                                         <li class="sub-menu-item">
-                                            <a href="product-list.html" class="active">
-                                                <div class="text">Product List</div>
+                                            <a href="{{ route('admin.product_list') }}" class="active">
+                                                <div class="text">Products</div>
                                             </a>
                                         </li>
                                     </ul>
@@ -81,12 +81,12 @@
                                     </a>
                                     <ul class="sub-menu">
                                         <li class="sub-menu-item">
-                                            <a href="category-list.html" class="">
-                                                <div class="text">Category list</div>
+                                            <a href="{{ route('admin.category.index') }}" class="">
+                                                <div class="text">Categories</div>
                                             </a>
                                         </li>
                                         <li class="sub-menu-item">
-                                            <a href="new-category.html" class="">
+                                            <a href="{{ route('admin.category.create') }}" class="">
                                                 <div class="text">New category</div>
                                             </a>
                                         </li>
@@ -94,23 +94,36 @@
                                 </li>
                                 <li class="menu-item has-children">
                                     <a href="javascript:void(0);" class="menu-item-button">
-                                        <div class="icon"><i class="icon-file-plus"></i></div>
-                                        <div class="text">Order</div>
+                                        <div class="icon"><i class="icon-plus"></i></div>
+                                        <div class="text">Brand</div>
                                     </a>
                                     <ul class="sub-menu">
                                         <li class="sub-menu-item">
-                                            <a href="oder-list.html" class="">
-                                                <div class="text">Order list</div>
+                                            <a href="{{ route('admin.brand.index') }}"" class="">
+                                                <div class="text">Brands</div>
                                             </a>
                                         </li>
                                         <li class="sub-menu-item">
-                                            <a href="oder-detail.html" class="">
-                                                <div class="text">Order detail</div>
+                                            <a href="{{ route('admin.brand.create') }}"" class="">
+                                                <div class="text">New Brand</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item has-children">
+                                    <a href="javascript:void(0);" class="menu-item-button">
+                                        <div class="icon"><i class="icon-file"></i></div>
+                                        <div class="text">Tag</div>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="sub-menu-item">
+                                            <a href="{{ route('admin.tag.index') }}"" class="">
+                                                <div class="text">Tags</div>
                                             </a>
                                         </li>
                                         <li class="sub-menu-item">
-                                            <a href="oder-tracking.html" class="">
-                                                <div class="text">Order tracking</div>
+                                            <a href="{{ route('admin.tag.create') }}"" class="">
+                                                <div class="text">New Tag</div>
                                             </a>
                                         </li>
                                     </ul>
