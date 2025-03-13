@@ -50,15 +50,10 @@
     <div class="hp-main-layout">
 
 
-
-
-
-
-
         <div class="row mb-32 gy-32" style="margin-left: 260px; margin-top: 100px;">
 
             <h1>All products</h1>
-            <div class="col-12">
+            <div class="col-12" >
                 <div class="row g-32">
 
 
@@ -75,7 +70,7 @@
 
                                     @foreach ($products as $product)
                                         <div class="col-12 col-md-6 col-xl-4">
-                                            <div class="card hp-card-6 hp-eCommerceCardOne hp-eCommerceCardOne-wishlist">
+                                            <div class="card hp-card-6 hp-eCommerceCardOne hp-eCommerceCardOne-wishlist" style="height: 500px;">
                                                 <div class="card-body p-16">
                                                     <div class="row">
                                                         <div class="col-12">
@@ -96,12 +91,15 @@
 
                                                             </div>
                                                         </div>
+                                                        
 
-                                                        <div class="col-12">
-                                                            <div class="text-center my-24">
-                                                                <a href="app-ecommerce-product-detail.html" class="d-block">
-                                                                    <img src="{{ Storage::url($product->image) }}"
-                                                                        alt="Wireless Multiroom Speaker" height="125">
+                                                        <div class="col-12 ">
+                                                            <div class="text-center my-24" style="height: 160px; overflow: hidden;">
+                                                                <a href="{{ route('admin.product.show', $product->id) }}" class="d-block h-100">
+                                                                    <img src="{{ Storage::url($product->image) }}" 
+                                                                         alt="Wireless Multiroom Speaker" 
+                                                                         class="h-100 w-auto mx-auto"
+                                                                         style="object-fit: contain;">
                                                                 </a>
                                                             </div>
 
@@ -146,7 +144,7 @@
 
                                                             <div class="row mt-0 g-8" style="margin-left: 30px">
                                                                 <div class="col-12 col-xl-5">
-                                                                    <a href="app-ecommerce-product-detail.html">
+                                                                    <a href="{{ route('admin.product.show', $product->id) }}">
                                                                         <button type="button"
                                                                             class="btn w-100 text-black-60 hp-hover-text-color-primary-1 hp-hover-text-color-dark-primary-2">
                                                                             <span>Check Detail</span>
@@ -175,51 +173,18 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                     @endforeach
+                                    <div style="margin-left: 800px">
+                                        {{ $products->links() }}
+                                    </div>
+                                    
 
                                 </div>
                             </div>
 
 
                         </div>
-
-                        <nav class="my-64">
-                            <ul class="pagination pagination-sm justify-content-center justify-content-sm-end">
-                                <li class="page-item">
-                                    <a class="page-link bg-transparent" href="javascript:;" aria-label="Previous">
-                                        <span aria-hidden="true">
-                                            <svg viewBox="64 64 896 896" focusable="false" data-icon="left"
-                                                width="12px" height="12px" fill="currentColor" aria-hidden="true">
-                                                <path
-                                                    d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link bg-transparent" href="javascript:;">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link bg-transparent" href="javascript:;">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link bg-transparent" href="javascript:;">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link bg-transparent" href="javascript:;" aria-label="Next">
-                                        <span aria-hidden="true">
-                                            <svg viewBox="64 64 896 896" focusable="false" data-icon="right"
-                                                width="12px" height="12px" fill="currentColor" aria-hidden="true">
-                                                <path
-                                                    d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>

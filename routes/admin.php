@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\Product\CreateController;
 use App\Http\Controllers\Admin\Product\DestroyController;
 use App\Http\Controllers\Admin\Product\IndexController;
+use App\Http\Controllers\Admin\Product\ShowController;
 use App\Http\Controllers\Admin\Product\StoreController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/products', IndexController::class)->name('product_list');
 
     Route::get('/product_create', CreateController::class)->name('product.create');
+    Route::get('/product/{product}', ShowController::class)->name('product.show');
     Route::post('/product_create', StoreController::class)->name('product.store');
     Route::delete('/product/{product}', DestroyController::class)->name('product.delete');
 

@@ -9,7 +9,7 @@ class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $products = Product::all();
+        $products = Product::paginate(15);
         return view('admin.product.product-list', compact('products'));
     }
 }
