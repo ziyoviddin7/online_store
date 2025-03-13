@@ -22,7 +22,6 @@ class Product extends Model
         'discount_end',
         'category_id',
         'brand_id',
-        //'tag_id'
     ];
 
     public function sluggable(): array
@@ -40,7 +39,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function brands()
+    public function brand()
     {
         return $this->belongsTo(Brand::class);
     }

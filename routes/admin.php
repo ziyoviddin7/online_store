@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\Product\CreateController;
+use App\Http\Controllers\Admin\Product\DestroyController;
 use App\Http\Controllers\Admin\Product\IndexController;
 use App\Http\Controllers\Admin\Product\StoreController;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +18,11 @@ Route::middleware('guest:admin')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/product_list', IndexController::class)->name('product_list');
+    Route::get('/products', IndexController::class)->name('product_list');
 
     Route::get('/product_create', CreateController::class)->name('product.create');
     Route::post('/product_create', StoreController::class)->name('product.store');
+    Route::delete('/product/{product}', DestroyController::class)->name('product.delete');
 
 
     Route::resource('category', CategoryController::class);
