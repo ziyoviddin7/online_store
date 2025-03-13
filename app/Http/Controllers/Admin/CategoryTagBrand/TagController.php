@@ -32,7 +32,7 @@ class TagController extends Controller
     {
         $data = $name_request->validated();
         $this->service->store($data);
-        return redirect()->route('admin.new_tag.index')->with('success', 'Тег успешно создан.');
+        return redirect()->route('admin.tag.index')->with('success', 'Тег успешно создан.');
     }
 
     /**

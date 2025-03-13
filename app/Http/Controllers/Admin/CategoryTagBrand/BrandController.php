@@ -31,7 +31,7 @@ class BrandController extends Controller
     {
         $data = $name_request->validated();
         $this->service->store($data);
-        return redirect()->route('admin.new_brand.index')->with('success', 'Категория успешна создана.');
+        return redirect()->route('admin.brand.index')->with('success', 'Категория успешна создана.');
     }
 
     /**
