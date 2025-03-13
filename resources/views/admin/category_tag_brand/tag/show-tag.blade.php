@@ -56,7 +56,7 @@
 
         <div class="row mb-32 gy-32" style="margin-left: 260px; margin-top: 100px;">
  
-            <h1>'{{ $category->name }}' category products</h1>
+            <h1>'{{ $tag->name }}' tag products</h1>
             <div class="col-12">
                 <div class="row g-32">
                     

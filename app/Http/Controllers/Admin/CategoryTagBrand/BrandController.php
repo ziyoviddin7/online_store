@@ -37,9 +37,10 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Brand $brand)
     {
-        //
+        $products = $brand->products;
+        return view('admin.category_tag_brand.brand.show-brand', compact('products', 'brand'));
     }
 
     public function destroy(Brand $brand)

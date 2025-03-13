@@ -38,9 +38,10 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Tag $tag)
     {
-        //
+        $products = $tag->products;
+        return view('admin.category_tag_brand.tag.show-tag', compact('products', 'tag'));
     }
     public function destroy(Tag $tag)
     {

@@ -30,16 +30,18 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/product_create', StoreController::class)->name('product.store');
 
     Route::get('/new_category', [CategoryController::class, 'create'])->name('category.create');
-    Route::get('/new_category/{category}', [CategoryController::class, 'show'])->name('category.show');
+    Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
     Route::post('/new_category', [CategoryController::class, 'store'])->name('category.store');
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
     Route::get('/new_tag', [TagController::class, 'create'])->name('tag.create');
+    Route::get('/tag/{tag}', [TagController::class, 'show'])->name('tag.show');
     Route::post('/new_tag', [TagController::class, 'store'])->name('tag.store');
     Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
 
 
     Route::get('/new_brand', [BrandController::class, 'create'])->name('brand.create');
+    Route::get('/brand/{brand}', [BrandController::class, 'show'])->name('brand.show');
     Route::post('/new_brand', [BrandController::class, 'store'])->name('brand.store');
     Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brand.destroy');
 

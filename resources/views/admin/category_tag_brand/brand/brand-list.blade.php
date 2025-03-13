@@ -66,7 +66,7 @@
                             <ul class="flex flex-column">
                                 <li class="attribute-item flex items-center justify-between gap20">
                                     <div class="name">
-                                        <a href="add-attributes.html" class="body-title-2">{{ $brand->name }}</a>
+                                        <a href="{{ route('admin.brand.show', $brand->id) }}" class="body-title-2">{{ $brand->name }}</a>
                                     </div>
                                     <div class="body-text">{{ $brand->products()->count() }}</div>
 
