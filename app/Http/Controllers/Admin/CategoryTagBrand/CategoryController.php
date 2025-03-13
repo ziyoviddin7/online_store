@@ -19,12 +19,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.category_tag_brand.category-list', compact('categories'));
+        return view('admin.category_tag_brand.category.category-list', compact('categories'));
     }
 
     public function create()
     {
-        return view('admin.category_tag_brand.new-category');
+        return view('admin.category_tag_brand.category.new-category');
     }
 
     public function store(NameRequest $name_request)
@@ -35,9 +35,10 @@ class CategoryController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+        $products = $category->products;
+        return view('admin.category_tag_brand.category.show-category', compact('products', 'category'));
     }
 
     public function destroy(Category $category)

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NameRequest;
 use App\Models\Brand;
 use App\Services\Brand\Service;
-use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
@@ -20,12 +19,12 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::all();
-        return view('admin.category_tag_brand.brand-list', compact('brands'));
+        return view('admin.category_tag_brand.brand.brand-list', compact('brands'));
     }
 
     public function create()
     {
-        return view('admin.category_tag_brand.new-brand'); 
+        return view('admin.category_tag_brand.brand.new-brand'); 
     }
 
     public function store(NameRequest $name_request)

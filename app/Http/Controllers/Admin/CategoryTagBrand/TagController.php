@@ -20,12 +20,12 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        return view('admin.category_tag_brand.tag-list', compact('tags'));
+        return view('admin.category_tag_brand.tag.tag-list', compact('tags'));
     }
 
     public function create()
     {
-        return view('admin.category_tag_brand.new-tag'); 
+        return view('admin.category_tag_brand.tag.new-tag'); 
     }
 
     public function store(NameRequest $name_request)

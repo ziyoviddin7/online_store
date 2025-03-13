@@ -30,6 +30,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/product_create', StoreController::class)->name('product.store');
 
     Route::get('/new_category', [CategoryController::class, 'create'])->name('category.create');
+    Route::get('/new_category/{category}', [CategoryController::class, 'show'])->name('category.show');
     Route::post('/new_category', [CategoryController::class, 'store'])->name('category.store');
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
