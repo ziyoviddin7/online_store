@@ -49,7 +49,7 @@
                 <!-- section-menu-left -->
                 <div class="section-menu-left">
                     <div class="box-logo">
-                        <a href="index.html" id="site-logo-inner" style="font-size: 30px">
+                        <a href="{{ route('admin.product_list') }}" id="site-logo-inner" style="font-size: 30px">
                             Admin Panel
                         </a>
                     </div>

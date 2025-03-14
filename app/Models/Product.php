@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, Searchable;
 
     protected $fillable = [
         'name',
@@ -21,12 +22,20 @@ class Product extends Model
         'brand_id',
     ];
 
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+            'description' => $this->description
+        ];
+    }
+
     public function sluggable(): array
     {
         return [
             'slug' => [
                 'source' => 'name',
-                'onUpdate' => true,  
+                'onUpdate' => true,
             ]
         ];
     }
@@ -45,5 +54,4 @@ class Product extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
-
 }

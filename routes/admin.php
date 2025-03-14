@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\CategoryTagBrand\BrandController;
 use App\Http\Controllers\Admin\CategoryTagBrand\CategoryController;
 use App\Http\Controllers\Admin\CategoryTagBrand\TagController;
+
 use App\Http\Controllers\Admin\Product\CreateController;
 use App\Http\Controllers\Admin\Product\DestroyController;
 use App\Http\Controllers\Admin\Product\EditController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\Product\IndexController;
 use App\Http\Controllers\Admin\Product\ShowController;
 use App\Http\Controllers\Admin\Product\StoreController;
 use App\Http\Controllers\Admin\Product\UpdateController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -53,6 +55,4 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/brand/{brand}', [BrandController::class, 'show'])->name('brand.show');
     Route::post('/new_brand', [BrandController::class, 'store'])->name('brand.store');
     Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brand.destroy');
-
-
 });

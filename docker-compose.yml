@@ -29,6 +29,7 @@ services:
     links:
       - mysql_db
       - node
+      - redis
 
   php-cli:
     build:
@@ -42,6 +43,7 @@ services:
       - "COMPOSER_MEMORY_LIMIT=-1"
     links:
       - mysql_db
+      - redis
     tty: true
 
   mysql_db:
@@ -72,5 +74,30 @@ services:
       - "1025:1025"
       - "8025:8025"
 
+  meilisearch:
+    image: getmeili/meilisearch:v1.13
+    ports:
+      - "7700:7700"
+    environment:
+      MEILI_MASTER_KEY: I_K-pF9Sch-KZMf8B0PFJPjF3qFVut5nENzgh6PDt5w  # Ваш мастер-ключ
+      MEILI_ENV: production 
+    volumes:
+      - meilisearch_data:/data.ms
+
+  redis:
+    image: redis:alpine
+    command: redis-server --requirepass 1234
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    environment:
+      - REDIS_PASSWORD=1234
+    restart: unless-stopped
+    networks:
+      - default
+
 volumes:
   mysql_data:
+  meilisearch_data:
+  redis_data:
