@@ -35,11 +35,13 @@
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('admin/assets/images/favicon.png') }}">
 
+    @livewireStyles
+
 
 </head>
 
 <body class="body">
-
+    
     <!-- #wrapper -->
     <div id="wrapper">
         <!-- #page -->
@@ -238,14 +240,7 @@
                                     <i class="icon-menu-left"></i>
                                 </div>
                                 <form class="form-search flex-grow">
-                                    <fieldset class="name">
-                                        <input type="text" placeholder="Search here..." class="show-search"
-                                            name="name" tabindex="2" value="" aria-required="true"
-                                            required="">
-                                    </fieldset>
-                                    <div class="button-submit">
-                                        <button class="" type="submit"><i class="icon-search"></i></button>
-                                    </div>
+                                    
                                     <div class="box-content-search" id="box-content-search">
                                         <ul class="mb-24">
                                             <li class="mb-14">
@@ -545,6 +540,9 @@
     <!-- <script src="{{ asset('admin/assets/js/switcher.js') }}"></script> -->
     <script src="{{ asset('admin/assets/js/theme-settings.js') }}"></script>
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+
+    @livewireScripts
+
 
 </body>
 

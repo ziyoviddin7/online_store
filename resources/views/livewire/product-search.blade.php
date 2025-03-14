@@ -1,54 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-        <meta name="author" content="Hypeople">
-        <meta name="description" content="Responsive, Highly Customizable Dashboard Template" />
-
-        <!-- Favicon -->
-
-        <meta name="msapplication-TileColor" content="#0010f7">
-        <meta name="theme-color" content="#ffffff">
-
-        <!-- Font -->
-
-        <!-- Plugin -->
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugin/swiper-bundle.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/icons/iconly/index.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/icons/remix-icon/index.min.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
-
-        <!-- Base -->
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/base/typography.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/base/base.css">
-
-        <!-- Theme -->
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/theme/colors-dark.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/theme/theme-dark.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/custom-rtl.css">
-
-        <!-- Layouts -->
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/layouts/sider.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/layouts/header.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/layouts/page-content.css">
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.css">
-
-        <!-- Pages -->
-        <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-ecommerce.css">
-
-        <!-- Custom -->
-        <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
-
-        <title>Shop Ecommerce - Yoda Admin Html Template</title>
-    </head>
-    {{-- <div class="hp-main-layout">
-        
+<div>
 
 
         <div class="row mb-32 gy-32" style="margin-left: 260px; margin-top: 100px;">
@@ -65,11 +15,16 @@
                             <div class="tab-pane fade show active" id="list-grid" role="tabpanel"
                                 aria-labelledby="list-grid-tab">
                                 <div class="row g-32">
-                                    
-
-                                    
 
 
+
+
+                                    <!-- Поисковая строка -->
+                                    <div class="mb-40" style="margin-left: 640px; margin-top: -20px; font-size: 50px;">
+                                        <input type="text" wire:model.live="search"
+                                            placeholder="Search products..." class="form-control"
+                                            style="max-width: 300px;  height: 50px; font-size: 20px">
+                                    </div>
 
 
                                     @foreach ($products as $product)
@@ -79,7 +34,8 @@
                                                 <div class="card-body p-16">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <div class="row mx-0 align-items-start justify-content-between">
+                                                            <div
+                                                                class="row mx-0 align-items-start justify-content-between">
                                                                 @if ($product->tags->isNotEmpty())
                                                                     @foreach ($product->tags as $tag)
                                                                         <span
@@ -96,7 +52,8 @@
 
                                                                 <div
                                                                     class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
-                                                                    <p style="margin-top: -7px">stock: {{ $product->stock }}
+                                                                    <p style="margin-top: -7px">stock:
+                                                                        {{ $product->stock }}
                                                                     </p>
                                                                 </div>
 
@@ -126,7 +83,8 @@
                                                                     <div
                                                                         class="d-flex align-items-center justify-content-end">
 
-                                                                        <p class="w-auto px-0 mb-0 text-primary fw-medium">
+                                                                        <p
+                                                                            class="w-auto px-0 mb-0 text-primary fw-medium">
                                                                             ${{ $product->price }}</p>
 
 
@@ -142,7 +100,8 @@
                                                                     {{ $product->name }}</p>
                                                                 <p
                                                                     class="mb-0 hp-caption fw-normal text-black-80 hp-text-color-dark-30">
-                                                                    {{ Str::limit($product->description, 40, '...') }}</p>
+                                                                    {{ Str::limit($product->description, 40, '...') }}
+                                                                </p>
                                                             </div>
 
 
@@ -165,7 +124,8 @@
                                                                         @csrf
                                                                         @method('delete')
                                                                         <button class="btn btn-primary w-1000">
-                                                                            <i class="ri-delete-bin-5-line remix-icon"></i>
+                                                                            <i
+                                                                                class="ri-delete-bin-5-line remix-icon"></i>
                                                                             <span>Delete</span>
                                                                         </button>
                                                                     </form>
@@ -179,9 +139,9 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    <div style="margin-left: 800px">
+                                    {{-- <div style="margin-left: 800px">
                                         {{ $products->links() }}
-                                    </div>
+                                    </div> --}}
 
 
                                 </div>
@@ -196,9 +156,4 @@
 
     </div>
 
-    </div> --}}
-
-    <div class="hp-main-layout">
-        <livewire:product-search />
-    </div>
-@endsection
+</div>
