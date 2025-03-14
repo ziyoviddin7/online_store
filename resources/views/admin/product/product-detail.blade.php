@@ -247,16 +247,11 @@
                                             </a>
                                         </div>
                                         <div class="col hp-flex-none w-auto" style="margin-top: 19px">
-                                            <a href="app-ecommerce-checkout.html">
-                                                <form action="{{ route('admin.product.delete', $product->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('delete')
+                                            <a href="{{ route('admin.product.edit', $product->id) }}">
                                                     <button class="btn btn-primary">
                                                         <i class="ri-ball-pen-line remix-icon"></i>
                                                         <span>Edit</span>
                                                     </button>
-                                                </form>
                                             </a>
                                         </div>
                                     </div>
