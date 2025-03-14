@@ -22,7 +22,6 @@ class Product extends Model
         'discount_end',
         'category_id',
         'brand_id',
-        //'tag_id'
     ];
 
     public function sluggable(): array
