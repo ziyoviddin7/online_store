@@ -28,6 +28,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/product/{product}/edit', EditController::class)->name('product.edit');
     Route::post('/product_create', StoreController::class)->name('product.store');
     Route::patch('/product/{product}', UpdateController::class)->name('product.update');
+    
     Route::delete('/product/{product}', DestroyController::class)->name('product.delete');
 
 
