@@ -19,9 +19,6 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->integer('stock')->default(0);
             $table->string('image');
-            $table->unsignedTinyInteger('discount')->nullable();
-            $table->dateTime('discount_start')->nullable();
-            $table->dateTime('discount_end')->nullable();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('brand_id')->constrained();
             $table->timestamps();

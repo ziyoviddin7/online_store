@@ -75,32 +75,7 @@
                                 </fieldset>
                             </div>
 
-                            <div class="gap22 cols">
-                                <fieldset class="category">
-                                    <div class="body-title mb-10">Category <span class="tf-color-1">*</span></div>
-                                    <div class="select">
-                                        <select class="" name="category_id">
-                                            @foreach ($categories as $category)
-                                                <option {{ $category->id == $product->category_id ? ' selected' : '' }}
-                                                    value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </div>
-
-                                </fieldset>
-                                <fieldset class="male">
-                                    <div class="body-title mb-10">Brand <span class="tf-color-1">*</span></div>
-                                    <div class="select">
-                                        <select class="" name="brand_id">
-                                            @foreach ($brands as $brand)
-                                                <option {{ $brand->id == $product->brand_id ? ' selected' : '' }}
-                                                    value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </fieldset>
-                            </div>
+                            
 
 
 
@@ -149,50 +124,33 @@
                                         </select>
                                     </div>
                                 </fieldset>
-
-                                <fieldset class="name">
-                                    <div class="body-title mb-10">Discount</div>
-                                    <input class="mb-10" type="number" placeholder="1-100" name="discount"
-                                        tabindex="0" value="{{ old('discount') }}" min="1" max="100">
-                                    @error('discount')
-                                        <p style="color: red"> {{ $message }}</p>
-                                    @enderror
-                                </fieldset>
                             </div>
 
-                            <div class="row">
-                                <!-- Поле для discount_start -->
-                                <fieldset class="name">
-                                    <div class="body-title mb-10">Discount Start</div>
-                                    <input class="mb-10" type="datetime-local" name="discount_start" tabindex="0">
-                                    @error('discount_start')
-                                        <p style="color: red"> {{ $message }}</p>
-                                    @enderror
+                            <div class="gap22 cols">
+                                <fieldset class="category">
+                                    <div class="body-title mb-10">Category <span class="tf-color-1">*</span></div>
+                                    <div class="select">
+                                        <select class="" name="category_id">
+                                            @foreach ($categories as $category)
+                                                <option {{ $category->id == $product->category_id ? ' selected' : '' }}
+                                                    value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+
                                 </fieldset>
-
-                                <!-- Поле для discount_end -->
-                                <fieldset class="name">
-                                    <div class="body-title mb-10">Discount End</div>
-                                    <input class="mb-10" type="datetime-local" name="discount_end" tabindex="0">
-                                    @error('discount_end')
-                                        <p style="color: red"> {{ $message }}</p>
-                                    @enderror
+                                <fieldset class="male">
+                                    <div class="body-title mb-10">Brand <span class="tf-color-1">*</span></div>
+                                    <div class="select">
+                                        <select class="" name="brand_id">
+                                            @foreach ($brands as $brand)
+                                                <option {{ $brand->id == $product->brand_id ? ' selected' : '' }}
+                                                    value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </fieldset>
-                                <script>
-                                    const discountStart = document.getElementById('discount_start');
-                                    const discountEnd = document.getElementById('discount_end');
-
-                                    discountStart.addEventListener('change', function() {
-                                        discountEnd.min = this.value; // Устанавливаем минимальную дату для discount_end
-                                    });
-
-                                    discountEnd.addEventListener('change', function() {
-                                        if (this.value < discountStart.value) {
-                                            alert('Discount End must be after Discount Start.');
-                                            this.value = ''; // Сбрасываем значение, если оно некорректное
-                                        }
-                                    });
-                                </script>
                             </div>
                             <div class="cols gap10">
                                 <button class="tf-button w-full" type="submit">Edit product</button>

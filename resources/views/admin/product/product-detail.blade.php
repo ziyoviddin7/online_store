@@ -128,64 +128,23 @@
 
                             <div class="row align-items-center justify-content-between mt-24 pe-42">
                                 <div class="col-12 col-md-6">
-                                    @if ($product->discount)
+                                    
                                         <div class="row mx-0 align-items-center">
-
-
-
-                                            <div
-                                                class="hp-flex-none w-auto d-inline-block rounded bg-danger hp-caption lh-normal text-black-0 text-center px-6 py-4 me-8">
-                                                Save <br> %20
-                                            </div>
 
 
 
                                             <div class="col w-auto p-0">
                                                 <div class="row mx-0 align-items-end h-100">
                                                     <span class="w-auto px-0 h2 d-inline-block mb-0 me-4">
-                                                        $399.<sup style="top: -6px;">00</sup>
-                                                    </span>
-
-                                                    <span
-                                                        class="w-auto px-0 d-inline-block mb-6 text-black-60 text-decoration-line-through hp-p1-body fw-medium">
-                                                        $499.<sup style="top: -3px;">00</sup>
+                                                        ${{ $product->price }}
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
-                                    @else
-                                        <div class="row mx-0 align-items-center">
-
-                                            <div
-                                                class="hp-flex-none w-auto d-inline-block rounded bg-danger hp-caption lh-normal text-black-0 text-center px-6 py-4 me-8">
-                                                Save <br> %20
-                                            </div>
-
-
-
-                                            <div class="col w-auto p-0">
-                                                <div class="row mx-0 align-items-end h-100">
-                                                    <span class="w-auto px-0 h2 d-inline-block mb-0 me-4">
-                                                        $399.<sup style="top: -6px;">00</sup>
-                                                    </span>
-
-                                                    <span
-                                                        class="w-auto px-0 d-inline-block mb-6 text-black-60 text-decoration-line-through hp-p1-body fw-medium">
-                                                        $499.<sup style="top: -3px;">00</sup>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
                                 </div>
 
                                 <div class="col hp-flex-none w-auto mt-24 mt-sm-0">
                                     <p>Category: {{ $product->category->name }}</p>
-                                    @if ($product->discount)
-                                        <p>Discount: {{ $product->discount }}%</p>
-                                    @else
-                                        <p>Discount: 0%</p>
-                                    @endif
 
                                 </div>
                             </div>

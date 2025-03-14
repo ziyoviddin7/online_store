@@ -27,9 +27,6 @@ class UpdateRequest extends FormRequest
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'image' => 'image|mimes:jpeg,png,jpg',
-            'discount' => 'nullable|integer|min:1|max:100', // Скидка от 1% до 100%
-            'discount_start' => 'nullable|date', // Дата начала скидки
-            'discount_end' => 'nullable|date|after_or_equal:discount_start', // Дата окончания скидки, должна быть после даты начала
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'required|exists:brands,id',
             'tag_id' => 'required|exists:brands,id', 

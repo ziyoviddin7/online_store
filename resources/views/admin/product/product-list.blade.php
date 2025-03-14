@@ -121,18 +121,9 @@
                                                                 <div class="col w-auto">
                                                                     <div
                                                                         class="d-flex align-items-center justify-content-end">
-                                                                        @if ($product->discount)
-                                                                            <p
-                                                                                class="w-auto px-0 mb-0 me-4 text-black-60 text-decoration-line-through hp-input-description">
-                                                                                $59.00</p>
-                                                                            <p
-                                                                                class="w-auto px-0 mb-0 text-primary fw-medium">
-                                                                                $29.00</p>
-                                                                        @else
-                                                                            <p
-                                                                                class="w-auto px-0 mb-0 text-primary fw-medium">
-                                                                                ${{ $product->price }}</p>
-                                                                        @endif
+
+                                                                        <p class="w-auto px-0 mb-0 text-primary fw-medium">
+                                                                            ${{ $product->price }}</p>
 
 
                                                                     </div>

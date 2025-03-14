@@ -17,9 +17,6 @@ class Product extends Model
         'price',
         'stock',
         'image',
-        'discount',
-        'discount_start',
-        'discount_end',
         'category_id',
         'brand_id',
     ];

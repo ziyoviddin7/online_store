@@ -69,11 +69,7 @@
                                         </li>
                                         <li class="sub-menu-item">
                                             <a href="{{ route('admin.product_list') }}" class="active">
-<<<<<<< HEAD
                                                 <div class="text">Products</div>
-=======
-                                                <div class="text">Product List</div>
->>>>>>> show_products
                                             </a>
                                         </li>
                                     </ul>

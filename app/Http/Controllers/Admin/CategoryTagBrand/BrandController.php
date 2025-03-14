@@ -39,7 +39,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        $products = $brand->products;
+        $products = $brand->products()->paginate(15);
         return view('admin.category_tag_brand.brand.show-brand', compact('products', 'brand'));
     }
 

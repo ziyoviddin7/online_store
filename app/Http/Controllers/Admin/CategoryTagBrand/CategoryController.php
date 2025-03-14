@@ -37,7 +37,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $products = $category->products;
+        $products = $category->products()->paginate(15);
         return view('admin.category_tag_brand.category.show-category', compact('products', 'category'));
     }
 

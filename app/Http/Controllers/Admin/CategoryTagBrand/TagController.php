@@ -40,7 +40,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        $products = $tag->products;
+        $products = $tag->products()->paginate(15);
         return view('admin.category_tag_brand.tag.show-tag', compact('products', 'tag'));
     }
     public function destroy(Tag $tag)
