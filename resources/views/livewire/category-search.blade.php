@@ -1,7 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
-    {{-- <div class="section-content-right">
+<div>
 
         <!-- /header-dashboard -->
         <!-- main-content -->
@@ -34,7 +31,7 @@
                                 <form class="form-search">
                                     <fieldset class="name">
                                         <input type="text" placeholder="Search here..." class="" name="name"
-                                            tabindex="2" value="" aria-required="true" required="">
+                                            tabindex="2" wire:model.live="search" value="" aria-required="true" required="">
                                     </fieldset>
                                     <div class="button-submit">
                                         <button class="" type="submit"><i class="icon-search"></i></button>
@@ -129,8 +126,4 @@
             <!-- /bottom-page -->
         </div>
         <!-- /main-content -->
-    </div> --}}
-    <div class="section-content-right">
-        <livewire:category-search />
-    </div>
-@endsection
+</div>
