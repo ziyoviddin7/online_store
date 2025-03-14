@@ -35,6 +35,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/product/{product}', ShowController::class)->name('product.show');
     Route::get('/product/{product}/edit', EditController::class)->name('product.edit');
     Route::post('/product_create', StoreController::class)->name('product.store');
+    Route::patch('/product/{product}', UpdateController::class)->name('product.update');
+    Route::delete('/product/{product}', DestroyController::class)->name('product.delete');
 
     Route::get('/new_category', [CategoryController::class, 'create'])->name('category.create');
     Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
