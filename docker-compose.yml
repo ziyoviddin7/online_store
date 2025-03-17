@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www
-      - product_images:/var/www/storage/app/product_images
+      - ./storage/app/product_images:/var/www/storage/app/product_images
     environment:
       - "DB_HOST=mysql_db"
     ports:
@@ -25,7 +25,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www
-      - product_images:/var/www/storage/app/product_images
+      - ./storage/app/product_images:/var/www/storage/app/product_images
     environment:
       - "DB_HOST=mysql_db"
     depends_on:
@@ -42,7 +42,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www
-      - product_images:/var/www/storage/app/product_images
+      - ./storage/app/product_images:/var/www/storage/app/product_images
     environment:
       - "DB_HOST=mysql_db"
       - "COMPOSER_MEMORY_LIMIT=-1"

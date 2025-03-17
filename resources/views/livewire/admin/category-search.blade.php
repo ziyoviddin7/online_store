@@ -89,27 +89,7 @@
 
                     </div>
 
-                    <div class="divider"></div>
-                    <div class="flex items-center justify-between flex-wrap gap10">
-                        <div class="text-tiny">Showing 10 entries</div>
-                        <ul class="wg-pagination">
-                            <li>
-                                <a href="#"><i class="icon-chevron-left"></i></a>
-                            </li>
-                            <li>
-                                <a href="#">1</a>
-                            </li>
-                            <li class="active">
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon-chevron-right"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
                 <!-- /all-attribute -->
             </div>
