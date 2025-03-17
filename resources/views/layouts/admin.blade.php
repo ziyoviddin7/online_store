@@ -70,7 +70,7 @@
                                             </a>
                                         </li>
                                         <li class="sub-menu-item">
-                                            <a href="{{ route('admin.product_list') }}" class="active">
+                                            <a href="{{ route('admin.product_list') }}" class="">
                                                 <div class="text">Products</div>
                                             </a>
                                         </li>

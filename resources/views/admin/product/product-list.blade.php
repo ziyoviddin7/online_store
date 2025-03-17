@@ -50,6 +50,6 @@
 
 
     <div class="hp-main-layout">
-        <livewire:product-search />
+        <livewire:admin.product-search />
     </div>
 @endsection

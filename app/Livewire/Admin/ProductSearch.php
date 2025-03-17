@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,6 +24,6 @@ class ProductSearch extends Component
         } else {
             $this->products = Product::all();
         }
-        return view('livewire.product-search');
+        return view('livewire.admin.product-search');
     }
 }

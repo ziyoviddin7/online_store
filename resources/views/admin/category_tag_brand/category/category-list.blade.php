@@ -131,6 +131,6 @@
         <!-- /main-content -->
     </div> --}}
     <div class="section-content-right">
-        <livewire:category-search />
+        <livewire:admin.category-search />
     </div>
 @endsection

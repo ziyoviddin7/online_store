@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+
 
 class CategorySearch extends Component
 {
@@ -24,6 +25,7 @@ class CategorySearch extends Component
         } else {
             $this->categories = Category::all();
         }
-        return view('livewire.category-search');
+        return view('livewire.admin.category-search');
     }
+    
 }

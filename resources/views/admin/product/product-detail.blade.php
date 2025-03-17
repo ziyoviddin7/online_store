@@ -118,6 +118,9 @@
                         </div>
 
                         <div class="col-12 col-lg-6">
+                            <p style="margin-top: -7px; margin-left: 500px; font-size: 20px;">ID:
+                                {{ $product->id }}
+                            </p>
                             <h2 class="mb-8">{{ $product->name }}</h2>
                             <h5 class="mb-8">{{ $product->description }}</h5>
 

@@ -30,6 +30,6 @@ class DatabaseSeeder extends Seeder
         Category::factory(10)->create();
         Brand::factory(10)->create();
         Tag::factory(10)->create();
-        Product::factory(10)->create();
+        Product::factory(45)->create();
     }
 }

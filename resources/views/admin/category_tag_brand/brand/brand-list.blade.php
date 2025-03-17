@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="section-content-right">
-    <livewire:brand-search />
+    <livewire:admin.brand-search />
 </div>
 @endsection

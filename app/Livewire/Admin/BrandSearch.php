@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use App\Models\Brand;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,6 +24,6 @@ class BrandSearch extends Component
         } else {
             $this->brands = Brand::all();
         }
-        return view('livewire.brand-search');
+        return view('livewire.admin.brand-search');
     }
 }

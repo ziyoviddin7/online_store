@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,6 +24,6 @@ class TagSearch extends Component
         } else {
             $this->tags = Tag::all();
         }
-        return view('livewire.tag-search');
+        return view('livewire.admin.tag-search');
     }
 }

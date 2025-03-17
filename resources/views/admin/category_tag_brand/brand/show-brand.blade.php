@@ -153,7 +153,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
+                                                <p style="margin-top: -7px; margin-left: 125px;">ID:
+                                                    {{ $product->id }}
+                                                </p>
                                             </div>
                                         </div>
                                     @endforeach

@@ -145,7 +145,7 @@
                             <div class="col hp-flex-none w-auto">
                                 <div class="form-check">
                                     <input name="remember" type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label  class="form-check-label ps-4" for="remember">Remember me</label>
+                                    <label for="remember">Remember me</label>
                                 </div>
                             </div>
 
