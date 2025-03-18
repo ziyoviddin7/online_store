@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Product\IndexController;
+use App\Http\Controllers\Product\DetailController;
+use App\Http\Controllers\Product\ShopController;
 
 use App\Http\Controllers\User\Auth\ForgotPasswordController;
 use App\Http\Controllers\User\Auth\LoginController;
@@ -41,5 +42,6 @@ Route::group(['namespace' => 'App\Http\Controllers\User\Auth'], function () {
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Product'], function () {
-    Route::get('/shop', [IndexController::class, 'index'])->name('product.shop');
+    Route::get('/shop', ShopController::class)->name('product.shop');
+    Route::get('/shop/{product}', DetailController::class)->name('product.detail');
 });

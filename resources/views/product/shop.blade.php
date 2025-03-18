@@ -179,7 +179,7 @@
 
                                                         <div class="col-12">
                                                             <div class="text-center my-24">
-                                                                <a href="app-ecommerce-product-detail.html"
+                                                                <a href="{{ route('product.detail', $product->id) }}"
                                                                     class="d-block">
                                                                     <img src="{{ Storage::url($product->image) }}"
                                                                         alt="Smart Watches 3" height="125">

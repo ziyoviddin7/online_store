@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Tag;
-use App\Services\Product\Service;
 
-class IndexController extends Controller
+class ShopController extends Controller
 {
-    public function index()
+    public function __invoke()
     {
         $products = Product::all();
         $tags = Tag::all();
