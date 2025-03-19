@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <div class="row">
                             @foreach ($product->tags as $tag)
-                                <span
+                                <span style="font-size: 20px; z-index: 2"
                                     class="badge bg-primary-4 hp-bg-dark-primary text-primary border-none position-absolute top-0 left-0 w-auto m-16 my-sm-32 mx-sm-18 py-8 px-16 fw-medium">{{ $tag->name }}</span>
                             @endforeach
 
