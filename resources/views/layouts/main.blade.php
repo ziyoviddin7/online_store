@@ -124,7 +124,7 @@
                                         </li>
                                         <li class="px-6">
                                             <a href="javascript:;" class="px-12 py-4" data-bs-toggle="dropdown">
-                                                <span>Category</span>
+                                                <span>Catalog</span>
                                                 <i class="ri-arrow-down-s-line"></i>
                                             </a>
 
@@ -175,24 +175,7 @@
 
                             <div class="col hp-flex-none w-auto pe-0">
                                 <div class="row align-items-center justify-content-end">
-                                    <div class="w-auto px-0">
-                                        <div class="d-flex align-items-center me-4 hp-header-search-button">
-                                            <button type="button"
-                                                class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
-                                                style="height: 40px;">
-                                                <svg class="hp-header-search-button-icon-1 hp-text-color-black-80 hp-text-color-dark-30"
-                                                    set="curved" xmlns="http://www.w3.org/2000/svg" width="24"
-                                                    height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM22 22l-2-2"
-                                                        stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                                <i class="d-none hp-header-search-button-icon-2 ri-close-line hp-text-color-black-60"
-                                                    style="font-size: 24px;"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
+                                    
                                     <div
                                         class="hover-dropdown-fade w-auto px-0 d-flex align-items-center position-relative">
                                         <button type="button"
