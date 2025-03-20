@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\Product\DetailController;
 use App\Http\Controllers\Product\ShopController;
 
@@ -9,6 +10,9 @@ use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\RegisterController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Cart\CartController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home Paige
-Route::get('/', [HomeController::class , 'index'])->middleware('auth')->name('home');
+Route::get('/', [HomeController::class , 'index'])->name('home');
 
 // User Auth
 Route::group(['namespace' => 'App\Http\Controllers\User\Auth'], function () {
@@ -41,7 +45,15 @@ Route::group(['namespace' => 'App\Http\Controllers\User\Auth'], function () {
     Route::post('/reset-password', [ResetPasswordController::class, 'store'])->middleware('guest')->name('password.update');
 });
 
+// Shop
 Route::group(['namespace' => 'App\Http\Controllers\Product'], function () {
     Route::get('/shop', ShopController::class)->name('product.shop');
     Route::get('/shop/{product}', DetailController::class)->name('product.detail');
+});
+
+// Cart
+Route::group(['namespace' => 'App\Http\Controllers\Cart'], function () {
+    Route::post('/cart', [CartController::class, 'addToSession'])->name('cart.addToSession');
+    Route::delete('/cart/remove/{product}', [CartController::class, 'removeFromCartSession'])->name('cart.remove');
+    Route::delete('/cart/remove_one/{product}', [CartController::class, 'removeOneProductCartSession'])->name('cart.remove_one');
 });

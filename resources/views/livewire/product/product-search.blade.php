@@ -80,19 +80,21 @@
                                 <div class="row mt-16">
 
                                     @foreach ($tags as $tag)
-                                    <div class="col-12 mt-6" >
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="form-check">
-                                                <a href="" class="form-check-label dark" style="color: black;">
-                                                    {{ $tag->name }}
-                                                </a>
-                                            </div>
+                                        <div class="col-12 mt-6">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="form-check">
+                                                    <a href="" class="form-check-label dark"
+                                                        style="color: black;">
+                                                        {{ $tag->name }}
+                                                    </a>
+                                                </div>
 
-                                            <span class="hp-caption text-black-80 hp-text-color-dark-30">{{ $tag->products->count() }}</span>
+                                                <span
+                                                    class="hp-caption text-black-80 hp-text-color-dark-30">{{ $tag->products->count() }}</span>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endforeach
-                                    
+
 
                                 </div>
                             </div>
@@ -104,7 +106,8 @@
                 <div class="col flex-grow-1 hp-ecommerce-app-content">
                     <div class="row hp-ecommerce-app-header mb-32 g-16">
                         <div class="col flex-grow-1 w-auto hp-ecommerce-app-header-search">
-                            <input wire:model.live="search" type="text" placeholder="Search here" class="form-control">
+                            <input wire:model.live="search" type="text" placeholder="Search here"
+                                class="form-control">
                         </div>
 
                         <div class="col hp-flex-none w-auto">
@@ -154,8 +157,10 @@
 
 
 
-                                                            <div class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
-                                                                <button type="submit" class="border-0 bg-transparent p-0">
+                                                            <div
+                                                                class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
+                                                                <button type="submit"
+                                                                    class="border-0 bg-transparent p-0">
                                                                     <i class="ri-heart-fill lh-normal"></i>
                                                                 </button>
                                                             </div>
@@ -217,7 +222,7 @@
 
                                                             <div class="col-12">
                                                                 <div class="row g-8">
-                                                                    <div class="col-4">
+                                                                    {{-- <div class="col-4">
                                                                         <div class="input-number w-100">
                                                                             <div class="input-number-handler-wrap">
                                                                                 <span
@@ -257,17 +262,52 @@
                                                                                     max="10" value="1">
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> --}}
 
-                                                                    <div class="col-8">
-                                                                        <a href="app-ecommerce-checkout.html">
-                                                                            <button
-                                                                                class="btn btn-primary px-12 w-100">
-                                                                                <i
-                                                                                    class="ri-shopping-bag-line remix-icon"></i>
-                                                                                <span>Go to Cart</span>
-                                                                            </button>
-                                                                        </a>
+                                                                    <div class="col-12">
+
+                                                                        @auth
+                                                                            <form
+                                                                                action="{{ route('cart.addToSession') }}"
+                                                                                method="post">
+                                                                                @csrf
+
+
+                                                                                <input type="hidden" name="product_id"
+                                                                                    value="{{ $product->id }}">
+                                                                                <input type="hidden" name="quantity"
+                                                                                    value="1">
+                                                                                <input type="hidden" name="price"
+                                                                                    value="{{ $product->price }}">
+                                                                                <button
+                                                                                    class="btn btn-primary px-12 w-100">
+                                                                                    <i
+                                                                                        class="ri-shopping-bag-line remix-icon"></i>
+                                                                                    <span>Add To Cart</span>
+                                                                                </button>
+                                                                            </form>
+                                                                        @else
+                                                                            <form
+                                                                                action="{{ route('cart.addToSession') }}"
+                                                                                method="post">
+                                                                                @csrf
+
+
+                                                                                <input type="hidden" name="product_id"
+                                                                                    value="{{ $product->id }}">
+                                                                                <input type="hidden" name="quantity"
+                                                                                    value="1">
+                                                                                <input type="hidden" name="price"
+                                                                                    value="{{ $product->price }}">
+                                                                                <button
+                                                                                    class="btn btn-primary px-12 w-100">
+                                                                                    <i
+                                                                                        class="ri-shopping-bag-line remix-icon"></i>
+                                                                                    <span>Add To Cart</span>
+                                                                                </button>
+                                                                            </form>
+                                                                        @endguest
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -288,135 +328,170 @@
 
 
                         <div class="tab-pane fade" id="list-horizontal" role="tabpanel"
-                        aria-labelledby="list-horizontal-tab">
-                        <div class="row g-32">
+                            aria-labelledby="list-horizontal-tab">
+                            <div class="row g-32">
 
 
-                            @foreach ($products as $product)
+                                @foreach ($products as $product)
+                                    <div class="col-12">
+                                        <div class="card hp-eCommerceCardOne hp-eCommerceCardOne-large">
+                                            <div class="card-body">
+                                                <div class="row g-32">
+                                                    <div class="col-12 col-md-5 mb-24 mb-md-0">
+                                                        <div
+                                                            class="row mx-0 align-items-start justify-content-between">
 
-                            <div class="col-12">
-                                <div class="card hp-eCommerceCardOne hp-eCommerceCardOne-large">
-                                    <div class="card-body">
-                                        <div class="row g-32">
-                                            <div class="col-12 col-md-5 mb-24 mb-md-0">
-                                                <div class="row mx-0 align-items-start justify-content-between">
-
-                                                    @foreach ($product->tags as $tag)
-                                                    <span
-                                                        class="badge bg-primary-4 hp-bg-dark-primary text-primary border-none w-auto py-8 px-16 fw-medium">{{ $tag->name }}</span>
-                                                    @endforeach
+                                                            @foreach ($product->tags as $tag)
+                                                                <span
+                                                                    class="badge bg-primary-4 hp-bg-dark-primary text-primary border-none w-auto py-8 px-16 fw-medium">{{ $tag->name }}</span>
+                                                            @endforeach
 
 
-                                                    <div class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
-                                                        <button type="submit" class="border-0 bg-transparent p-0">
-                                                            <i class="ri-heart-fill lh-normal"></i>
-                                                        </button>
-                                                    </div>
-                                                    {{-- <div class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
+                                                            <div
+                                                                class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
+                                                                <button type="submit"
+                                                                    class="border-0 bg-transparent p-0">
+                                                                    <i class="ri-heart-fill lh-normal"></i>
+                                                                </button>
+                                                            </div>
+                                                            {{-- <div class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
                                                         <i class="ri-heart-fill lh"></i>
 
 
                                                     </div> --}}
 
-                                                </div>
+                                                        </div>
 
-                                                <div class="col-12 text-center">
-                                                    <a href="{{ route('product.detail', $product->id) }}">
-                                                        <img src="{{ Storage::url($product->image) }}"
-                                                            alt="Smart Watches 3" height="155">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 col-md-7">
-                                                <div class="col w-auto">
-                                                    <p style="font-size: 12px; margin-top: 5px;">By
-                                                        {{ $product->brand->name }}</p>
-                                                </div>
-
-                                                <div class="my-8">
-                                                    <h4 class="mb-4">{{ $product->name }}</h4>
-                                                </div>
-
-                                                <p
-                                                    class="mb-0 hp-p1-body fw-normal text-black-80 hp-text-color-dark-30">
-                                                    {{ Str::limit($product->description, 120, '...') }}</p>
-
-                                                <div class="d-flex align-items-center mt-8 mb-12 mb-sm-0">
-
-                                                    <p class="w-auto px-0 mb-0 text-primary fw-medium">${{ $product->price  }}</p>
-
-                                                </div>
-
-                                                <div class="row mt-0 g-8">
-                                                    <div class="col-12 col-xl-5">
-                                                        <a href="{{ route('product.detail', $product->id) }}">
-                                                            <button type="button"
-                                                                class="btn w-100 text-black-60 hp-hover-text-color-primary-1 hp-hover-text-color-dark-primary-2">
-                                                                <span>Check Detail</span>
-                                                            </button>
-                                                        </a>
-                                                    </div>
-
-
-                                                    <div class="col-6 col-xl-5">
-                                                        <a href="app-ecommerce-checkout.html">
-                                                            <button class="btn btn-primary w-100">
-                                                                <i class="ri-shopping-bag-line remix-icon"></i>
-                                                                <span>Go to Cart</span>
-                                                            </button>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="col-6 col-xl-2">
-                                                        <div class="input-number w-100">
-                                                            <div class="input-number-handler-wrap">
-                                                                <span
-                                                                    class="input-number-handler input-number-handler-up">
-                                                                    <span class="input-number-handler-up-inner">
-                                                                        <svg viewBox="64 64 896 896"
-                                                                            width="1em" height="1em"
-                                                                            fill="currentColor">
-                                                                            <path
-                                                                                d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z">
-                                                                            </path>
-                                                                        </svg>
-                                                                    </span>
-                                                                </span>
-
-                                                                <span
-                                                                    class="input-number-handler input-number-handler-down input-number-handler-down-disabled">
-                                                                    <span class="input-number-handler-down-inner">
-                                                                        <svg viewBox="64 64 896 896"
-                                                                            width="1em" height="1em"
-                                                                            fill="currentColor">
-                                                                            <path
-                                                                                d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z">
-                                                                            </path>
-                                                                        </svg>
-                                                                    </span>
-                                                                </span>
-                                                            </div>
-
-                                                            <div class="input-number-input-wrap">
-                                                                <input class="input-number-input" type="number"
-                                                                    min="1" max="10" value="1">
-                                                            </div>
+                                                        <div class="col-12 text-center">
+                                                            <a href="{{ route('product.detail', $product->id) }}">
+                                                                <img src="{{ Storage::url($product->image) }}"
+                                                                    alt="Smart Watches 3" height="155">
+                                                            </a>
                                                         </div>
                                                     </div>
 
+                                                    <div class="col-12 col-md-7">
+                                                        <div class="col w-auto">
+                                                            <p style="font-size: 12px; margin-top: 5px;">By
+                                                                {{ $product->brand->name }}</p>
+                                                        </div>
+
+                                                        <div class="my-8">
+                                                            <h4 class="mb-4">{{ $product->name }}</h4>
+                                                        </div>
+
+                                                        <p
+                                                            class="mb-0 hp-p1-body fw-normal text-black-80 hp-text-color-dark-30">
+                                                            {{ Str::limit($product->description, 120, '...') }}</p>
+
+                                                        <div class="d-flex align-items-center mt-8 mb-12 mb-sm-0">
+
+                                                            <p class="w-auto px-0 mb-0 text-primary fw-medium">
+                                                                ${{ $product->price }}</p>
+
+                                                        </div>
+
+                                                        <div class="row mt-0 g-8">
+                                                            <div class="col-12 col-xl-5">
+                                                                <a href="{{ route('product.detail', $product->id) }}">
+                                                                    <button type="button"
+                                                                        class="btn w-100 text-black-60 hp-hover-text-color-primary-1 hp-hover-text-color-dark-primary-2">
+                                                                        <span>Check Detail</span>
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+
+
+                                                            <div class="col-6 col-xl-5">
+                                                                @auth
+                                                                    <form action="{{ route('cart.addToSession') }}"
+                                                                        method="post">
+                                                                        @csrf
+
+
+                                                                        <input type="hidden" name="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <input type="hidden" name="quantity"
+                                                                            value="1">
+                                                                        <input type="hidden" name="price"
+                                                                            value="{{ $product->price }}">
+                                                                        <button class="btn btn-primary px-12 w-100">
+                                                                            <i class="ri-shopping-bag-line remix-icon"></i>
+                                                                            <span>Add To Cart</span>
+                                                                        </button>
+                                                                    </form>
+                                                                @else
+                                                                    <form action="{{ route('cart.addToSession') }}"
+                                                                        method="post">
+                                                                        @csrf
+
+
+                                                                        <input type="hidden" name="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <input type="hidden" name="quantity"
+                                                                            value="1">
+                                                                        <input type="hidden" name="price"
+                                                                            value="{{ $product->price }}">
+                                                                        <button class="btn btn-primary px-12 w-100">
+                                                                            <i class="ri-shopping-bag-line remix-icon"></i>
+                                                                            <span>Add To Cart</span>
+                                                                        </button>
+                                                                    </form>
+                                                                @endguest
+                                                            </div>
+
+                                                            {{-- <div class="col-6 col-xl-2">
+                                                                <div class="input-number w-100">
+                                                                    <div class="input-number-handler-wrap">
+                                                                        <span
+                                                                            class="input-number-handler input-number-handler-up">
+                                                                            <span
+                                                                                class="input-number-handler-up-inner">
+                                                                                <svg viewBox="64 64 896 896"
+                                                                                    width="1em" height="1em"
+                                                                                    fill="currentColor">
+                                                                                    <path
+                                                                                        d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z">
+                                                                                    </path>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </span>
+
+                                                                        <span
+                                                                            class="input-number-handler input-number-handler-down input-number-handler-down-disabled">
+                                                                            <span
+                                                                                class="input-number-handler-down-inner">
+                                                                                <svg viewBox="64 64 896 896"
+                                                                                    width="1em" height="1em"
+                                                                                    fill="currentColor">
+                                                                                    <path
+                                                                                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z">
+                                                                                    </path>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+
+                                                                    <div class="input-number-input-wrap">
+                                                                        <input class="input-number-input"
+                                                                            type="number" min="1"
+                                                                            max="10" value="">
+                                                                    </div>
+                                                                </div>
+                                                            </div> --}}
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
+
+
                             </div>
-                            @endforeach
-
-
                         </div>
-                    </div>
-                       
+
                     </div>
 
                     <nav class="my-64">
