@@ -11,7 +11,6 @@ class Service
     // Guest cart: Store cart data in session for non-authenticated users
     public function addToSession($product_id, $price, $quantity)
     {
-        //session()->flush();
         $cart = session()->get($this->sessionKey, []);
 
         if (isset($cart[$product_id])) {
@@ -49,10 +48,8 @@ class Service
 
     public function removeFromCartSession($product_id)
     {
-        // Получаем корзину из сессии
         $cart = session()->get($this->sessionKey, []);
 
-        // Если товар есть в корзине, удаляем его
         if (isset($cart[$product_id])) {
             unset($cart[$product_id]);
             session()->put($this->sessionKey, $cart);
@@ -62,20 +59,15 @@ class Service
 
     public function removeOneProductCartSession($product_id)
     {
-        // Получаем корзину из сессии
         $cart = session()->get($this->sessionKey, []);
 
-        // Если товар есть в корзине, удаляем его
         if (isset($cart[$product_id])) {
-            // Уменьшаем количество товара на 1
             $cart[$product_id]['quantity'] -= 1;
     
-            // Если количество товара стало меньше или равно 0, удаляем товар из корзины
             if ($cart[$product_id]['quantity'] <= 0) {
                 unset($cart[$product_id]);
             }
     
-            // Сохраняем обновленную корзину в сессии
             session()->put($this->sessionKey, $cart);
         }
 
