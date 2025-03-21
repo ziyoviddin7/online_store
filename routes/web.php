@@ -11,8 +11,7 @@ use App\Http\Controllers\User\Auth\RegisterController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Cart\CartController;
-
+use App\Http\Controllers\Cart\CartSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +52,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Product'], function () {
 
 // Cart
 Route::group(['namespace' => 'App\Http\Controllers\Cart'], function () {
-    Route::post('/cart', [CartController::class, 'addToSession'])->name('cart.addToSession');
-    Route::delete('/cart/remove/{product}', [CartController::class, 'removeFromCartSession'])->name('cart.remove');
-    Route::delete('/cart/remove_one/{product}', [CartController::class, 'removeOneProductCartSession'])->name('cart.remove_one');
+    Route::post('/cart_session', [CartSessionController::class, 'add'])->name('cart_session.add');
+    Route::delete('/cart_session/{product}', [CartSessionController::class, 'remove'])->name('cart_session.remove');
+    Route::delete('/cart_session/{product}/decrease', [CartSessionController::class, 'decreaseQuantity'])->name('cart_session.decrease');
 });

@@ -268,7 +268,7 @@
 
                                                                         @auth
                                                                             <form
-                                                                                action="{{ route('cart.addToSession') }}"
+                                                                                action="{{ route('cart_session.add') }}"
                                                                                 method="post">
                                                                                 @csrf
 
@@ -288,7 +288,7 @@
                                                                             </form>
                                                                         @else
                                                                             <form
-                                                                                action="{{ route('cart.addToSession') }}"
+                                                                                action="{{ route('cart_session.add') }}"
                                                                                 method="post">
                                                                                 @csrf
 
@@ -404,7 +404,7 @@
 
                                                             <div class="col-6 col-xl-5">
                                                                 @auth
-                                                                    <form action="{{ route('cart.addToSession') }}"
+                                                                    <form action="{{ route('cart_session.add') }}"
                                                                         method="post">
                                                                         @csrf
 
@@ -421,7 +421,7 @@
                                                                         </button>
                                                                     </form>
                                                                 @else
-                                                                    <form action="{{ route('cart.addToSession') }}"
+                                                                    <form action="{{ route('cart_session.add') }}"
                                                                         method="post">
                                                                         @csrf
 

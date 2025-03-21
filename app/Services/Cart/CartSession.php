@@ -5,11 +5,10 @@ namespace App\Services\Cart;
 
 use App\Models\Product;
 
-class Service
+class CartSession
 {
     protected $sessionKey = 'cart';
-    // Guest cart: Store cart data in session for non-authenticated users
-    public function addToSession($product_id, $price, $quantity)
+    public function addToCart($product_id, $price, $quantity)
     {
         $cart = session()->get($this->sessionKey, []);
 
@@ -22,11 +21,10 @@ class Service
             ];
         }
 
-
         session()->put($this->sessionKey, $cart);
     }
 
-    public function getItemsSession()
+    public function getCartItems()
     {
         $cart = session()->get($this->sessionKey, []);
 
@@ -46,7 +44,7 @@ class Service
         });
     }
 
-    public function removeFromCartSession($product_id)
+    public function removeFromCart($product_id)
     {
         $cart = session()->get($this->sessionKey, []);
 
@@ -54,25 +52,33 @@ class Service
             unset($cart[$product_id]);
             session()->put($this->sessionKey, $cart);
         }
-
     }
 
-    public function removeOneProductCartSession($product_id)
+    public function decreaseQuantityOrRemove($product_id)
     {
         $cart = session()->get($this->sessionKey, []);
 
         if (isset($cart[$product_id])) {
             $cart[$product_id]['quantity'] -= 1;
-    
+
             if ($cart[$product_id]['quantity'] <= 0) {
                 unset($cart[$product_id]);
             }
-    
+
             session()->put($this->sessionKey, $cart);
         }
-
     }
 
+    public function getTotal()
+    {
+        $cart = session()->get($this->sessionKey, []);
 
-    // Database-based cart storage for authenticated users
+        $total = 0;
+    
+        foreach ($cart as $product_id => $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+    
+        return $total;
+    }
 }

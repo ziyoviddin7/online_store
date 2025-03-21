@@ -217,10 +217,41 @@
                                                         </div>
 
                                                         <div class="col-12 col-sm-6">
-                                                            <button class="btn btn-primary px-12 w-100">
-                                                                <i class="ri-shopping-bag-line remix-icon"></i>
-                                                                <span>Add to Cart</span>
-                                                            </button>
+                                                            @auth
+                                                                    <form action="{{ route('cart_session.add') }}"
+                                                                        method="post">
+                                                                        @csrf
+
+
+                                                                        <input type="hidden" name="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <input type="hidden" name="quantity"
+                                                                            value="1">
+                                                                        <input type="hidden" name="price"
+                                                                            value="{{ $product->price }}">
+                                                                        <button class="btn btn-primary px-12 w-100">
+                                                                            <i class="ri-shopping-bag-line remix-icon"></i>
+                                                                            <span>Add To Cart</span>
+                                                                        </button>
+                                                                    </form>
+                                                                @else
+                                                                    <form action="{{ route('cart_session.add') }}"
+                                                                        method="post">
+                                                                        @csrf
+
+
+                                                                        <input type="hidden" name="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <input type="hidden" name="quantity"
+                                                                            value="1">
+                                                                        <input type="hidden" name="price"
+                                                                            value="{{ $product->price }}">
+                                                                        <button class="btn btn-primary px-12 w-100">
+                                                                            <i class="ri-shopping-bag-line remix-icon"></i>
+                                                                            <span>Add To Cart</span>
+                                                                        </button>
+                                                                    </form>
+                                                                @endguest
                                                         </div>
                                                     </div>
                                                 </div>
@@ -293,10 +324,41 @@
                                                         </div>
 
                                                         <div class="col-12 col-xl-6">
-                                                            <button class="btn btn-primary w-100">
-                                                                <i class="ri-shopping-bag-line remix-icon"></i>
-                                                                <span>Add to Cart</span>
-                                                            </button>
+                                                            @auth
+                                                                    <form action="{{ route('cart_session.add') }}"
+                                                                        method="post">
+                                                                        @csrf
+
+
+                                                                        <input type="hidden" name="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <input type="hidden" name="quantity"
+                                                                            value="1">
+                                                                        <input type="hidden" name="price"
+                                                                            value="{{ $product->price }}">
+                                                                        <button class="btn btn-primary px-12 w-100">
+                                                                            <i class="ri-shopping-bag-line remix-icon"></i>
+                                                                            <span>Add To Cart</span>
+                                                                        </button>
+                                                                    </form>
+                                                                @else
+                                                                    <form action="{{ route('cart_session.add') }}"
+                                                                        method="post">
+                                                                        @csrf
+
+
+                                                                        <input type="hidden" name="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <input type="hidden" name="quantity"
+                                                                            value="1">
+                                                                        <input type="hidden" name="price"
+                                                                            value="{{ $product->price }}">
+                                                                        <button class="btn btn-primary px-12 w-100">
+                                                                            <i class="ri-shopping-bag-line remix-icon"></i>
+                                                                            <span>Add To Cart</span>
+                                                                        </button>
+                                                                    </form>
+                                                                @endguest
                                                         </div>
                                                     </div>
                                                 </div>

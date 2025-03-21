@@ -89,7 +89,7 @@
                                                         </button>
                                                     </form>
                                                 @else
-                                                    <form action="{{ route('cart.addToSession') }}" method="post">
+                                                    <form action="{{ route('cart_session.add') }}" method="post">
                                                         @csrf
 
 
