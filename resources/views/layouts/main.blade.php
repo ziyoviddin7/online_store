@@ -373,9 +373,7 @@
                                     </div>
 
 
-
-
-
+                                    @auth
                                     <div class="me-2 hp-basket-dropdown-button w-auto px-0 position-relative" >
                                         <button type="button"
                                             class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
@@ -414,6 +412,145 @@
                                             <div class="divider mt-24 mb-4"></div>
 
                                             @foreach ($cart_items as $item)
+                                            <div class="hp-basket-dropdown-list">
+                                                <div class="hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded py-8 px-10 hp-overflow-x-auto"
+                                                    style="margin-left: -10px; margin-right: -10px;">
+                                                    <div
+                                                        class="row flex-nowrap justify-content-between align-items-center">
+                                                        <div class="col mt-4 pe-0" style="flex: 0 0 32px;">
+                                                            <a href="javascript:;">
+                                                                <div class="avatar-item d-flex align-items-center justify-content-center hp-bg-black-0 hp-bg-dark-100 rounded-circle"
+                                                                    style="width: 35px; height: 35px;">
+                                                                    <img
+                                                                        src="{{ Storage::url($item['product']->image) }}">
+                                                                </div>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="col ms-10 px-0" style="flex: 0 0 120px;">
+                                                            <a href="{{ route('product.detail', $item['product']->id) }}">
+                                                                <h5
+                                                                    class="mb-0 fw-medium hp-p1-body hp-text-color-black-100 hp-text-color-dark-15">
+                                                                    {{ $item['product']->name }}</h5>
+                                                                <p class="mb-0 hp-caption hp-text-color-black-60"
+                                                                    style="margin-top: 1px;">By <span
+                                                                        class="hp-text-color-black-80">{{ $item['product']->brand->name }}</span></p>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="col hp-d-flex hp-d-flex-column ms-8 px-0"
+                                                            style="flex: 0 0 70px;">
+                                                            <div class="input-number input-number-sm"
+                                                                style="width: 65px;">
+                                                                <div class="input-number-handler-wrap">
+
+                                                                    
+                                                                </div>
+
+                                                                <div class="input-number-input-wrap">
+                                                                    <input class="input-number-input" type="number"
+                                                                        min="1" max="10" value="{{ $item['quantity'] }}">
+                                                                </div>
+                                                            </div>
+
+                                                            <div
+                                                                class="hp-cursor-pointer mt-4 hp-input-description fw-medium text-black-60 text-decoration-underline">
+                                                                ${{ $item['price'] }}/unit</div>
+                                                        </div>
+
+                                                        <div class="col ps-0 text-end">
+                                                            <p
+                                                                class="hp-basket-dropdown-list-item-price hp-p1-body mb-0 hp-text-color-black-80 hp-text-color-dark-30 fw-medium">
+                                                                ${{ $item['total'] }}</p>
+                                                                
+                                                                
+                                                        </div>
+                                                        <div class="col ps-0 text-end">
+                                                            <form action="{{ route('cart.decrease', $item['product']->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-link p-0">↓</button>
+                                                            </form>
+                                                            
+                                                        </div>
+                                                        <div class="col ps-0 text-end">
+                                                            <form action="{{ route('cart.remove', $item['product']->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-link p-0">x</button>
+                                                            </form>
+                                                            
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                           
+
+                                            <div class="divider mt-4 mb-12"></div>
+
+                                            <div class="row">
+                                                <div class="col-6 px-8">
+                                                    <a href="app-ecommerce-checkout.html">
+                                                        <button type="button"
+                                                            class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
+                                                            View Cart
+                                                        </button>
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-6 px-8">
+                                                    <a href="app-ecommerce-checkout-address.html">
+                                                        <button type="button"
+                                                            class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
+                                                            Checkout
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @else
+                                    <div class="me-2 hp-basket-dropdown-button w-auto px-0 position-relative" >
+                                        <button type="button"
+                                            class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
+                                            style="height: 40px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                viewBox="0 0 24 24" fill="none"
+                                                class="hp-text-color-black-80 hp-text-color-dark-30">
+                                                <path
+                                                    d="M8.4 6.5h7.2c3.4 0 3.74 1.59 3.97 3.53l.9 7.5C20.76 19.99 20 22 16.5 22H7.51C4 22 3.24 19.99 3.54 17.53l.9-7.5C4.66 8.09 5 6.5 8.4 6.5Z"
+                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                                <path d="M8 8V4.5C8 3 9 2 10.5 2h3C15 2 16 3 16 4.5V8M20.41 17.03H8"
+                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                            </svg>
+                                            @if ($cartSession_items->isNotEmpty())
+                                            <span
+                                            class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
+                                            style="width: 6px; height: 6px; top: 12px; left: 26px;"></span>
+                                            @endif
+                                            
+                                        </button>
+
+                                        <div class="hp-basket-dropdown" style="width: 390px;" >
+                                            <div class="row px-0 justify-content-between align-items-center">
+                                                <h5 class="mb-0 w-auto hp-text-color-dark-15">My Cart</h5>
+
+                                                <div class="w-auto px-0 me-8">
+                                                    <span
+                                                        class="d-inline-block hp-caption fw-medium w-auto hp-text-color-black-80 hp-text-color-dark-30">
+                                                        
+                                                        Total: ${{ number_format($cartSession_total, 2, '.', ' ') }}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="divider mt-24 mb-4"></div>
+
+                                            @foreach ($cartSession_items as $item)
                                             <div class="hp-basket-dropdown-list">
                                                 <div class="hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded py-8 px-10 hp-overflow-x-auto"
                                                     style="margin-left: -10px; margin-right: -10px;">
@@ -513,6 +650,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endguest
 
                                     <div class="hover-dropdown-fade w-auto px-0 ms-6 position-relative">
                                         @auth

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Product\DetailController;
@@ -50,9 +51,18 @@ Route::group(['namespace' => 'App\Http\Controllers\Product'], function () {
     Route::get('/shop/{product}', DetailController::class)->name('product.detail');
 });
 
-// Cart
-Route::group(['namespace' => 'App\Http\Controllers\Cart'], function () {
+
+// Cart Session (для гостей)
+Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => 'web'], function () {
     Route::post('/cart_session', [CartSessionController::class, 'add'])->name('cart_session.add');
     Route::delete('/cart_session/{product}', [CartSessionController::class, 'remove'])->name('cart_session.remove');
     Route::delete('/cart_session/{product}/decrease', [CartSessionController::class, 'decreaseQuantity'])->name('cart_session.decrease');
+});
+
+
+// Cart (для авторизованных пользователей)
+Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => ['web', 'auth']], function () {
+    Route::post('/cart', [CartController::class, 'add'])->name('cart.add');
+    Route::delete('/cart/{product}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::delete('/cart/{product}/decrease', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
 });

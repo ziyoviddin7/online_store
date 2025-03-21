@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Services\Cart\Cart;
 use App\Services\Cart\CartSession;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -37,6 +38,14 @@ class ViewServiceProvider extends ServiceProvider
         // Передача items из Session Cart во все Blade-шаблоны
         View::composer('*', function ($view) {
             $cart = app(CartSession::class);
+            $cartSession_items = $cart->getCartItems();
+            $cartSession_total = $cart->getTotal();
+            $view->with(compact('cartSession_items', 'cartSession_total'));
+        });
+
+        // Передача items из Cart во все Blade-шаблоны
+        View::composer('*', function ($view) {
+            $cart = app(Cart::class);
             $cart_items = $cart->getCartItems();
             $total = $cart->getTotal();
             $view->with(compact('cart_items', 'total'));

@@ -268,7 +268,7 @@
 
                                                                         @auth
                                                                             <form
-                                                                                action="{{ route('cart_session.add') }}"
+                                                                                action="{{ route('cart.add') }}"
                                                                                 method="post">
                                                                                 @csrf
 
@@ -404,7 +404,7 @@
 
                                                             <div class="col-6 col-xl-5">
                                                                 @auth
-                                                                    <form action="{{ route('cart_session.add') }}"
+                                                                    <form action="{{ route('cart.add') }}"
                                                                         method="post">
                                                                         @csrf
 

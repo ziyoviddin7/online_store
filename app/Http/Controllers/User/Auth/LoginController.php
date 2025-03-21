@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Auth\LoginStoreRequest;
 use App\Providers\RouteServiceProvider;
+use App\Services\Cart\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,9 @@ class LoginController extends Controller
         $credentials = $loginStoreRequest->validated();
 
         if (Auth::attempt($credentials, $loginStoreRequest->boolean('remember'))) {
+            $cart = new Cart();
+            $cart->syncSessionCart();
+
             $loginStoreRequest->session()->regenerate();
 
             return redirect()->intended(RouteServiceProvider::HOME);

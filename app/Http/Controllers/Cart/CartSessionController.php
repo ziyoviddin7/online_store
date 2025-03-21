@@ -27,11 +27,11 @@ class CartSessionController extends Controller
         return redirect()->back()->with('success', 'item added to session(cart)');
     }
 
-    public function show()
-    {
-        $items = $this->cartSession->getCartItems();
-        return view('product.shop', compact('items', 'total'));
-    }
+    // public function show()
+    // {
+    //     $items = $this->cartSession->getCartItems();
+    //     return view('product.shop', compact('items', 'total'));
+    // }
 
     public function remove(Product $product)
     {
