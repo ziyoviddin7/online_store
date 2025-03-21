@@ -29,6 +29,7 @@ class CartController extends Controller
 
     public function show()
     {
+        
     }
 
     public function remove(Product $product)

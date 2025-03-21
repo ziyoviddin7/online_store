@@ -54,9 +54,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Product'], function () {
 
 // Cart Session (для гостей)
 Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => 'web'], function () {
+    Route::get('/cart', [CartSessionController::class, 'show'])->name('cart.show');
     Route::post('/cart_session', [CartSessionController::class, 'add'])->name('cart_session.add');
     Route::delete('/cart_session/{product}', [CartSessionController::class, 'remove'])->name('cart_session.remove');
     Route::delete('/cart_session/{product}/decrease', [CartSessionController::class, 'decreaseQuantity'])->name('cart_session.decrease');
+    Route::post('/cart_session/{product}/increase', [CartSessionController::class, 'increaseQuantity'])->name('cart_session.increase');
 });
 
 

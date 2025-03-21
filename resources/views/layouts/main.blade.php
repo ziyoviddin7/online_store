@@ -536,7 +536,7 @@
                                             
                                         </button>
 
-                                        <div class="hp-basket-dropdown" style="width: 390px;" >
+                                        <div class="hp-basket-dropdown" style="width: 430px;" >
                                             <div class="row px-0 justify-content-between align-items-center">
                                                 <h5 class="mb-0 w-auto hp-text-color-dark-15">My Cart</h5>
 
@@ -604,6 +604,13 @@
                                                                 
                                                                 
                                                         </div>
+                                                        <div class="col ps-0 text-end" style="margin-left: 0px;">
+                                                            <form action="{{ route('cart_session.increase', $item['product']->id) }}" method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-link p-0">↑</button>
+                                                            </form>
+                                                            
+                                                        </div>
                                                         <div class="col ps-0 text-end">
                                                             <form action="{{ route('cart_session.decrease', $item['product']->id) }}" method="POST">
                                                                 @csrf
@@ -630,15 +637,32 @@
                                             <div class="divider mt-4 mb-12"></div>
 
                                             <div class="row">
+                                                @if ($cartSession_items->isEmpty())
                                                 <div class="col-6 px-8">
-                                                    <a href="app-ecommerce-checkout.html">
+                                                    <a href="{{ route('product.shop') }}">
+                                                        <button type="button"
+                                                            class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
+                                                            View Shop
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                                <div class="col-6 px-8">
+                                                    <a href="{{ route('cart.show') }}">
+                                                        <button type="button"
+                                                            class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
+                                                            View Cart
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                                @else
+                                                <div class="col-6 px-8">
+                                                    <a href="{{ route('cart.show') }}">
                                                         <button type="button"
                                                             class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
                                                             View Cart
                                                         </button>
                                                     </a>
                                                 </div>
-
                                                 <div class="col-6 px-8">
                                                     <a href="app-ecommerce-checkout-address.html">
                                                         <button type="button"
@@ -647,6 +671,8 @@
                                                         </button>
                                                     </a>
                                                 </div>
+                                                @endif
+                        
                                             </div>
                                         </div>
                                     </div>

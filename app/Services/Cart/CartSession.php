@@ -69,16 +69,40 @@ class CartSession
         }
     }
 
+    public function increaseQuantity($product_id)
+    {
+        $cart = session()->get($this->sessionKey, []);
+
+        if (isset($cart[$product_id])) {
+            $cart[$product_id]['quantity'] += 1;
+
+            session()->put($this->sessionKey, $cart);
+        }
+    }
+
+    public function getTotalQuantity()
+    {
+        $cart = session()->get($this->sessionKey, []);
+
+        $totalQuantity = 0;
+
+        foreach ($cart as $product_id => $item) {
+            $totalQuantity += $item['quantity'];
+        }
+
+        return $totalQuantity;
+    }
+
     public function getTotal()
     {
         $cart = session()->get($this->sessionKey, []);
 
         $total = 0;
-    
+
         foreach ($cart as $product_id => $item) {
             $total += $item['price'] * $item['quantity'];
         }
-    
+
         return $total;
     }
 }
