@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Services\Cart\Cart;
 use App\Services\Cart\CartSession;
+use App\Services\Favorites\Favorites;
+use App\Services\Favorites\FavoritesSession;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -50,5 +52,15 @@ class ViewServiceProvider extends ServiceProvider
             $total = $cart->getTotal();
             $view->with(compact('cart_items', 'total'));
         });
+
+        View::composer('*', function ($view) {
+            $favorites = app(FavoritesSession::class);
+            $favoritesSession_items = $favorites->getFavoritesItems();
+            $favoritesSession_total_quantity = $favorites->getTotalQuantity();
+            $view->with(compact('favoritesSession_items', 'favoritesSession_total_quantity'));
+        });
+
+
+        
     }
 }

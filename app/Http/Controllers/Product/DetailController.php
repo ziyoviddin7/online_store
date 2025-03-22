@@ -11,6 +11,7 @@ class DetailController extends Controller
     public function __invoke(Product $product)
     {
         $products = Product::all();
-        return view('product.product-detail', compact('product', 'products'));
+        $favorites = session()->get('favorites', []);
+        return view('product.product-detail', compact('product', 'products', 'favorites'));
     }
 }

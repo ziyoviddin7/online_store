@@ -149,7 +149,7 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div
-                                                            class="row mx-0 align-items-start justify-content-between">
+                                                            class="row mx-0 align-items-start justify-content-between ">
                                                             @foreach ($product->tags as $tag)
                                                                 <span
                                                                     class="badge bg-primary-4 hp-bg-dark-primary text-primary border-none w-auto py-8 px-16 fw-medium">{{ $tag->name }}</span>
@@ -157,18 +157,37 @@
 
 
 
-                                                            <div
-                                                                class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
-                                                                <button type="submit"
-                                                                    class="border-0 bg-transparent p-0">
-                                                                    <i class="ri-heart-fill lh-normal"></i>
-                                                                </button>
-                                                            </div>
-                                                            {{-- <div class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
-                                                                <i class="ri-heart-fill lh"></i>
 
+                                                            @if (isset($favorites[$product->id]))
+                                                                <div
+                                                                    class="d-flex w-auto d-flex align-items-center justify-content-center lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
+                                                                    <form action="{{ route('favorites_session.remove', $product->id) }}" method="post">
+                                                                        @csrf
+                                                                        @method('delete')
 
-                                                            </div> --}}
+                                                                        <button type="submit"
+                                                                            class="border-0 bg-transparent p-0">
+                                                                            <i class="ri-heart-fill lh text-danger"></i>
+
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            @else
+                                                                <div
+                                                                    class="d-flex d-flex align-items-center justify-content-center w-auto w-100 h-100 lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
+                                                                    <form action="{{ route('favorites_session.add') }}" method="post">
+                                                                        @csrf
+                                                                        <input type="hidden" name="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <button type="submit"
+                                                                            class="border-0 bg-transparent p-0 ">
+                                                                            <i class="ri-heart-fill lh-normal"></i>
+                                                                        </button>
+                                                                    </form>
+
+                                                                </div>
+                                                            @endif
+
 
 
                                                         </div>
@@ -222,53 +241,12 @@
 
                                                             <div class="col-12">
                                                                 <div class="row g-8">
-                                                                    {{-- <div class="col-4">
-                                                                        <div class="input-number w-100">
-                                                                            <div class="input-number-handler-wrap">
-                                                                                <span
-                                                                                    class="input-number-handler input-number-handler-up">
-                                                                                    <span
-                                                                                        class="input-number-handler-up-inner">
-                                                                                        <svg viewBox="64 64 896 896"
-                                                                                            width="1em"
-                                                                                            height="1em"
-                                                                                            fill="currentColor">
-                                                                                            <path
-                                                                                                d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z">
-                                                                                            </path>
-                                                                                        </svg>
-                                                                                    </span>
-                                                                                </span>
 
-                                                                                <span
-                                                                                    class="input-number-handler input-number-handler-down input-number-handler-down-disabled">
-                                                                                    <span
-                                                                                        class="input-number-handler-down-inner">
-                                                                                        <svg viewBox="64 64 896 896"
-                                                                                            width="1em"
-                                                                                            height="1em"
-                                                                                            fill="currentColor">
-                                                                                            <path
-                                                                                                d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z">
-                                                                                            </path>
-                                                                                        </svg>
-                                                                                    </span>
-                                                                                </span>
-                                                                            </div>
-
-                                                                            <div class="input-number-input-wrap">
-                                                                                <input class="input-number-input"
-                                                                                    type="number" min="1"
-                                                                                    max="10" value="1">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> --}}
 
                                                                     <div class="col-12">
 
                                                                         @auth
-                                                                            <form
-                                                                                action="{{ route('cart.add') }}"
+                                                                            <form action="{{ route('cart.add') }}"
                                                                                 method="post">
                                                                                 @csrf
 
@@ -287,8 +265,7 @@
                                                                                 </button>
                                                                             </form>
                                                                         @else
-                                                                            <form
-                                                                                action="{{ route('cart_session.add') }}"
+                                                                            <form action="{{ route('cart_session.add') }}"
                                                                                 method="post">
                                                                                 @csrf
 
@@ -347,18 +324,35 @@
                                                             @endforeach
 
 
+                                                            @if (isset($favorites[$product->id]))
                                                             <div
-                                                                class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
-                                                                <button type="submit"
-                                                                    class="border-0 bg-transparent p-0">
-                                                                    <i class="ri-heart-fill lh-normal"></i>
-                                                                </button>
+                                                                class="d-flex w-auto d-flex align-items-center justify-content-center lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
+                                                                <form action="{{ route('favorites_session.remove', $product->id) }}" method="post">
+                                                                    @csrf
+                                                                    @method('delete')
+
+                                                                    <button type="submit"
+                                                                        class="border-0 bg-transparent p-0">
+                                                                        <i class="ri-heart-fill lh text-danger"></i>
+
+                                                                    </button>
+                                                                </form>
                                                             </div>
-                                                            {{-- <div class="d-flex w-auto lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
-                                                        <i class="ri-heart-fill lh"></i>
+                                                        @else
+                                                            <div
+                                                                class="d-flex d-flex align-items-center justify-content-center w-auto w-100 h-100 lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
+                                                                <form action="{{ route('favorites_session.add') }}" method="post">
+                                                                    @csrf
+                                                                    <input type="hidden" name="product_id"
+                                                                        value="{{ $product->id }}">
+                                                                    <button type="submit"
+                                                                        class="border-0 bg-transparent p-0 ">
+                                                                        <i class="ri-heart-fill lh-normal"></i>
+                                                                    </button>
+                                                                </form>
 
-
-                                                    </div> --}}
+                                                            </div>
+                                                        @endif
 
                                                         </div>
 

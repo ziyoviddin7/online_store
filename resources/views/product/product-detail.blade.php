@@ -67,14 +67,10 @@
                                 <div class="row g-24">
                                     <div class="col-12">
                                         <div class="row g-8">
+                                            
 
                                             <div class="col hp-flex-none w-auto">
-                                                {{-- <a href="app-ecommerce-checkout.html">
-                                                    <button class="btn btn-primary">
-                                                        <i class="ri-shopping-bag-line remix-icon"></i>
-                                                        <span>Add To Cart</span>
-                                                    </button>
-                                                </a> --}}
+                                                
                                                 @auth
                                                     <form action="{{ route('cart.add') }}" method="post">
                                                         @csrf
@@ -103,14 +99,62 @@
                                                     </form>
                                                 @endguest
                                             </div>
-                                            <div class="col hp-flex-none w-auto">
-                                                <a href="app-ecommerce-checkout.html">
-                                                    <button class="btn btn-primary">
-                                                        <i class="ri-heart-3-line remix-icon"></i>
-                                                        <span>Add To Favorites</span>
-                                                    </button>
-                                                </a>
-                                            </div>
+                                            @auth
+                                                @if (isset($favorites[$product->id]))
+                                                    <div class="col hp-flex-none w-auto">
+                                                        <form action="{{ route('favorites_session.remove', $product->id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-primary">
+                                                                <i class="ri-heart-3-line remix-icon"></i>
+                                                                <span>Remove From Favorites</span>
+                                                            </button>
+
+                                                        </form>
+                                                    </div>
+                                                @else
+                                                    <div class="col hp-flex-none w-auto">
+                                                        <form action="{{ route('favorites_session.add') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="product_id"
+                                                                value="{{ $product->id }}">
+                                                            <button class="btn btn-primary">
+                                                                <i class="ri-heart-3-line remix-icon"></i>
+                                                                <span>Add To Favorites</span>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                @endif
+                                            @else
+                                                @if (isset($favorites[$product->id]))
+                                                    <div class="col hp-flex-none w-auto">
+                                                        <form action="{{ route('favorites_session.remove', $product->id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-primary btn-danger">
+                                                                <i class="ri-heart-3-line remix-icon"></i>
+                                                                <span >Remove From Favorites</span>
+                                                            </button>
+
+                                                        </form>
+                                                    </div>
+                                                @else
+                                                    <div class="col hp-flex-none w-auto">
+                                                        <form action="{{ route('favorites_session.add') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="product_id"
+                                                                value="{{ $product->id }}">
+                                                            <button class="btn btn-primary">
+                                                                <i class="ri-heart-3-line remix-icon"></i>
+                                                                <span>Add To Favorites</span>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                @endif
+                                            @endguest
+
                                         </div>
                                     </div>
 

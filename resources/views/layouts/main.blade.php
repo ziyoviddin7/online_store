@@ -353,7 +353,7 @@
 
                                     <div
                                         class="hover-dropdown-fade w-auto px-0 d-flex align-items-center position-relative">
-                                        <button type="button"
+                                        <a href="{{ route('favorites.show') }}" 
                                             class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
                                             style="height: 40px;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
@@ -366,10 +366,21 @@
                                                     stroke-linejoin="round">
                                                 </path>
                                             </svg>
+                                            @auth
+                                            @if ($favoritesSession_items->isNotEmpty())
                                             <span
                                                 class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
                                                 style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>
-                                        </button>
+                                            @endif
+                                            @else
+                                            @if ($favoritesSession_items->isNotEmpty())
+                                            <span
+                                                class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
+                                                style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>
+                                            @endif
+                                            @endguest
+                                            
+                                        </a>
                                     </div>
 
 

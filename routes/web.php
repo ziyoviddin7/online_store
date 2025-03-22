@@ -13,6 +13,7 @@ use App\Http\Controllers\User\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Cart\CartSessionController;
+use App\Http\Controllers\Favorites\FavoritesSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +76,20 @@ Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => ['web'
     Route::delete('/cart/{product}/decrease', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
     Route::post('/cart/{product}/increase', [CartController::class, 'increaseQuantity'])->name('cart.increase');
 });
+
+
+// Favorites Session (для гостей)
+Route::group(['namespace' => 'App\Http\Controllers\Favorites', 'middleware' => 'web'], function () {
+    Route::post('/favorites_session', [FavoritesSessionController::class, 'add'])->name('favorites_session.add');
+    Route::delete('/favorites_session/{product}', [FavoritesSessionController::class, 'remove'])->name('favorites_session.remove');
+    // Route::delete('/cart_session/{product}/decrease', [CartSessionController::class, 'decreaseQuantity'])->name('cart_session.decrease');
+    // Route::post('/cart_session/{product}/increase', [CartSessionController::class, 'increaseQuantity'])->name('cart_session.increase');
+});
+
+Route::get('/favorites', function () {
+    if (auth()->check()) {
+        return app(CartController::class)->show();
+    } else {
+        return app(FavoritesSessionController::class)->show();
+    }
+})->name('favorites.show');

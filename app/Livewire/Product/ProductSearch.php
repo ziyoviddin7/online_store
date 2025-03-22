@@ -28,7 +28,8 @@ class ProductSearch extends Component
         }
 
         $tags = Tag::all();
-        
-        return view('livewire.product.product-search', compact('tags'));
+        $favorites = session()->get('favorites', []);
+
+        return view('livewire.product.product-search', compact('tags', 'favorites'));
     }
 }

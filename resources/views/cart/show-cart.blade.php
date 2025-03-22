@@ -99,9 +99,11 @@
                                                     <img src="{{ Storage::url($item['product']->image) }}" alt="Smart Watches 3">
                                                 </a>
                                             </div>
-
+                                            
                                             <div class="col hp-ecommerce-app-checkout-text mt-16 mt-sm-0 ps-0 ps-sm-32" style="flex: 1 0 0px;">
-                                                <h4 class="mb-4">{{ $item['product']->name }}</h4>
+                                                <a href="{{ route('product.detail', $item['product']->id) }}">
+                                                    <h4 class="mb-4">{{ $item['product']->name }}</h4>
+                                                </a>
                                                 <span class="hp-caption d-block text-black-60">By<span class="ms-4 text-black-80 hp-text-color-dark-40">{{ $item['product']->brand->name }}</span></span>
                                                 <p class="mt-8 mb-0 hp-caption fw-normal text-black-60">{{ Str::limit($item['product']->description, 60, '...') }}</p>
                                             </div>
@@ -184,7 +186,10 @@
                                             </div>
 
                                             <div class="col hp-ecommerce-app-checkout-text mt-16 mt-sm-0 ps-0 ps-sm-32" style="flex: 1 0 0px;">
-                                                <h4 class="mb-4">{{ $item['product']->name }}</h4>
+                                                <a href="{{ route('product.detail', $item['product']->id) }}">
+                                                    <h4 class="mb-4">{{ $item['product']->name }}</h4>
+                                                </a>
+                                                
                                                 <span class="hp-caption d-block text-black-60">By<span class="ms-4 text-black-80 hp-text-color-dark-40">{{ $item['product']->brand->name }}</span></span>
                                                 <p class="mt-8 mb-0 hp-caption fw-normal text-black-60">{{ Str::limit($item['product']->description, 60, '...') }}</p>
                                             </div>
