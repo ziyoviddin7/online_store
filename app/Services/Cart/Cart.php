@@ -83,7 +83,7 @@ class Cart
     {
         $user = auth()->user();
         if (!$user) {
-            return; 
+            return;
         }
 
         $cart = ModelsCart::where('user_id', $user->id)->first();
@@ -115,6 +115,40 @@ class Cart
                 }
             }
         }
+    }
+
+    public function increaseQuantity($product_id)
+    {
+        $user = auth()->user();
+        if (!$user) {
+            return;
+        }
+
+        $cart = ModelsCart::firstOrCreate(['user_id' => $user->id]);
+
+        $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
+
+        if ($isInCart) {
+            $cart->cart_items()
+                ->where('product_id', $product_id)
+                ->increment('quantity');
+        } 
+    }
+
+    public function getTotalQuantity()
+    {
+        $user = auth()->user();
+        if (!$user) {
+            return 0;
+        }
+
+        $cart = ModelsCart::where('user_id', $user->id)->first();
+
+        if ($cart) {
+            return $cart->cart_items()->sum('quantity');
+        }
+
+        return 0;
     }
 
     public function getTotal()

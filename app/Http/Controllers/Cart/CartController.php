@@ -29,7 +29,10 @@ class CartController extends Controller
 
     public function show()
     {
-        
+        $cart_items = $this->cart->getCartItems();
+        $cart_total = $this->cart->getTotal();
+        $cart_total_quantity = $this->cart->getTotalQuantity();
+        return view('cart.show-cart', compact('cart_items', 'cart_total', 'cart_total_quantity'));
     }
 
     public function remove(Product $product)
@@ -44,5 +47,12 @@ class CartController extends Controller
         $product_id = $product->id;
         $this->cart->decreaseQuantityOrRemove($product_id);
         return redirect()->back()->with('success', "Item '{$product->name}' quantity decreased");
+    }
+
+    public function increaseQuantity(Product $product)
+    {
+        $product_id = $product->id;
+        $this->cart->increaseQuantity($product_id);
+        return redirect()->back()->with('success', "Item '{$product->name}' quantity increased");
     }
 }

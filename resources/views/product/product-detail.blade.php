@@ -76,7 +76,7 @@
                                                     </button>
                                                 </a> --}}
                                                 @auth
-                                                    <form action="{{ route('cart.addToSession') }}" method="post">
+                                                    <form action="{{ route('cart.add') }}" method="post">
                                                         @csrf
 
 

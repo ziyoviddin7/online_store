@@ -26,7 +26,7 @@ use App\Http\Controllers\Cart\CartSessionController;
 */
 
 // Home Paige
-Route::get('/', [HomeController::class , 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // User Auth
 Route::group(['namespace' => 'App\Http\Controllers\User\Auth'], function () {
@@ -54,17 +54,24 @@ Route::group(['namespace' => 'App\Http\Controllers\Product'], function () {
 
 // Cart Session (для гостей)
 Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => 'web'], function () {
-    Route::get('/cart', [CartSessionController::class, 'show'])->name('cart.show');
     Route::post('/cart_session', [CartSessionController::class, 'add'])->name('cart_session.add');
     Route::delete('/cart_session/{product}', [CartSessionController::class, 'remove'])->name('cart_session.remove');
     Route::delete('/cart_session/{product}/decrease', [CartSessionController::class, 'decreaseQuantity'])->name('cart_session.decrease');
     Route::post('/cart_session/{product}/increase', [CartSessionController::class, 'increaseQuantity'])->name('cart_session.increase');
 });
 
+Route::get('/cart', function () {
+    if (auth()->check()) {
+        return app(CartController::class)->show();
+    } else {
+        return app(CartSessionController::class)->show();
+    }
+})->name('cart.show');
 
 // Cart (для авторизованных пользователей)
 Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => ['web', 'auth']], function () {
     Route::post('/cart', [CartController::class, 'add'])->name('cart.add');
     Route::delete('/cart/{product}', [CartController::class, 'remove'])->name('cart.remove');
     Route::delete('/cart/{product}/decrease', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
+    Route::post('/cart/{product}/increase', [CartController::class, 'increaseQuantity'])->name('cart.increase');
 });
