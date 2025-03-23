@@ -3,137 +3,68 @@
 
 namespace App\Services\Favorites;
 
-use App\Models\Cart as ModelsCart;
+use App\Models\Favorites as ModelsFavorites;
 
 class Favorites
 {
-    public function syncSessionCart()
+    public function syncSessionFavorites()
     {
         $user = auth()->user();
-        $sessionCart = session()->get('cart', []);
+        $sessionFavorites  = session()->get('favorites', []);
 
-        if ($sessionCart) {
-            $cart = ModelsCart::firstOrCreate(['user_id' => $user->id]);
+        if ($sessionFavorites) {
+            foreach ($sessionFavorites as $product_id => $item) {
+                $isInFavorites = $user->favorites()->where('product_id', $product_id)->exists();
 
-            foreach ($sessionCart as $product_id => $item) {
-                $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
-
-                if ($isInCart) {
-                    $cart->cart_items()
-                        ->where('product_id', $product_id)
-                        ->increment('quantity', $item['quantity']);
-                } else {
-                    $cart->cart_items()->create([
+                if (!$isInFavorites) {
+                    $user->favorites()->create([
                         'product_id' => $product_id,
-                        'price' => $item['price'],
-                        'quantity' => $item['quantity'],
                     ]);
                 }
             }
-
-            session()->forget('cart');
+            session()->forget('favorites');
         }
     }
 
-    public function addToCart($product_id, $price, $quantity)
+    public function addToFavorites($product_id)
     {
         $user = auth()->user();
-        $cart = ModelsCart::firstOrCreate(['user_id' => $user->id]);
-
-        $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
-
-        if ($isInCart) {
-            $cart->cart_items()
-                ->where('product_id', $product_id)
-                ->increment('quantity', $quantity);
-        } else {
-            $cart->cart_items()->create([
-                'product_id' => $product_id,
-                'price' => $price,
-                'quantity' => $quantity,
-            ]);
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
+
+        $favorite = ModelsFavorites::firstOrCreate([
+            'user_id' => $user->id,
+            'product_id' => $product_id,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => $favorite->wasRecentlyCreated ? 'Товар добавлен в избранное' : 'Товар уже в избранном',
+        ]);
     }
 
-    public function getCartItems()
+    public function getFavoritesItems()
     {
         $user = auth()->user();
         if (!$user) {
             return collect();
         }
-        $cart = ModelsCart::where('user_id', $user->id)->first();
-
-        if ($cart) {
-            $cartItems = $cart->cart_items()->with('product')->get();
-
-            return $cartItems->map(function ($item) {
-                return [
-                    'product' => $item->product,
-                    'quantity' => $item->quantity,
-                    'price' => $item->price,
-                    'total' => $item->price * $item->quantity,
-                ];
-            });
-        }
-
-        return collect();
+        return $user->favorites()->with('product')->get()->pluck('product');
     }
 
-    public function removeFromCart($product_id)
+    public function removeFromFavorites($product_id)
     {
         $user = auth()->user();
         if (!$user) {
-            return;
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
 
-        $cart = ModelsCart::where('user_id', $user->id)->first();
+        $user->favorites()->where('product_id', $product_id)->delete();
 
-        if ($cart) {
-            $cart->cart_items()->where('product_id', $product_id)->delete();
-        }
+        return response()->json(['success' => true, 'message' => 'Товар удален из избранного']);
     }
 
-    public function decreaseQuantityOrRemove($product_id)
-    {
-        $user = auth()->user();
-        if (!$user) {
-            return;
-        }
-
-        $cart = ModelsCart::where('user_id', $user->id)->first();
-
-        if ($cart) {
-            $cartItem = $cart->cart_items()->where('product_id', $product_id)->first();
-
-            if ($cartItem) {
-                $cartItem->quantity -= 1;
-
-                if ($cartItem->quantity <= 0) {
-                    $cartItem->delete();
-                } else {
-                    $cartItem->save();
-                }
-            }
-        }
-    }
-
-    public function increaseQuantity($product_id)
-    {
-        $user = auth()->user();
-        if (!$user) {
-            return;
-        }
-
-        $cart = ModelsCart::firstOrCreate(['user_id' => $user->id]);
-
-        $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
-
-        if ($isInCart) {
-            $cart->cart_items()
-                ->where('product_id', $product_id)
-                ->increment('quantity');
-        } 
-    }
 
     public function getTotalQuantity()
     {
@@ -142,32 +73,6 @@ class Favorites
             return 0;
         }
 
-        $cart = ModelsCart::where('user_id', $user->id)->first();
-
-        if ($cart) {
-            return $cart->cart_items()->sum('quantity');
-        }
-
-        return 0;
-    }
-
-    public function getTotal()
-    {
-        $user = auth()->user();
-        if (!$user) {
-            return collect();
-        }
-        $cart = ModelsCart::where('user_id', $user->id)->first();
-
-        if ($cart) {
-            $cartItems = $cart->cart_items;
-
-            $total = $cartItems->sum(function ($item) {
-                return $item->price * $item->quantity;
-            });
-
-            return $total;
-        }
-        return 0;
+        return $user->favorites()->count();
     }
 }

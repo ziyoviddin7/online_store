@@ -28,8 +28,9 @@ class ProductSearch extends Component
         }
 
         $tags = Tag::all();
-        $favorites = session()->get('favorites', []);
+        $favorites_session = session()->get('favorites', []);
+        //$favorites = session()->get('favorites', []);
 
-        return view('livewire.product.product-search', compact('tags', 'favorites'));
+        return view('livewire.product.product-search', compact('tags', 'favorites_session'));
     }
 }

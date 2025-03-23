@@ -99,14 +99,16 @@
                                                     </form>
                                                 @endguest
                                             </div>
+
+
                                             @auth
-                                                @if (isset($favorites[$product->id]))
+                                                @if (auth()->user()->favorites->contains('product_id', $product->id))
                                                     <div class="col hp-flex-none w-auto">
-                                                        <form action="{{ route('favorites_session.remove', $product->id) }}"
+                                                        <form action="{{ route('favorites.remove', $product->id) }}"
                                                             method="post">
                                                             @csrf
                                                             @method('delete')
-                                                            <button class="btn btn-primary">
+                                                            <button class="btn btn-primary btn-danger">
                                                                 <i class="ri-heart-3-line remix-icon"></i>
                                                                 <span>Remove From Favorites</span>
                                                             </button>
@@ -115,7 +117,7 @@
                                                     </div>
                                                 @else
                                                     <div class="col hp-flex-none w-auto">
-                                                        <form action="{{ route('favorites_session.add') }}" method="post">
+                                                        <form action="{{ route('favorites.add') }}" method="post">
                                                             @csrf
                                                             <input type="hidden" name="product_id"
                                                                 value="{{ $product->id }}">
@@ -127,7 +129,7 @@
                                                     </div>
                                                 @endif
                                             @else
-                                                @if (isset($favorites[$product->id]))
+                                                @if (isset($favorites_session[$product->id]))
                                                     <div class="col hp-flex-none w-auto">
                                                         <form action="{{ route('favorites_session.remove', $product->id) }}"
                                                             method="post">

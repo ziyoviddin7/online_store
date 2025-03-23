@@ -56,11 +56,14 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $favorites = app(FavoritesSession::class);
             $favoritesSession_items = $favorites->getFavoritesItems();
-            $favoritesSession_total_quantity = $favorites->getTotalQuantity();
-            $view->with(compact('favoritesSession_items', 'favoritesSession_total_quantity'));
+            $view->with(compact('favoritesSession_items'));
         });
 
-
+        View::composer('*', function ($view) {
+            $favorites = app(Favorites::class);
+            $favorites_items = $favorites->getFavoritesItems();
+            $view->with(compact('favorites_items'));
+        });
         
     }
 }

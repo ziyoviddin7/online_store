@@ -157,36 +157,77 @@
 
 
 
+                                                            @auth
+                                                                @if (auth()->user()->favorites->contains('product_id', $product->id))
+                                                                    <div
+                                                                        class="d-flex w-auto d-flex align-items-center justify-content-center lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
+                                                                        <form
+                                                                            action="{{ route('favorites.remove', $product->id) }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            @method('delete')
 
-                                                            @if (isset($favorites[$product->id]))
-                                                                <div
-                                                                    class="d-flex w-auto d-flex align-items-center justify-content-center lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
-                                                                    <form action="{{ route('favorites_session.remove', $product->id) }}" method="post">
-                                                                        @csrf
-                                                                        @method('delete')
+                                                                            <button type="submit"
+                                                                                class="border-0 bg-transparent p-0">
+                                                                                <i
+                                                                                    class="ri-heart-fill lh text-danger"></i>
 
-                                                                        <button type="submit"
-                                                                            class="border-0 bg-transparent p-0">
-                                                                            <i class="ri-heart-fill lh text-danger"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                @else
+                                                                    <div
+                                                                        class="d-flex d-flex align-items-center justify-content-center w-auto w-100 h-100 lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
+                                                                        <form action="{{ route('favorites.add') }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            <input type="hidden" name="product_id"
+                                                                                value="{{ $product->id }}">
+                                                                            <button type="submit"
+                                                                                class="border-0 bg-transparent p-0 ">
+                                                                                <i class="ri-heart-fill lh-normal"></i>
+                                                                            </button>
+                                                                        </form>
 
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
+                                                                    </div>
+                                                                @endif
                                                             @else
-                                                                <div
-                                                                    class="d-flex d-flex align-items-center justify-content-center w-auto w-100 h-100 lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
-                                                                    <form action="{{ route('favorites_session.add') }}" method="post">
-                                                                        @csrf
-                                                                        <input type="hidden" name="product_id"
-                                                                            value="{{ $product->id }}">
-                                                                        <button type="submit"
-                                                                            class="border-0 bg-transparent p-0 ">
-                                                                            <i class="ri-heart-fill lh-normal"></i>
-                                                                        </button>
-                                                                    </form>
+                                                                @if (isset($favorites_session[$product->id]))
+                                                                    <div
+                                                                        class="d-flex w-auto d-flex align-items-center justify-content-center lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
+                                                                        <form
+                                                                            action="{{ route('favorites_session.remove', $product->id) }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            @method('delete')
 
-                                                                </div>
-                                                            @endif
+                                                                            <button type="submit"
+                                                                                class="border-0 bg-transparent p-0">
+                                                                                <i
+                                                                                    class="ri-heart-fill lh text-danger"></i>
+
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                @else
+                                                                    <div
+                                                                        class="d-flex d-flex align-items-center justify-content-center w-auto w-100 h-100 lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
+                                                                        <form action="{{ route('favorites_session.add') }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            <input type="hidden" name="product_id"
+                                                                                value="{{ $product->id }}">
+                                                                            <button type="submit"
+                                                                                class="border-0 bg-transparent p-0 ">
+                                                                                <i class="ri-heart-fill lh-normal"></i>
+                                                                            </button>
+                                                                        </form>
+
+                                                                    </div>
+                                                                @endif
+
+                                                            @endguest
+
 
 
 
@@ -324,35 +365,76 @@
                                                             @endforeach
 
 
-                                                            @if (isset($favorites[$product->id]))
-                                                            <div
-                                                                class="d-flex w-auto d-flex align-items-center justify-content-center lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
-                                                                <form action="{{ route('favorites_session.remove', $product->id) }}" method="post">
-                                                                    @csrf
-                                                                    @method('delete')
+                                                            @auth
+                                                            @if (auth()->user()->favorites->contains('product_id', $product->id))
+                                                                <div
+                                                                    class="d-flex w-auto d-flex align-items-center justify-content-center lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
+                                                                    <form
+                                                                        action="{{ route('favorites.remove', $product->id) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('delete')
 
-                                                                    <button type="submit"
-                                                                        class="border-0 bg-transparent p-0">
-                                                                        <i class="ri-heart-fill lh text-danger"></i>
+                                                                        <button type="submit"
+                                                                            class="border-0 bg-transparent p-0">
+                                                                            <i
+                                                                                class="ri-heart-fill lh text-danger"></i>
 
-                                                                    </button>
-                                                                </form>
-                                                            </div>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            @else
+                                                                <div
+                                                                    class="d-flex d-flex align-items-center justify-content-center w-auto w-100 h-100 lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
+                                                                    <form action="{{ route('favorites.add') }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        <input type="hidden" name="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <button type="submit"
+                                                                            class="border-0 bg-transparent p-0 ">
+                                                                            <i class="ri-heart-fill lh-normal"></i>
+                                                                        </button>
+                                                                    </form>
+
+                                                                </div>
+                                                            @endif
                                                         @else
-                                                            <div
-                                                                class="d-flex d-flex align-items-center justify-content-center w-auto w-100 h-100 lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
-                                                                <form action="{{ route('favorites_session.add') }}" method="post">
-                                                                    @csrf
-                                                                    <input type="hidden" name="product_id"
-                                                                        value="{{ $product->id }}">
-                                                                    <button type="submit"
-                                                                        class="border-0 bg-transparent p-0 ">
-                                                                        <i class="ri-heart-fill lh-normal"></i>
-                                                                    </button>
-                                                                </form>
+                                                            @if (isset($favorites_session[$product->id]))
+                                                                <div
+                                                                    class="d-flex w-auto d-flex align-items-center justify-content-center lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-danger bg-danger-4 hp-bg-color-dark-danger">
+                                                                    <form
+                                                                        action="{{ route('favorites_session.remove', $product->id) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('delete')
 
-                                                            </div>
-                                                        @endif
+                                                                        <button type="submit"
+                                                                            class="border-0 bg-transparent p-0">
+                                                                            <i
+                                                                                class="ri-heart-fill lh text-danger"></i>
+
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            @else
+                                                                <div
+                                                                    class="d-flex d-flex align-items-center justify-content-center w-auto w-100 h-100 lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
+                                                                    <form action="{{ route('favorites_session.add') }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        <input type="hidden" name="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <button type="submit"
+                                                                            class="border-0 bg-transparent p-0 ">
+                                                                            <i class="ri-heart-fill lh-normal"></i>
+                                                                        </button>
+                                                                    </form>
+
+                                                                </div>
+                                                            @endif
+
+                                                        @endguest
 
                                                         </div>
 
