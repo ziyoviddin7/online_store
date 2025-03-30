@@ -5,7 +5,7 @@ namespace App\Services\Cart;
 
 use App\Models\Product;
 
-class CartSession
+class CartSessionService
 {
     protected $sessionKey = 'cart';
     public function addToCart($product_id, $price, $quantity)

@@ -386,7 +386,7 @@
 
                                     @auth
                                     <div class="me-2 hp-basket-dropdown-button w-auto px-0 position-relative" >
-                                        <button type="button"
+                                        <a href="{{ route('cart.show') }}"
                                             class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
                                             style="height: 40px;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
@@ -406,7 +406,7 @@
                                             style="width: 6px; height: 6px; top: 12px; left: 26px;"></span>
                                             @endif
                                             
-                                        </button>
+                                        </a>
 
                                         <div class="hp-basket-dropdown" style="width: 430px;" >
                                             <div class="row px-0 justify-content-between align-items-center">
@@ -439,7 +439,7 @@
                                                         </div>
 
                                                         <div class="col ms-10 px-0" style="flex: 0 0 120px;">
-                                                            <a href="{{ route('product.detail', $item['product']->id) }}">
+                                                            <a href="{{ route('product.detail', $item['product']->slug) }}">
                                                                 <h5
                                                                     class="mb-0 fw-medium hp-p1-body hp-text-color-black-100 hp-text-color-dark-15">
                                                                     {{ $item['product']->name }}</h5>
@@ -552,7 +552,7 @@
 
                                     @else
                                     <div class="me-2 hp-basket-dropdown-button w-auto px-0 position-relative" >
-                                        <button type="button"
+                                        <a href="{{ route('cart.show') }}"
                                             class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
                                             style="height: 40px;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
@@ -572,7 +572,7 @@
                                             style="width: 6px; height: 6px; top: 12px; left: 26px;"></span>
                                             @endif
                                             
-                                        </button>
+                                        </a>
 
                                         <div class="hp-basket-dropdown" style="width: 430px;" >
                                             <div class="row px-0 justify-content-between align-items-center">
@@ -605,7 +605,7 @@
                                                         </div>
 
                                                         <div class="col ms-10 px-0" style="flex: 0 0 120px;">
-                                                            <a href="{{ route('product.detail', $item['product']->id) }}">
+                                                            <a href="{{ route('product.detail', $item['product']->slug) }}">
                                                                 <h5
                                                                     class="mb-0 fw-medium hp-p1-body hp-text-color-black-100 hp-text-color-dark-15">
                                                                     {{ $item['product']->name }}</h5>

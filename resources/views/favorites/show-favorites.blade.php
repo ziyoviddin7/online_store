@@ -47,7 +47,7 @@
 
                                     <div class="col-12">
                                         <div class="text-center mb-24">
-                                            <a href="{{ route('product.detail', $item->id) }}"
+                                            <a href="{{ route('product.detail', $item->slug) }}"
                                                 class="d-block">
                                                 <img src="{{ Storage::url($item->image) }}"
                                                     alt="4K Action Cam" height="200">
@@ -79,7 +79,7 @@
 
                                         <div class="row g-8">
                                             <div class="col-6">
-                                                <a href="{{ route('product.detail', $item->id) }}"
+                                                <a href="{{ route('product.detail', $item->slug) }}"
                                                     class="btn w-100 text-black-60 hp-hover-text-color-primary-1 hp-hover-text-color-dark-primary-2">
                                                     <span>Check Detail</span>
                                                 </a>
@@ -157,7 +157,7 @@
 
                                         <div class="col-12">
                                             <div class="text-center mb-24">
-                                                <a href="{{ route('product.detail', $item['product']->id) }}"
+                                                <a href="{{ route('product.detail', $item['product']->slug) }}"
                                                     class="d-block">
                                                     <img src="{{ Storage::url($item['product']->image) }}"
                                                         alt="4K Action Cam" height="200">
@@ -189,7 +189,7 @@
 
                                             <div class="row g-8">
                                                 <div class="col-6">
-                                                    <a href="{{ route('product.detail', $item['product']->id) }}"
+                                                    <a href="{{ route('product.detail', $item['product']->slug) }}"
                                                         class="btn w-100 text-black-60 hp-hover-text-color-primary-1 hp-hover-text-color-dark-primary-2">
                                                         <span>Check Detail</span>
                                                     </a>

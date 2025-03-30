@@ -236,7 +236,7 @@
 
                                                     <div class="col-12">
                                                         <div class="text-center my-24">
-                                                            <a href="{{ route('product.detail', $product->id) }}"
+                                                            <a href="{{ route('product.detail', $product->slug) }}"
                                                                 class="d-block">
                                                                 <img src="{{ Storage::url($product->image) }}"
                                                                     alt="Smart Watches 3" height="125">
@@ -271,7 +271,7 @@
 
                                                         <div class="row g-8">
                                                             <div class="col-12">
-                                                                <a href="{{ route('product.detail', $product->id) }}">
+                                                                <a href="{{ route('product.detail', $product->slug) }}">
                                                                     <button type="button"
                                                                         class="btn w-100 text-black-60 hp-hover-text-color-primary-1 hp-hover-text-color-dark-primary-2">
                                                                         <span>Check Detail</span>
@@ -439,7 +439,7 @@
                                                         </div>
 
                                                         <div class="col-12 text-center">
-                                                            <a href="{{ route('product.detail', $product->id) }}">
+                                                            <a href="{{ route('product.detail', $product->slug) }}">
                                                                 <img src="{{ Storage::url($product->image) }}"
                                                                     alt="Smart Watches 3" height="155">
                                                             </a>
@@ -469,7 +469,7 @@
 
                                                         <div class="row mt-0 g-8">
                                                             <div class="col-12 col-xl-5">
-                                                                <a href="{{ route('product.detail', $product->id) }}">
+                                                                <a href="{{ route('product.detail', $product->slug) }}">
                                                                     <button type="button"
                                                                         class="btn w-100 text-black-60 hp-hover-text-color-primary-1 hp-hover-text-color-dark-primary-2">
                                                                         <span>Check Detail</span>

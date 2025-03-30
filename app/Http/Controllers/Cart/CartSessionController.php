@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Cart;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Services\Cart\CartSession;
+use App\Services\Cart\CartSessionService;
 use Illuminate\Http\Request;
 
 class CartSessionController extends Controller
 {
-    protected $cartSession;
+    protected $cartSessionService;
 
-    public function __construct(CartSession $cartSession)
+    public function __construct(CartSessionService $cartSessionService)
     {
-        $this->cartSession = $cartSession;
+        $this->cartSessionService = $cartSessionService;
     }
 
     public function add(Request $request)
@@ -22,37 +23,37 @@ class CartSessionController extends Controller
         $price = $request->input('price');
         $quantity = $request->input('quantity');
 
-        $this->cartSession->addToCart($product_id, $price, $quantity);
+        $this->cartSessionService->addToCart($product_id, $price, $quantity);
 
         return redirect()->back()->with('success', 'item added to session(cart)');
     }
 
     public function show()
     {
-        $cartSession_items = $this->cartSession->getCartItems();
-        $cartSession_total = $this->cartSession->getTotal();
-        $cartSession_total_quantity = $this->cartSession->getTotalQuantity();
+        $cartSession_items = $this->cartSessionService->getCartItems();
+        $cartSession_total = $this->cartSessionService->getTotal();
+        $cartSession_total_quantity = $this->cartSessionService->getTotalQuantity();
         return view('cart.show-cart', compact('cartSession_items', 'cartSession_total', 'cartSession_total_quantity'));
     }
 
     public function remove(Product $product)
     {
         $product_id = $product->id;
-        $this->cartSession->removeFromCart($product_id);
+        $this->cartSessionService->removeFromCart($product_id);
         return redirect()->back()->with('success', "Item '{$product->name}' removed from cart");
     }
 
     public function decreaseQuantity(Product $product)
     {
         $product_id = $product->id;
-        $this->cartSession->decreaseQuantityOrRemove($product_id);
+        $this->cartSessionService->decreaseQuantityOrRemove($product_id);
         return redirect()->back()->with('success', "Item '{$product->name}' quantity decreased");
     }
 
     public function increaseQuantity(Product $product)
     {
         $product_id = $product->id;
-        $this->cartSession->increaseQuantity($product_id);
+        $this->cartSessionService->increaseQuantity($product_id);
         return redirect()->back()->with('success', "Item '{$product->name}' quantity increased");
     }
 }

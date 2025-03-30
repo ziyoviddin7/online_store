@@ -51,7 +51,7 @@ Route::group(['namespace' => 'App\Http\Controllers\User\Auth'], function () {
 // Shop
 Route::group(['namespace' => 'App\Http\Controllers\Product'], function () {
     Route::get('/shop', ShopController::class)->name('product.shop');
-    Route::get('/shop/{product}', DetailController::class)->name('product.detail');
+    Route::get('/shop/{product:slug}', DetailController::class)->name('product.detail');
 });
 
 

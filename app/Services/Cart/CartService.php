@@ -5,15 +5,15 @@ namespace App\Services\Cart;
 
 use App\Models\Cart as ModelsCart;
 
-class Cart
+class CartService
 {
     public function syncSessionCart()
     {
-        $user = auth()->user();
+        $userId = auth()->id();
         $sessionCart = session()->get('cart', []);
 
         if ($sessionCart) {
-            $cart = ModelsCart::firstOrCreate(['user_id' => $user->id]);
+            $cart = ModelsCart::firstOrCreate(['user_id' => $userId]);
 
             foreach ($sessionCart as $product_id => $item) {
                 $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
@@ -37,8 +37,9 @@ class Cart
 
     public function addToCart($product_id, $price, $quantity)
     {
-        $user = auth()->user();
-        $cart = ModelsCart::firstOrCreate(['user_id' => $user->id]);
+        $userId = auth()->id();
+
+        $cart = ModelsCart::firstOrCreate(['user_id' => $userId]);
 
         $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
 
@@ -57,11 +58,12 @@ class Cart
 
     public function getCartItems()
     {
-        $user = auth()->user();
-        if (!$user) {
+        $userId = auth()->id();
+
+        if (!$userId) {
             return collect();
         }
-        $cart = ModelsCart::where('user_id', $user->id)->first();
+        $cart = ModelsCart::where('user_id', $userId)->first();
 
         if ($cart) {
             $cartItems = $cart->cart_items()->with('product')->get();
@@ -81,12 +83,13 @@ class Cart
 
     public function removeFromCart($product_id)
     {
-        $user = auth()->user();
-        if (!$user) {
+        $userId = auth()->id();
+
+        if (!$userId) {
             return;
         }
 
-        $cart = ModelsCart::where('user_id', $user->id)->first();
+        $cart = ModelsCart::where('user_id', $userId)->first();
 
         if ($cart) {
             $cart->cart_items()->where('product_id', $product_id)->delete();
@@ -95,12 +98,13 @@ class Cart
 
     public function decreaseQuantityOrRemove($product_id)
     {
-        $user = auth()->user();
-        if (!$user) {
+        $userId = auth()->id();
+
+        if (!$userId) {
             return;
         }
 
-        $cart = ModelsCart::where('user_id', $user->id)->first();
+        $cart = ModelsCart::where('user_id', $userId)->first();
 
         if ($cart) {
             $cartItem = $cart->cart_items()->where('product_id', $product_id)->first();
@@ -119,12 +123,13 @@ class Cart
 
     public function increaseQuantity($product_id)
     {
-        $user = auth()->user();
-        if (!$user) {
+        $userId = auth()->id();
+
+        if (!$userId) {
             return;
         }
 
-        $cart = ModelsCart::firstOrCreate(['user_id' => $user->id]);
+        $cart = ModelsCart::firstOrCreate(['user_id' => $userId]);
 
         $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
 
@@ -137,12 +142,13 @@ class Cart
 
     public function getTotalQuantity()
     {
-        $user = auth()->user();
-        if (!$user) {
+        $userId = auth()->id();
+
+        if (!$userId) {
             return 0;
         }
 
-        $cart = ModelsCart::where('user_id', $user->id)->first();
+        $cart = ModelsCart::where('user_id', $userId)->first();
 
         if ($cart) {
             return $cart->cart_items()->sum('quantity');
@@ -153,11 +159,12 @@ class Cart
 
     public function getTotal()
     {
-        $user = auth()->user();
-        if (!$user) {
+        $userId = auth()->id();
+
+        if (!$userId) {
             return collect();
         }
-        $cart = ModelsCart::where('user_id', $user->id)->first();
+        $cart = ModelsCart::where('user_id', $userId)->first();
 
         if ($cart) {
             $cartItems = $cart->cart_items;

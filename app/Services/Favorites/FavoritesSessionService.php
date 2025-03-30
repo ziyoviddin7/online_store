@@ -5,7 +5,7 @@ namespace App\Services\Favorites;
 
 use App\Models\Product;
 
-class FavoritesSession
+class FavoritesSessionService
 {
     protected $sessionKey = 'favorites';
     public function addToFavorites($product_id)

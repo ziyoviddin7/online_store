@@ -95,13 +95,13 @@
                                     <div class="col-12 col-md-7">
                                         <div class="row mx-0 mx-sm-n12 align-items-center">
                                             <div class="col px-0 hp-ecommerce-app-checkout-item-img" style="flex: 0 0 135px;">
-                                                <a href="{{ route('product.detail', $item['product']->id) }}">
+                                                <a href="{{ route('product.detail', $item['product']->slug) }}">
                                                     <img src="{{ Storage::url($item['product']->image) }}" alt="Smart Watches 3">
                                                 </a>
                                             </div>
                                             
                                             <div class="col hp-ecommerce-app-checkout-text mt-16 mt-sm-0 ps-0 ps-sm-32" style="flex: 1 0 0px;">
-                                                <a href="{{ route('product.detail', $item['product']->id) }}">
+                                                <a href="{{ route('product.detail', $item['product']->slug) }}">
                                                     <h4 class="mb-4">{{ $item['product']->name }}</h4>
                                                 </a>
                                                 <span class="hp-caption d-block text-black-60">By<span class="ms-4 text-black-80 hp-text-color-dark-40">{{ $item['product']->brand->name }}</span></span>
@@ -180,13 +180,13 @@
                                     <div class="col-12 col-md-7">
                                         <div class="row mx-0 mx-sm-n12 align-items-center">
                                             <div class="col px-0 hp-ecommerce-app-checkout-item-img" style="flex: 0 0 135px;">
-                                                <a href="{{ route('product.detail', $item['product']->id) }}">
+                                                <a href="{{ route('product.detail', $item['product']->slug) }}">
                                                     <img src="{{ Storage::url($item['product']->image) }}" alt="Smart Watches 3">
                                                 </a>
                                             </div>
 
                                             <div class="col hp-ecommerce-app-checkout-text mt-16 mt-sm-0 ps-0 ps-sm-32" style="flex: 1 0 0px;">
-                                                <a href="{{ route('product.detail', $item['product']->id) }}">
+                                                <a href="{{ route('product.detail', $item['product']->slug) }}">
                                                     <h4 class="mb-4">{{ $item['product']->name }}</h4>
                                                 </a>
                                                 

@@ -4,12 +4,30 @@
 namespace App\Services\Favorites;
 
 use App\Models\Favorites as ModelsFavorites;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class Favorites
+class FavoritesService
 {
+    protected function getUser(): ?User
+    {
+        $user = Auth::user();
+        
+        // Проверяем, что пользователь авторизован и является экземпляром App\Models\User
+        if (!$user || !$user instanceof User) {
+            return null;
+        }
+        
+        return $user;
+    }
+    
     public function syncSessionFavorites()
     {
-        $user = auth()->user();
+        $user = $this->getUser();
+        if (!$user) {
+            return;
+        }
+
         $sessionFavorites  = session()->get('favorites', []);
 
         if ($sessionFavorites) {
@@ -28,7 +46,7 @@ class Favorites
 
     public function addToFavorites($product_id)
     {
-        $user = auth()->user();
+        $user = $this->getUser();
         if (!$user) {
             return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
@@ -46,7 +64,7 @@ class Favorites
 
     public function getFavoritesItems()
     {
-        $user = auth()->user();
+        $user = $this->getUser();
         if (!$user) {
             return collect();
         }
@@ -55,7 +73,8 @@ class Favorites
 
     public function removeFromFavorites($product_id)
     {
-        $user = auth()->user();
+        $user = $this->getUser();
+
         if (!$user) {
             return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
@@ -68,7 +87,8 @@ class Favorites
 
     public function getTotalQuantity()
     {
-        $user = auth()->user();
+        $user = $this->getUser();
+
         if (!$user) {
             return 0;
         }

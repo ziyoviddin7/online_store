@@ -5,8 +5,8 @@ namespace App\Http\Controllers\User\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Auth\LoginStoreRequest;
 use App\Providers\RouteServiceProvider;
-use App\Services\Cart\Cart;
-use App\Services\Favorites\Favorites;
+use App\Services\Cart\CartService;
+use App\Services\Favorites\FavoritesService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,8 +22,8 @@ class LoginController extends Controller
         $credentials = $loginStoreRequest->validated();
 
         if (Auth::attempt($credentials, $loginStoreRequest->boolean('remember'))) {
-            $cart = new Cart();
-            $favorites = new Favorites();
+            $cart = new CartService();
+            $favorites = new FavoritesService();
 
             $cart->syncSessionCart();
             $favorites->syncSessionFavorites();

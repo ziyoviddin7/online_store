@@ -12,6 +12,7 @@ class DetailController extends Controller
     {
         $products = Product::all();
         $favorites = session()->get('favorites', []);
-        return view('product.product-detail', compact('product', 'products', 'favorites'));
+        $favorites_session = session()->get('favorites', []);
+        return view('product.product-detail', compact('product', 'products', 'favorites', 'favorites_session'));
     }
 }
