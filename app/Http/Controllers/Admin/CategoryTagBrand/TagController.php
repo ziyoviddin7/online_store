@@ -6,15 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NameRequest;
 use App\Models\Tag;
 use App\Services\Tag\Service;
+use App\Services\Tag\TagService;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    protected $service;
+    protected $tagService;
 
-    public function __construct(Service $service)
+    public function __construct(TagService $tagService)
     {
-        $this->service = $service;
+        $this->tagService = $tagService;
     }
 
     public function index()
@@ -31,7 +32,7 @@ class TagController extends Controller
     public function store(NameRequest $name_request)
     {
         $data = $name_request->validated();
-        $this->service->store($data);
+        $this->tagService->store($data);
         return redirect()->route('admin.tag.index')->with('success', 'Тег успешно создан.');
     }
 

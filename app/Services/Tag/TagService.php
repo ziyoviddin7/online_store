@@ -3,11 +3,9 @@
 
 namespace App\Services\Tag;
 
-use App\Models\Product;
 use App\Models\Tag;
-use Illuminate\Support\Facades\Storage;
 
-class Service
+class TagService
 {
     public function store($data)
     {

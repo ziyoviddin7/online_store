@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin\CategoryTagBrand;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NameRequest;
 use App\Models\Brand;
-use App\Services\Brand\Service;
+use App\Services\Brand\BrandService;
 
 class BrandController extends Controller
 {
-    protected $service;
+    protected $brandService;
 
-    public function __construct(Service $service)
+    public function __construct(BrandService $brandService)
     {
-        $this->service = $service;
+        $this->brandService = $brandService;
     }
 
     public function index()
@@ -30,7 +30,7 @@ class BrandController extends Controller
     public function store(NameRequest $name_request)
     {
         $data = $name_request->validated();
-        $this->service->store($data);
+        $this->brandService->store($data);
         return redirect()->route('admin.brand.index')->with('success', 'Категория успешна создана.');
     }
 

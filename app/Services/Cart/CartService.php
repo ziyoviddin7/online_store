@@ -4,8 +4,10 @@
 namespace App\Services\Cart;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Cart as ModelsCart;
+use App\Models\CartItem;
 
 class CartService
 {
@@ -13,45 +15,61 @@ class CartService
     {
         $userId = Auth::id();
         if (!$userId) {
-            return;
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
 
-        $sessionCart = session()->get('cart', []);
+        $sessionCart = session('cart', []);
 
-        if ($sessionCart) {
-            $cart = ModelsCart::firstOrCreate(['user_id' => $userId]);
+        if (!empty($sessionCart)) {
+            DB::transaction(function () use ($userId, $sessionCart) {
+                $cart = ModelsCart::firstOrCreate(['user_id' => $userId]);
 
-            foreach ($sessionCart as $product_id => $item) {
-                $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
+                // Получаем существующие товары в корзине
+                $existingCartItems = $cart->cart_items()->whereIn('product_id', array_keys($sessionCart))
+                    ->get()
+                    ->keyBy('product_id');
 
-                if ($isInCart) {
-                    $cart->cart_items()
-                        ->where('product_id', $product_id)
-                        ->increment('quantity', $item['quantity']);
-                } else {
-                    $cart->cart_items()->create([
-                        'product_id' => $product_id,
-                        'price' => $item['price'],
-                        'quantity' => $item['quantity'],
-                    ]);
+                $newItems = [];
+
+                foreach ($sessionCart as $product_id => $item) {
+                    if (isset($existingCartItems[$product_id])) {
+                        // Обновление количества, если товар уже в корзине
+                        $existingCartItems[$product_id]->increment('quantity', $item['quantity']);
+                    } else {
+                        // Подготовка данных для массовой вставки
+                        $newItems[] = [
+                            'cart_id'    => $cart->id,
+                            'product_id' => $product_id,
+                            'quantity'   => $item['quantity'],
+                            'price'      => $item['price'],
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ];
+                    }
                 }
-            }
 
-            session()->forget('cart');
+                // Массовая вставка новых записей
+                if (!empty($newItems)) {
+                    CartItem::insert($newItems);
+                }
+
+                session()->forget('cart');
+            });
         }
     }
+
 
     public function addToCart($product_id, $price, $quantity)
     {
         $userId = Auth::id();
-        
+
         if (!$userId) {
-            return;
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
 
         $cart = ModelsCart::firstOrCreate(['user_id' => $userId]);
 
-        $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
+        $isInCart = $cart->cart_items()->where('product_id', $product_id)->first();
 
         if ($isInCart) {
             $cart->cart_items()
@@ -64,15 +82,16 @@ class CartService
                 'quantity' => $quantity,
             ]);
         }
+
+        return response()->json(['success' => true, 'message' => 'Товар добавлен в корзину']);
     }
 
     public function getCartItems()
     {
         $userId = Auth::id();
 
-
         if (!$userId) {
-            return collect();
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
 
         $cart = ModelsCart::where('user_id', $userId)->first();
@@ -89,8 +108,7 @@ class CartService
                 ];
             });
         }
-
-        return collect();
+        return collect([]);
     }
 
     public function removeFromCart($product_id)
@@ -98,7 +116,7 @@ class CartService
         $userId = Auth::id();
 
         if (!$userId) {
-            return;
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
 
         $cart = ModelsCart::where('user_id', $userId)->first();
@@ -113,7 +131,7 @@ class CartService
         $userId = Auth::id();
 
         if (!$userId) {
-            return;
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
 
         $cart = ModelsCart::where('user_id', $userId)->first();
@@ -138,18 +156,16 @@ class CartService
         $userId = Auth::id();
 
         if (!$userId) {
-            return;
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
 
-        $cart = ModelsCart::firstOrCreate(['user_id' => $userId]);
+        $cart = ModelsCart::where('user_id', $userId)->first();
 
-        $isInCart = $cart->cart_items()->where('product_id', $product_id)->exists();
-
-        if ($isInCart) {
+        if ($cart) {
             $cart->cart_items()
                 ->where('product_id', $product_id)
                 ->increment('quantity');
-        } 
+        }
     }
 
     public function getTotalQuantity()
@@ -157,7 +173,7 @@ class CartService
         $userId = Auth::id();
 
         if (!$userId) {
-            return 0;
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
 
         $cart = ModelsCart::where('user_id', $userId)->first();
@@ -174,7 +190,7 @@ class CartService
         $userId = Auth::id();
 
         if (!$userId) {
-            return collect();
+            return response()->json(['success' => false, 'message' => 'Пользователь не авторизован'], 401);
         }
         $cart = ModelsCart::where('user_id', $userId)->first();
 

@@ -5,14 +5,10 @@ namespace App\Services\Category;
 
 use App\Models\Category;
 
-class Service
+class CategoryService
 {
     public function store($data)
     {
         Category::create($data);
-    }
-
-    public function update($task, $data)
-    {
     }
 }
