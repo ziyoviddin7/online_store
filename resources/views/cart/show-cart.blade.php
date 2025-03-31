@@ -282,7 +282,7 @@
                             </div>
                             @if ($cart_items->isNotEmpty())
                             <div class="col-12 mt-16">
-                                <a href="app-ecommerce-checkout-address.html">
+                                <a href="{{ route('order.checkout') }}">
                                     <div class="btn btn-primary w-100">
                                         Next Step
                                     </div>

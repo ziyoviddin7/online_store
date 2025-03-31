@@ -16,6 +16,7 @@ use App\Http\Controllers\Cart\CartController;
 
 use App\Http\Controllers\Favorites\FavoritesController;
 use App\Http\Controllers\Favorites\FavoritesSessionController;
+use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\User\Profile\ProfileController;
 
 /*
@@ -113,4 +114,14 @@ Route::get('/my/favorites', function () {
 Route::group(['namespace' => 'App\Http\Controllers\Favorites', 'middleware' => ['auth']], function () {
     Route::post('/favorites', [FavoritesController::class, 'add'])->name('favorites.add');
     Route::delete('/favorites/{product}', [FavoritesController::class, 'remove'])->name('favorites.remove');
+});
+
+
+// Order
+Route::group([
+    'namespace' => 'App\Http\Controllers\Order;',
+    'middleware' => 'auth',
+    'prefix' => '/order'
+], function () {
+    Route::get('/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
 });
