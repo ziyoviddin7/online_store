@@ -3,13 +3,19 @@
 
 namespace App\Services\Cart;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Cart as ModelsCart;
 
 class CartService
 {
     public function syncSessionCart()
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
+        if (!$userId) {
+            return;
+        }
+
         $sessionCart = session()->get('cart', []);
 
         if ($sessionCart) {
@@ -37,7 +43,11 @@ class CartService
 
     public function addToCart($product_id, $price, $quantity)
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
+        
+        if (!$userId) {
+            return;
+        }
 
         $cart = ModelsCart::firstOrCreate(['user_id' => $userId]);
 
@@ -58,11 +68,13 @@ class CartService
 
     public function getCartItems()
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
+
 
         if (!$userId) {
             return collect();
         }
+
         $cart = ModelsCart::where('user_id', $userId)->first();
 
         if ($cart) {
@@ -83,7 +95,7 @@ class CartService
 
     public function removeFromCart($product_id)
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
 
         if (!$userId) {
             return;
@@ -98,7 +110,7 @@ class CartService
 
     public function decreaseQuantityOrRemove($product_id)
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
 
         if (!$userId) {
             return;
@@ -123,7 +135,7 @@ class CartService
 
     public function increaseQuantity($product_id)
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
 
         if (!$userId) {
             return;
@@ -142,7 +154,7 @@ class CartService
 
     public function getTotalQuantity()
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
 
         if (!$userId) {
             return 0;
@@ -159,7 +171,7 @@ class CartService
 
     public function getTotal()
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
 
         if (!$userId) {
             return collect();

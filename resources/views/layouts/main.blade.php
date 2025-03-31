@@ -51,6 +51,8 @@
 
     <!-- Pages -->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/dashboard-analytics.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/page-profile.css') }}">
+
 
     <!-- Horizontal -->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/layouts/horizontal-menu.css') }}">
@@ -720,10 +722,10 @@
                                         @auth
                                         <div class="hp-cursor-pointer rounded-4 border hp-border-color-dark-80">
                                             <div class="rounded-3 overflow-hidden m-4 d-flex">
-                                                <div class="avatar-item hp-bg-info-4 d-flex"
+                                                <a href="{{ route('user.profile.information') }}" class="avatar-item hp-bg-info-4 d-flex"
                                                     style="width: 32px; height: 32px;">
-                                                    <img src="../../../app-assets/img/memoji/user-avatar-4.png">
-                                                </div>
+                                                    <img src="">
+                                                </a>
                                             </div>
                                         </div>
 

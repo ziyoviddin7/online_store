@@ -16,6 +16,7 @@ use App\Http\Controllers\Cart\CartController;
 
 use App\Http\Controllers\Favorites\FavoritesController;
 use App\Http\Controllers\Favorites\FavoritesSessionController;
+use App\Http\Controllers\User\Profile\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,18 @@ Route::group(['namespace' => 'App\Http\Controllers\User\Auth'], function () {
     Route::post('/reset-password', [ResetPasswordController::class, 'store'])->middleware('guest')->name('password.update');
 });
 
+
+// User Profile
+Route::group([
+    'namespace' => 'App\Http\Controllers\User\Profile',
+    'middleware' => 'auth',
+    'prefix' => '/my/profile'
+], function () {
+    Route::get('/information', [ProfileController::class, 'information'])->name('user.profile.information');
+});
+
+
+
 // Shop
 Route::group(['namespace' => 'App\Http\Controllers\Product'], function () {
     Route::get('/shop', ShopController::class)->name('product.shop');
@@ -63,7 +76,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => 'web']
     Route::post('/cart_session/{product}/increase', [CartSessionController::class, 'increaseQuantity'])->name('cart_session.increase');
 });
 
-Route::get('/cart', function () {
+Route::get('/my/cart', function () {
     if (auth()->check()) {
         return app(CartController::class)->show();
     } else {
@@ -86,7 +99,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Favorites', 'middleware' => '
     Route::delete('/favorites_session/{product}', [FavoritesSessionController::class, 'remove'])->name('favorites_session.remove');
 });
 
-Route::get('/favorites', function () {
+Route::get('/my/favorites', function () {
     if (auth()->check()) {
         return app(FavoritesController::class)->show();
     } else {
