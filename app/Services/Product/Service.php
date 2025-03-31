@@ -10,7 +10,7 @@ class Service
 {
     public function store($data)
     {
-        $data['image'] = Storage::put('/product_images', $data['image']);
+        $data['image'] = Storage::disk('public')->put('/product_images', $data['image']);
 
         $tag_id = $data['tag_id'];
 
@@ -21,7 +21,7 @@ class Service
     public function update($product, $data)
     {
         if (array_key_exists('image', $data) && !empty($data['image'])) {
-            $data['image'] = Storage::put('/product_images', $data['image']);
+            $data['image'] = Storage::disk('public')->put('/product_images', $data['image']);
         } else {
             unset($data['image']);
         }

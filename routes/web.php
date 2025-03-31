@@ -57,6 +57,8 @@ Route::group([
     'prefix' => '/my/profile'
 ], function () {
     Route::get('/information', [ProfileController::class, 'information'])->name('user.profile.information');
+    Route::patch('/information/edit', [ProfileController::class, 'edit'])->name('user.profile.edit');
+    Route::patch('/information/avatar/edit', [ProfileController::class, 'editProfileAvatar'])->name('user.profile.avatar');
 });
 
 
