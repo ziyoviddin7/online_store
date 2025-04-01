@@ -120,6 +120,18 @@ services:
     networks:
       - app-network
 
+  tuna:
+    image: yuccastream/tuna:latest
+    container_name: tuna
+    command: http nginx:80 --inspect=false
+    restart: always
+    depends_on:
+      - nginx
+    environment:
+      - TUNA_TOKEN=${TUNA_TOKEN}
+    networks:
+      - app-network
+
 
 networks:
   app-network:
