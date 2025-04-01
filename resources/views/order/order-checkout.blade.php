@@ -67,32 +67,48 @@
                                                 <label for="checkoutAddressFullName" class="form-label">
                                                     <span class="text-danger me-4">*</span>Full Name
                                                 </label>
-                                                <input type="text" class="form-control" placeholder="Ivan Ivanov"
-                                                    id="checkoutAddressFullName" required>
+                                                <input name="fullname" type="text" class="form-control"
+                                                    placeholder="Ivan Ivanov" id="checkoutAddressFullName"
+                                                    value="{{ old('fullname') }}" required>
+                                                @error('fullname')
+                                                    <p style="color: red"> {{ $message }}</p>
+                                                @enderror
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <label for="checkoutAddressEmail" class="form-label">
                                                     <span class="text-danger me-4">*</span>Email
                                                 </label>
-                                                <input type="email" class="form-control" placeholder="example@gmail.com"
-                                                    id="checkoutAddressEmail" aria-describedby="emailHelp">
+                                                <input name="email" type="email" class="form-control"
+                                                    placeholder="example@gmail.com" id="checkoutAddressEmail"
+                                                    value="{{ old('email') }}" aria-describedby="emailHelp">
+                                                @error('email')
+                                                    <p style="color: red"> {{ $message }}</p>
+                                                @enderror
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <label for="checkoutAddressPhone" class="form-label">
                                                     <span class="text-danger me-4">*</span>Phone
                                                 </label>
-                                                <input type="text" class="form-control" placeholder="+7 912 122 12 21"
-                                                    id="checkoutAddressPhone" required>
+                                                <input type="text" name="phone" class="form-control"
+                                                    placeholder="+7 912 122 12 21" id="checkoutAddressPhone"
+                                                    value="{{ old('phone') }}" required>
+                                                @error('phone')
+                                                    <p style="color: red"> {{ $message }}</p>
+                                                @enderror
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <label for="checkoutAddressTitle" class="form-label">
                                                     <span class="text-danger me-4">*</span>Postal Code
                                                 </label>
-                                                <input type="text" class="form-control" placeholder="233 233"
-                                                    id="checkoutAddressTitle" required>
+                                                <input name="postal_code" type="text" class="form-control"
+                                                    placeholder="233 233" id="checkoutAddressTitle"
+                                                    value="{{ old('postal_code') }}" required>
+                                                @error('postal_code')
+                                                    <p style="color: red"> {{ $message }}</p>
+                                                @enderror
                                             </div>
 
 
@@ -100,19 +116,31 @@
                                                 <label for="checkoutAddressState" class="form-label">
                                                     <span class="text-danger me-4">*</span>Country
                                                 </label>
-                                                <input type="text" class="form-control" placeholder="Russia"
-                                                    id="checkoutAddressState" required>
+                                                <input name="country" type="text" class="form-control"
+                                                    placeholder="Russia" id="checkoutAddressState"
+                                                    value="{{ old('country') }}" required>
+                                                @error('country')
+                                                    <p style="color: red"> {{ $message }}</p>
+                                                @enderror
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <label for="exampleInputEmail1" class="form-label">Region/City</label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Moscow Region/Moscow" id="checkoutAddressState" required>
+                                                <input name="region_city" type="text" class="form-control"
+                                                    placeholder="Moscow Region/Moscow" value="{{ old('region_city') }}"
+                                                    id="checkoutAddressState" required>
+                                                @error('region_city')
+                                                    <p style="color: red"> {{ $message }}</p>
+                                                @enderror
                                             </div>
 
                                             <div class="col-12">
                                                 <label for="checkoutAddress" class="form-label">Address</label>
-                                                <textarea class="form-control" placeholder="32 Moskovskaya Street" id="checkoutAddress"></textarea>
+                                                <textarea name="address" class="form-control" value="{{ old('address') }}" placeholder="32 Moskovskaya Street"
+                                                    id="checkoutAddress"></textarea>
+                                                @error('address')
+                                                    <p style="color: red"> {{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </form>
@@ -136,7 +164,8 @@
                                         <div class="row align-items-center justify-content-between">
                                             <div class="col-6 hp-input-description text-black-80 hp-text-color-dark-30">
                                                 {{ $item['quantity'] }} X {{ $item['product']->name }} </div>
-                                            <div class="col-6 text-end hp-p1-body fw-medium text-primary">${{ $item['total'] }}</div>
+                                            <div class="col-6 text-end hp-p1-body fw-medium text-primary">
+                                                ${{ $item['total'] }}</div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -147,7 +176,8 @@
                                 <div class="col-12">
                                     <div class="row align-items-center justify-content-between">
                                         <div class="col-6 h5 fw-medium text-primary">Total</div>
-                                        <div class="col-6 h5 text-end hp-p1-body fw-medium text-primary">${{ $cart_total }}</div>
+                                        <div class="col-6 h5 text-end hp-p1-body fw-medium text-primary">
+                                            ${{ $cart_total }}</div>
                                     </div>
                                 </div>
 
