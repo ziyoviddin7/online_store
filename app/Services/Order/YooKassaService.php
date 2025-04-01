@@ -13,24 +13,21 @@ class YooKassaService
 
     public function __construct(OrderService $orderService)
     {
-        $this->client = new Client();
-        $this->client->setAuth(
-            config('services.yookassa.shop_id'),
-            config('services.yookassa.secret_key')
-        );
-
         $this->orderService = $orderService;
     }
 
     public function createPayment($orderData)
     {
-        return DB::transaction(function () use ($orderData) {
-            try {
+        try {
+            return DB::transaction(function () use ($orderData) {
                 // Создаем заказ через OrderService
-                $createdOrder = $this->orderService->create($orderData);
+                $createdOrder = $this->orderService->createOrder($orderData);
+
+                $client = new Client();
+                $client->setAuth(Env('YOOKASSA_SHOP_ID'), Env('YOOKASSA_SECRET_KEY'));
 
                 // Создаем платеж в YooKassa
-                $payment = $this->client->createPayment(
+                $payment = $client->createPayment(
                     array(
                         'amount' => array(
                             'value' => $createdOrder->total_price,
@@ -38,7 +35,7 @@ class YooKassaService
                         ),
                         'confirmation' => array(
                             'type' => 'redirect',
-                            'return_url' => route('order.payment.callback', $createdOrder->id),
+                            'return_url' => route('order.callback', $createdOrder->id),
                         ),
                         'metadata' => [
                             'order_id' => $createdOrder->id,
@@ -52,10 +49,10 @@ class YooKassaService
                 $createdOrder->update(['payment_id' => $payment->getId()]);
 
                 return redirect($payment->getConfirmation()->getConfirmationUrl());
-            } catch (\Exception $e) {
-                Log::error('YooKassa payment error: ' . $e->getMessage());
-                return back()->withError('Ошибка при создании платежа');
-            }
-        });
+            });
+        } catch (\Exception $e) {
+            Log::error('YooKassa payment error: ' . $e->getMessage());
+            return back()->withError('Ошибка при создании платежа');
+        }
     }
 }

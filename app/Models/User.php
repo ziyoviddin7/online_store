@@ -59,4 +59,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Favorites::class);
     }
+
+    /**
+     * Связь с заказами пользователя
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

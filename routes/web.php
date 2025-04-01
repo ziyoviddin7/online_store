@@ -119,9 +119,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Favorites', 'middleware' => [
 
 // Order
 Route::group([
-    'namespace' => 'App\Http\Controllers\Order;',
+    'namespace' => 'App\Http\Controllers\Order',
     'middleware' => 'auth',
     'prefix' => '/order'
 ], function () {
     Route::get('/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
+    Route::get('/callback', [OrderController::class, 'callback'])->name('order.callback');
+
+    Route::post('/checkout', [OrderController::class, 'store'])->name('order.checkout.store');
 });

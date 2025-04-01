@@ -61,16 +61,17 @@
                                     class="p-16 p-sm-24 rounded border border-black-40 hp-border-color-dark-80 bg-black-0 hp-bg-color-dark-100">
                                     <h3 class="mb-24 text-black-80 hp-text-color-dark-0">Address</h3>
 
-                                    <form>
+                                    <form action="{{ route('order.checkout.store') }}" method="post">
+                                        @csrf
                                         <div class="row g-24">
                                             <div class="col-12 col-md-6">
                                                 <label for="checkoutAddressFullName" class="form-label">
                                                     <span class="text-danger me-4">*</span>Full Name
                                                 </label>
-                                                <input name="fullname" type="text" class="form-control"
+                                                <input name="full_name" type="text" class="form-control"
                                                     placeholder="Ivan Ivanov" id="checkoutAddressFullName"
-                                                    value="{{ old('fullname') }}" required>
-                                                @error('fullname')
+                                                    value="{{ old('full_name') }}" required>
+                                                @error('full_name')
                                                     <p style="color: red"> {{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -136,14 +137,13 @@
 
                                             <div class="col-12">
                                                 <label for="checkoutAddress" class="form-label">Address</label>
-                                                <textarea name="address" class="form-control" value="{{ old('address') }}" placeholder="32 Moskovskaya Street"
-                                                    id="checkoutAddress"></textarea>
+                                                <textarea name="address" class="form-control"  placeholder="32 Moskovskaya Street"
+                                                    id="checkoutAddress">{{ old('address') }}</textarea>
                                                 @error('address')
                                                     <p style="color: red"> {{ $message }}</p>
                                                 @enderror
                                             </div>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -182,15 +182,15 @@
                                 </div>
 
                                 <div class="col-12 mt-16">
-                                    <a href="app-ecommerce-checkout-payment.html">
-                                        <div class="btn btn-primary w-100">
-                                            Next Step
-                                        </div>
-                                    </a>
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        Place Order
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </form>
+
                 </div>
             </div>
         </div>
