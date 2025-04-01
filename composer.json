@@ -16,7 +16,8 @@
         "livewire/livewire": "^3.6",
         "meilisearch/meilisearch-php": "^1.13",
         "predis/predis": "^2.3",
-        "typesense/typesense-php": "^5.0"
+        "typesense/typesense-php": "^5.0",
+        "yoomoney/yookassa-sdk-php": "^3.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",
