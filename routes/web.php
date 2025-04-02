@@ -127,4 +127,10 @@ Route::group([
     Route::get('/callback', [OrderController::class, 'callback'])->name('order.callback');
 
     Route::post('/checkout', [OrderController::class, 'store'])->name('order.checkout.store');
+    Route::post('/webhook', [OrderController::class, 'handleWebhook'])->name('order.checkout.webhook');
+});
+
+// YooKassa Webhook
+Route::group(['namespace' => 'App\Http\Controllers\Order', 'prefix' => '/order'], function () {
+    Route::post('/webhook', [OrderController::class, 'handleWebhook'])->name('order.checkout.webhook');
 });

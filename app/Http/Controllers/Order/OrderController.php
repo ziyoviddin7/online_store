@@ -5,21 +5,19 @@ namespace App\Http\Controllers\Order;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\OrderStoreRequest;
 use App\Services\Cart\CartService;
-use App\Services\Order\OrderService;
 use App\Services\Order\YooKassaService;
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     protected $yooKassaService;
     protected $cartService;
-    protected $orderService;
 
-    public function __construct(YooKassaService $yooKassaService, OrderService $orderService, CartService $cartService)
+    public function __construct(YooKassaService $yooKassaService, CartService $cartService)
     {
         $this->yooKassaService = $yooKassaService;
         $this->cartService = $cartService;
-        $this->orderService = $orderService;
     }
 
     public function checkout()
@@ -35,6 +33,11 @@ class OrderController extends Controller
         $data = $orderStoreRequest->validated();
 
         return $this->yooKassaService->createPayment($data);
+    }
+
+    public function handleWebhook(Request $request)
+    {
+        return $this->yooKassaService->webhookYooKassa($request);
     }
 
     public function callback()

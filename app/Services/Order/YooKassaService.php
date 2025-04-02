@@ -2,8 +2,14 @@
 
 namespace App\Services\Order;
 
+use App\Models\Cart;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use YooKassa\Model\Notification\NotificationFactory;
+use YooKassa\Model\Notification\NotificationEventType;
+
 use YooKassa\Client;
 
 class YooKassaService
@@ -14,6 +20,9 @@ class YooKassaService
     public function __construct(OrderService $orderService)
     {
         $this->orderService = $orderService;
+
+        $this->client = new Client();
+        $this->client->setAuth(env('YOOKASSA_SHOP_ID'), env('YOOKASSA_SECRET_KEY'));
     }
 
     public function createPayment($orderData)
@@ -23,11 +32,8 @@ class YooKassaService
                 // Создаем заказ через OrderService
                 $createdOrder = $this->orderService->createOrder($orderData);
 
-                $client = new Client();
-                $client->setAuth(Env('YOOKASSA_SHOP_ID'), Env('YOOKASSA_SECRET_KEY'));
-
                 // Создаем платеж в YooKassa
-                $payment = $client->createPayment(
+                $payment = $this->client->createPayment(
                     array(
                         'amount' => array(
                             'value' => $createdOrder->total_price,
@@ -53,6 +59,52 @@ class YooKassaService
         } catch (\Exception $e) {
             Log::error('YooKassa payment error: ' . $e->getMessage());
             return back()->withError('Ошибка при создании платежа');
+        }
+    }
+
+    public function webhookYooKassa($request)
+    {
+        try {
+            $source = $request->getContent();
+            $data = json_decode($source, true);
+
+            $factory = new NotificationFactory();
+            $notificationObject = $factory->factory($data);
+            $responseObject = $notificationObject->getObject();
+
+            // response from Webhook
+            $response_payment_id = $responseObject->getId();
+            $response_payment_status = $responseObject->getStatus();
+
+            // Order
+            $order = Order::where('payment_id', $response_payment_id)->first();
+
+            if (!$order) {
+                return response()->json(['error' => 'Order not found'], 404);
+            }
+            // a request to Yookassa to get the payment status
+            $paymentInfo = $this->client->getPaymentInfo($order->payment_id);
+            $paymentStatus = $paymentInfo->getStatus();
+
+            if ($response_payment_status !== $paymentStatus) {
+                return response()->json(['error' => 'Payment status from webhook does not match YooKassa'], 400);
+            }
+
+            DB::transaction(function () use ($notificationObject, $order) {
+                if ($notificationObject->getEvent() === NotificationEventType::PAYMENT_SUCCEEDED) {
+                    $order->update(['status' => 'paid']);
+                    Cart::where('user_id', $order->user_id)->delete();
+                }
+            });
+
+            if ($notificationObject->getEvent() === NotificationEventType::PAYMENT_CANCELED) {
+                $order->update(['status' => 'canceled']);
+            }
+
+            return response()->json([], 200);
+        } catch (\Exception $e) {
+            Log::error('Error processing webhook: ' . $e->getMessage());
+            return response()->json(['error' => 'Error processing the webhook notification: ' . $e->getMessage()], 400);
         }
     }
 }
