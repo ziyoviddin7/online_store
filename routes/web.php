@@ -124,7 +124,7 @@ Route::group([
     'prefix' => '/order'
 ], function () {
     Route::get('/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
-    Route::get('/callback', [OrderController::class, 'callback'])->name('order.callback');
+    Route::get('/callback/{order_id}', [OrderController::class, 'callback'])->name('order.callback');
 
     Route::post('/checkout', [OrderController::class, 'store'])->name('order.checkout.store');
     Route::post('/webhook', [OrderController::class, 'handleWebhook'])->name('order.checkout.webhook');

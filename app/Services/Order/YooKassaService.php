@@ -89,18 +89,19 @@ class YooKassaService
             if ($response_payment_status !== $paymentStatus) {
                 return response()->json(['error' => 'Payment status from webhook does not match YooKassa'], 400);
             }
-
-            DB::transaction(function () use ($notificationObject, $order) {
-                if ($notificationObject->getEvent() === NotificationEventType::PAYMENT_SUCCEEDED) {
+            
+            switch ($notificationObject->getEvent()) {
+                case NotificationEventType::PAYMENT_SUCCEEDED:
                     $order->update(['status' => 'paid']);
                     Cart::where('user_id', $order->user_id)->delete();
-                }
-            });
-
-            if ($notificationObject->getEvent() === NotificationEventType::PAYMENT_CANCELED) {
-                $order->update(['status' => 'canceled']);
+                    break;
+                case NotificationEventType::PAYMENT_CANCELED:
+                    $order->update(['status' => 'canceled']);
+                    break;
+                default:
+                    throw new \Exception('Unhandled event type: ' . $notificationObject->getEvent());
             }
-
+            
             return response()->json([], 200);
         } catch (\Exception $e) {
             Log::error('Error processing webhook: ' . $e->getMessage());
