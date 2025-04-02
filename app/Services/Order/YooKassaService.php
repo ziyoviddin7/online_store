@@ -89,7 +89,7 @@ class YooKassaService
             if ($response_payment_status !== $paymentStatus) {
                 return response()->json(['error' => 'Payment status from webhook does not match YooKassa'], 400);
             }
-            
+
             switch ($notificationObject->getEvent()) {
                 case NotificationEventType::PAYMENT_SUCCEEDED:
                     $order->update(['status' => 'paid']);
@@ -101,11 +101,34 @@ class YooKassaService
                 default:
                     throw new \Exception('Unhandled event type: ' . $notificationObject->getEvent());
             }
-            
+
             return response()->json([], 200);
         } catch (\Exception $e) {
             Log::error('Error processing webhook: ' . $e->getMessage());
             return response()->json(['error' => 'Error processing the webhook notification: ' . $e->getMessage()], 400);
+        }
+    }
+
+    public function callback($order_id)
+    {
+        try {
+            $order = Order::where('id', $order_id)->first();
+
+            if (!$order) {
+                return response()->json(['error' => 'Order not found'], 404);
+            }
+
+            $paymentInfo = $this->client->getPaymentInfo($order->payment_id);
+
+            if ($paymentInfo->getStatus() === 'succeeded') {
+                return view('order.callback-success', compact('order'));
+            } else {
+                $order->update(['status' => 'canceled']);
+                return view('order.callback-failure', compact('order'));
+            }
+        } catch (\Exception $e) {
+            Log::error('YooKassa error: ' . $e->getMessage());
+            return response()->json(['error' => 'Error retrieving payment info'], 500);
         }
     }
 }

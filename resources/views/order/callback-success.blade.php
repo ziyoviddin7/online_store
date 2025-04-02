@@ -52,7 +52,7 @@
     <!-- Custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-    <title>403 - Yoda Admin Html Template</title>
+    <title>Order Successfully Placed</title>
 </head>
 
 <body>
@@ -69,16 +69,15 @@
                         <img class="hp-dark-block mx-auto"
                             src="{{ asset('app-assets/img/illustrations/payment-with-card-dark.svg') }}"
                             alt="Payment With Card" height="300">
-                        <span class="d-block h5 mb-0 mt-6">Payment With Card</span>
+                        <span class="d-block h5 mb-0 mt-6">Order Successfully</span>
                     </div>
 
-                    <h2 class="h1 mb-16">Forbidden</h2>
+                    <h2 class="h1 mb-16">Order #{{ $order->id }} Successfully Placed</h2>
 
-                    <p class="mb-32 hp-p1-body hp-text-color-black-100 hp-text-color-dark-0"> You don’t have an access
-                        to this page. </p>
+                    <p class="mb-32 hp-p1-body hp-text-color-black-100 hp-text-color-dark-0">Thank you for your purchase! Your order has been successfully placed</p>
 
                     <a href="/" class="btn router-link-active btn-primary">
-                        <span>Back to Home</span>
+                        <span>View Order</span>
                     </a>
                 </div>
             </div>

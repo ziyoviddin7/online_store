@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\OrderStoreRequest;
 use App\Services\Cart\CartService;
 use App\Services\Order\YooKassaService;
+use YooKassa\Client;
 
 use Illuminate\Http\Request;
 
@@ -40,8 +41,9 @@ class OrderController extends Controller
         return $this->yooKassaService->webhookYooKassa($request);
     }
 
-    public function callback()
+    public function callback($order_id)
     {
-        return view('order.order-callback');
+        return $this->yooKassaService->callback($order_id);
     }
+
 }
