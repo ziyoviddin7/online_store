@@ -17,6 +17,7 @@ use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\Favorites\FavoritesController;
 use App\Http\Controllers\Favorites\FavoritesSessionController;
 use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\Order\ShowOrderController;
 use App\Http\Controllers\User\Profile\ProfileController;
 
 /*
@@ -117,7 +118,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Favorites', 'middleware' => [
 });
 
 
-// Order
+// Create Order And YooKassa Payment
 Route::group([
     'namespace' => 'App\Http\Controllers\Order',
     'middleware' => 'auth',
@@ -127,10 +128,18 @@ Route::group([
     Route::get('/callback/{order_id}', [OrderController::class, 'callback'])->name('order.callback');
 
     Route::post('/checkout', [OrderController::class, 'store'])->name('order.checkout.store');
-    Route::post('/webhook', [OrderController::class, 'handleWebhook'])->name('order.checkout.webhook');
 });
 
 // YooKassa Webhook
 Route::group(['namespace' => 'App\Http\Controllers\Order', 'prefix' => '/order'], function () {
     Route::post('/webhook', [OrderController::class, 'handleWebhook'])->name('order.checkout.webhook');
+});
+
+
+// Show Order
+Route::group([
+    'namespace' => 'App\Http\Controllers\Order',
+    'middleware' => 'auth',
+], function () {
+    Route::get('/my/orders', [ShowOrderController::class, 'all_orders'])->name('order.all_orders');
 });

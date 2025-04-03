@@ -119,7 +119,7 @@
                                             </a>
                                         </li>
 
-                                        <li class="px-6" >
+                                        <li class="px-6">
                                             <a href="{{ route('product.shop') }}">
                                                 <span>Shop</span>
                                             </a>
@@ -131,37 +131,37 @@
                                             </a>
 
                                             <ul class="dropdown-menu">
-                                                
+
                                                 @foreach ($categories as $category)
-                                                <li class="dropend">
-                                                    <a class="dropdown-item" href="javascript:;"
-                                                        data-bs-toggle="dropdown">
-                                                        <span>
-                                                            <span class="submenu-item-icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="18"
-                                                                    height="18" viewBox="0 0 24 24"
-                                                                    fill="none">
-                                                                    <path
-                                                                        d="M4.26 11.02v4.97c0 1.82 0 1.82 1.72 2.98l4.73 2.73c.71.41 1.87.41 2.58 0l4.73-2.73c1.72-1.16 1.72-1.16 1.72-2.98v-4.97c0-1.82 0-1.82-1.72-2.98l-4.73-2.73c-.71-.41-1.87-.41-2.58 0L5.98 8.04C4.26 9.2 4.26 9.2 4.26 11.02Z"
-                                                                        stroke="currentColor" stroke-width="1.5"
-                                                                        stroke-linecap="round"
-                                                                        stroke-linejoin="round"></path>
-                                                                    <path
-                                                                        d="M17.5 7.63V5c0-2-1-3-3-3h-5c-2 0-3 1-3 3v2.56M12.63 10.99l.57.89c.09.14.29.28.44.32l1.02.26c.63.16.8.7.39 1.2l-.67.81c-.1.13-.18.36-.17.52l.06 1.05c.04.65-.42.98-1.02.74l-.98-.39a.863.863 0 0 0-.55 0l-.98.39c-.6.24-1.06-.1-1.02-.74l.06-1.05c.01-.16-.07-.4-.17-.52l-.67-.81c-.41-.5-.24-1.04.39-1.2l1.02-.26c.16-.04.36-.19.44-.32l.57-.89c.36-.54.92-.54 1.27 0Z"
-                                                                        stroke="currentColor" stroke-width="1.5"
-                                                                        stroke-linecap="round"
-                                                                        stroke-linejoin="round"></path>
-                                                                </svg>
+                                                    <li class="dropend">
+                                                        <a class="dropdown-item" href="javascript:;"
+                                                            data-bs-toggle="dropdown">
+                                                            <span>
+                                                                <span class="submenu-item-icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        width="18" height="18"
+                                                                        viewBox="0 0 24 24" fill="none">
+                                                                        <path
+                                                                            d="M4.26 11.02v4.97c0 1.82 0 1.82 1.72 2.98l4.73 2.73c.71.41 1.87.41 2.58 0l4.73-2.73c1.72-1.16 1.72-1.16 1.72-2.98v-4.97c0-1.82 0-1.82-1.72-2.98l-4.73-2.73c-.71-.41-1.87-.41-2.58 0L5.98 8.04C4.26 9.2 4.26 9.2 4.26 11.02Z"
+                                                                            stroke="currentColor" stroke-width="1.5"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round"></path>
+                                                                        <path
+                                                                            d="M17.5 7.63V5c0-2-1-3-3-3h-5c-2 0-3 1-3 3v2.56M12.63 10.99l.57.89c.09.14.29.28.44.32l1.02.26c.63.16.8.7.39 1.2l-.67.81c-.1.13-.18.36-.17.52l.06 1.05c.04.65-.42.98-1.02.74l-.98-.39a.863.863 0 0 0-.55 0l-.98.39c-.6.24-1.06-.1-1.02-.74l.06-1.05c.01-.16-.07-.4-.17-.52l-.67-.81c-.41-.5-.24-1.04.39-1.2l1.02-.26c.16-.04.36-.19.44-.32l.57-.89c.36-.54.92-.54 1.27 0Z"
+                                                                            stroke="currentColor" stroke-width="1.5"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round"></path>
+                                                                    </svg>
+                                                                </span>
+
+                                                                <span>{{ $category->name }}</span>
                                                             </span>
 
-                                                            <span>{{ $category->name }}</span>
-                                                        </span>
+                                                        </a>
 
-                                                    </a>
-
-                                                </li>
+                                                    </li>
                                                 @endforeach
-                                               
+
                                             </ul>
                                         </li>
 
@@ -177,7 +177,7 @@
 
                             <div class="col hp-flex-none w-auto pe-0">
                                 <div class="row align-items-center justify-content-end">
-                                    
+
                                     <div
                                         class="hover-dropdown-fade w-auto px-0 d-flex align-items-center position-relative">
                                         <button type="button"
@@ -324,38 +324,46 @@
                                         </div>
                                     </div>
 
-                                    <div class="hover-dropdown-fade w-auto px-0 d-flex align-items-center position-relative">
-                                        <button type="button"
-                                        class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
-                                        style="height: 40px;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                            viewBox="0 0 24 24" fill="none"
-                                            class="hp-text-color-black-80 hp-text-color-dark-30">
-                                            <!-- Иконка коробки -->
-                                            <path d="M3.17 7.44L12 12.55l8.77-5.08M12 21.61v-9.07"
-                                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                            </path>
-                                            <path
-                                                d="M9.93 2.48 4.59 5.45c-1.21.67-2.2 2.35-2.2 3.73v5.65c0 1.38.99 3.06 2.2 3.73l5.34 2.97c1.14.63 3.01.63 4.15 0l5.34-2.97c1.21-.67 2.2-2.35 2.2-3.73V9.18c0-1.38-.99-3.06-2.2-3.73l-5.34-2.97c-1.14-.63-3.01-.63-4.15 0Z"
-                                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                            </path>
-                                            <path d="M17 13.24V9.58l-6.07-3.51-1.05-.6L3.5 5.96" stroke="currentColor"
-                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                            </path>
-                                        </svg>
-                                        <span
-                                                class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
-                                                style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>
-                                    </button>
-                                    </div>
+                                    @auth
+                                        <div
+                                            class="hover-dropdown-fade w-auto px-0 d-flex align-items-center position-relative">
+                                            <a href="{{ route('order.all_orders') }}"
+                                                class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
+                                                style="height: 40px;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                    viewBox="0 0 24 24" fill="none"
+                                                    class="hp-text-color-black-80 hp-text-color-dark-30">
+                                                    <!-- Иконка коробки -->
+                                                    <path d="M3.17 7.44L12 12.55l8.77-5.08M12 21.61v-9.07"
+                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                    </path>
+                                                    <path
+                                                        d="M9.93 2.48 4.59 5.45c-1.21.67-2.2 2.35-2.2 3.73v5.65c0 1.38.99 3.06 2.2 3.73l5.34 2.97c1.14.63 3.01.63 4.15 0l5.34-2.97c1.21-.67 2.2-2.35 2.2-3.73V9.18c0-1.38-.99-3.06-2.2-3.73l-5.34-2.97c-1.14-.63-3.01-.63-4.15 0Z"
+                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                    </path>
+                                                    <path d="M17 13.24V9.58l-6.07-3.51-1.05-.6L3.5 5.96"
+                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                    </path>
+                                                </svg>
+                                                @if ($orders->isNotEmpty())
+                                                    <span
+                                                        class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
+                                                        style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>
+                                                @endif
 
-                                   
+                                            </a>
+                                        </div>
+                                    @endauth
+
+
+
 
                                     <div
                                         class="hover-dropdown-fade w-auto px-0 d-flex align-items-center position-relative">
-                                        <a href="{{ route('favorites.show') }}" 
+                                        <a href="{{ route('favorites.show') }}"
                                             class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
                                             style="height: 40px;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
@@ -369,405 +377,435 @@
                                                 </path>
                                             </svg>
                                             @auth
-                                            @if ($favorites_items->isNotEmpty())
-                                            <span
-                                                class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
-                                                style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>
-                                            @endif
+                                                @if ($favorites_items->isNotEmpty())
+                                                    <span
+                                                        class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
+                                                        style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>
+                                                @endif
                                             @else
-                                            @if ($favoritesSession_items->isNotEmpty())
-                                            <span
-                                                class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
-                                                style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>
-                                            @endif
+                                                @if ($favoritesSession_items->isNotEmpty())
+                                                    <span
+                                                        class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
+                                                        style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>
+                                                @endif
                                             @endguest
-                                            
+
                                         </a>
                                     </div>
 
 
                                     @auth
-                                    <div class="me-2 hp-basket-dropdown-button w-auto px-0 position-relative" >
-                                        <a href="{{ route('cart.show') }}"
-                                            class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
-                                            style="height: 40px;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                viewBox="0 0 24 24" fill="none"
-                                                class="hp-text-color-black-80 hp-text-color-dark-30">
-                                                <path
-                                                    d="M8.4 6.5h7.2c3.4 0 3.74 1.59 3.97 3.53l.9 7.5C20.76 19.99 20 22 16.5 22H7.51C4 22 3.24 19.99 3.54 17.53l.9-7.5C4.66 8.09 5 6.5 8.4 6.5Z"
-                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                                <path d="M8 8V4.5C8 3 9 2 10.5 2h3C15 2 16 3 16 4.5V8M20.41 17.03H8"
-                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                            </svg>
-                                            @if ($cart_items->isNotEmpty())
-                                            <span
-                                            class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
-                                            style="width: 6px; height: 6px; top: 12px; left: 26px;"></span>
-                                            @endif
-                                            
-                                        </a>
-
-                                        <div class="hp-basket-dropdown" style="width: 430px;" >
-                                            <div class="row px-0 justify-content-between align-items-center">
-                                                <h5 class="mb-0 w-auto hp-text-color-dark-15">My Cart</h5>
-
-                                                <div class="w-auto px-0 me-8">
+                                        <div class="me-2 hp-basket-dropdown-button w-auto px-0 position-relative">
+                                            <a href="{{ route('cart.show') }}"
+                                                class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
+                                                style="height: 40px;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                    viewBox="0 0 24 24" fill="none"
+                                                    class="hp-text-color-black-80 hp-text-color-dark-30">
+                                                    <path
+                                                        d="M8.4 6.5h7.2c3.4 0 3.74 1.59 3.97 3.53l.9 7.5C20.76 19.99 20 22 16.5 22H7.51C4 22 3.24 19.99 3.54 17.53l.9-7.5C4.66 8.09 5 6.5 8.4 6.5Z"
+                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round"></path>
+                                                    <path d="M8 8V4.5C8 3 9 2 10.5 2h3C15 2 16 3 16 4.5V8M20.41 17.03H8"
+                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round"></path>
+                                                </svg>
+                                                @if ($cart_items->isNotEmpty())
                                                     <span
-                                                        class="d-inline-block hp-caption fw-medium w-auto hp-text-color-black-80 hp-text-color-dark-30">
-                                                        
-                                                        Total: ${{ number_format($total, 2, '.', ' ') }}</span>
-                                                </div>
-                                            </div>
+                                                        class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
+                                                        style="width: 6px; height: 6px; top: 12px; left: 26px;"></span>
+                                                @endif
 
-                                            <div class="divider mt-24 mb-4"></div>
+                                            </a>
 
-                                            @foreach ($cart_items as $item)
-                                            <div class="hp-basket-dropdown-list">
-                                                <div class="hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded py-8 px-10 hp-overflow-x-auto"
-                                                    style="margin-left: -10px; margin-right: -10px;">
-                                                    <div
-                                                        class="row flex-nowrap justify-content-between align-items-center">
-                                                        <div class="col mt-4 pe-0" style="flex: 0 0 32px;">
-                                                            <a href="javascript:;">
-                                                                <div class="avatar-item d-flex align-items-center justify-content-center hp-bg-black-0 hp-bg-dark-100 rounded-circle"
-                                                                    style="width: 35px; height: 35px;">
-                                                                    <img
-                                                                        src="{{ Storage::url($item['product']->image) }}">
-                                                                </div>
-                                                            </a>
-                                                        </div>
+                                            <div class="hp-basket-dropdown" style="width: 430px;">
+                                                <div class="row px-0 justify-content-between align-items-center">
+                                                    <h5 class="mb-0 w-auto hp-text-color-dark-15">My Cart</h5>
 
-                                                        <div class="col ms-10 px-0" style="flex: 0 0 120px;">
-                                                            <a href="{{ route('product.detail', $item['product']->slug) }}">
-                                                                <h5
-                                                                    class="mb-0 fw-medium hp-p1-body hp-text-color-black-100 hp-text-color-dark-15">
-                                                                    {{ $item['product']->name }}</h5>
-                                                                <p class="mb-0 hp-caption hp-text-color-black-60"
-                                                                    style="margin-top: 1px;">By <span
-                                                                        class="hp-text-color-black-80">{{ $item['product']->brand->name }}</span></p>
-                                                            </a>
-                                                        </div>
+                                                    <div class="w-auto px-0 me-8">
+                                                        <span
+                                                            class="d-inline-block hp-caption fw-medium w-auto hp-text-color-black-80 hp-text-color-dark-30">
 
-                                                        <div class="col hp-d-flex hp-d-flex-column ms-8 px-0"
-                                                            style="flex: 0 0 70px;">
-                                                            <div class="input-number input-number-sm"
-                                                                style="width: 65px;">
-                                                                <div class="input-number-handler-wrap">
-
-                                                                    
-                                                                </div>
-
-                                                                <div class="input-number-input-wrap">
-                                                                    <input class="input-number-input" type="number"
-                                                                        min="1" max="10" value="{{ $item['quantity'] }}">
-                                                                </div>
-                                                            </div>
-
-                                                            <div
-                                                                class="hp-cursor-pointer mt-4 hp-input-description fw-medium text-black-60 text-decoration-underline">
-                                                                ${{ $item['price'] }}/unit</div>
-                                                        </div>
-
-                                                        <div class="col ps-0 text-end">
-                                                            <p
-                                                                class="hp-basket-dropdown-list-item-price hp-p1-body mb-0 hp-text-color-black-80 hp-text-color-dark-30 fw-medium">
-                                                                ${{ $item['total'] }}</p>
-                                                                
-                                                                
-                                                        </div>
-                                                        <div class="col ps-0 text-end" style="margin-left: 0px;">
-                                                            <form action="{{ route('cart.increase', $item['product']->id) }}" method="POST">
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-link p-0">↑</button>
-                                                            </form>
-                                                            
-                                                        </div>
-                                                        <div class="col ps-0 text-end">
-                                                            <form action="{{ route('cart.decrease', $item['product']->id) }}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-link p-0">↓</button>
-                                                            </form>
-                                                            
-                                                        </div>
-                                                        <div class="col ps-0 text-end">
-                                                            <form action="{{ route('cart.remove', $item['product']->id) }}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-link p-0">x</button>
-                                                            </form>
-                                                            
-                                                        </div>
-                                                        
+                                                            Total: ${{ number_format($total, 2, '.', ' ') }}</span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            @endforeach
-                                           
 
-                                            <div class="divider mt-4 mb-12"></div>
+                                                <div class="divider mt-24 mb-4"></div>
 
-                                            <div class="row">
-                                                @if ($cart_items->isEmpty())
-                                                <div class="col-6 px-8">
-                                                    <a href="{{ route('product.shop') }}">
-                                                        <button type="button"
-                                                            class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
-                                                            View Shop
-                                                        </button>
-                                                    </a>
-                                                </div>
+                                                @foreach ($cart_items as $item)
+                                                    <div class="hp-basket-dropdown-list">
+                                                        <div class="hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded py-8 px-10 hp-overflow-x-auto"
+                                                            style="margin-left: -10px; margin-right: -10px;">
+                                                            <div
+                                                                class="row flex-nowrap justify-content-between align-items-center">
+                                                                <div class="col mt-4 pe-0" style="flex: 0 0 32px;">
+                                                                    <a href="javascript:;">
+                                                                        <div class="avatar-item d-flex align-items-center justify-content-center hp-bg-black-0 hp-bg-dark-100 rounded-circle"
+                                                                            style="width: 35px; height: 35px;">
+                                                                            <img
+                                                                                src="{{ Storage::url($item['product']->image) }}">
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
 
-                                                <div class="col-6 px-8">
-                                                    <a href="{{ route('cart.show') }}">
-                                                        <button type="button"
-                                                            class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
-                                                            View Cart
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                                @else
-                                                <div class="col-6 px-8">
-                                                    <a href="{{ route('cart.show') }}">
-                                                        <button type="button"
-                                                            class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
-                                                            View Cart
-                                                        </button>
-                                                    </a>
-                                                </div>
+                                                                <div class="col ms-10 px-0" style="flex: 0 0 120px;">
+                                                                    <a
+                                                                        href="{{ route('product.detail', $item['product']->slug) }}">
+                                                                        <h5
+                                                                            class="mb-0 fw-medium hp-p1-body hp-text-color-black-100 hp-text-color-dark-15">
+                                                                            {{ $item['product']->name }}</h5>
+                                                                        <p class="mb-0 hp-caption hp-text-color-black-60"
+                                                                            style="margin-top: 1px;">By <span
+                                                                                class="hp-text-color-black-80">{{ $item['product']->brand->name }}</span>
+                                                                        </p>
+                                                                    </a>
+                                                                </div>
 
-                                                <div class="col-6 px-8">
-                                                    <a href="{{ route('order.checkout') }}">
-                                                        <button type="button"
-                                                            class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
-                                                            Checkout
-                                                        </button>
-                                                    </a>
+                                                                <div class="col hp-d-flex hp-d-flex-column ms-8 px-0"
+                                                                    style="flex: 0 0 70px;">
+                                                                    <div class="input-number input-number-sm"
+                                                                        style="width: 65px;">
+                                                                        <div class="input-number-handler-wrap">
+
+
+                                                                        </div>
+
+                                                                        <div class="input-number-input-wrap">
+                                                                            <input class="input-number-input"
+                                                                                type="number" min="1"
+                                                                                max="10"
+                                                                                value="{{ $item['quantity'] }}">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="hp-cursor-pointer mt-4 hp-input-description fw-medium text-black-60 text-decoration-underline">
+                                                                        ${{ $item['price'] }}/unit</div>
+                                                                </div>
+
+                                                                <div class="col ps-0 text-end">
+                                                                    <p
+                                                                        class="hp-basket-dropdown-list-item-price hp-p1-body mb-0 hp-text-color-black-80 hp-text-color-dark-30 fw-medium">
+                                                                        ${{ $item['total'] }}</p>
+
+
+                                                                </div>
+                                                                <div class="col ps-0 text-end" style="margin-left: 0px;">
+                                                                    <form
+                                                                        action="{{ route('cart.increase', $item['product']->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            class="btn btn-link p-0">↑</button>
+                                                                    </form>
+
+                                                                </div>
+                                                                <div class="col ps-0 text-end">
+                                                                    <form
+                                                                        action="{{ route('cart.decrease', $item['product']->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="btn btn-link p-0">↓</button>
+                                                                    </form>
+
+                                                                </div>
+                                                                <div class="col ps-0 text-end">
+                                                                    <form
+                                                                        action="{{ route('cart.remove', $item['product']->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="btn btn-link p-0">x</button>
+                                                                    </form>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
+
+                                                <div class="divider mt-4 mb-12"></div>
+
+                                                <div class="row">
+                                                    @if ($cart_items->isEmpty())
+                                                        <div class="col-6 px-8">
+                                                            <a href="{{ route('product.shop') }}">
+                                                                <button type="button"
+                                                                    class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
+                                                                    View Shop
+                                                                </button>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="col-6 px-8">
+                                                            <a href="{{ route('cart.show') }}">
+                                                                <button type="button"
+                                                                    class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
+                                                                    View Cart
+                                                                </button>
+                                                            </a>
+                                                        </div>
+                                                    @else
+                                                        <div class="col-6 px-8">
+                                                            <a href="{{ route('cart.show') }}">
+                                                                <button type="button"
+                                                                    class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
+                                                                    View Cart
+                                                                </button>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="col-6 px-8">
+                                                            <a href="{{ route('order.checkout') }}">
+                                                                <button type="button"
+                                                                    class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
+                                                                    Checkout
+                                                                </button>
+                                                            </a>
+                                                        </div>
+                                                    @endif
                                                 </div>
-                                                @endif
                                             </div>
                                         </div>
-                                    </div>
-
                                     @else
-                                    <div class="me-2 hp-basket-dropdown-button w-auto px-0 position-relative" >
-                                        <a href="{{ route('cart.show') }}"
-                                            class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
-                                            style="height: 40px;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                viewBox="0 0 24 24" fill="none"
-                                                class="hp-text-color-black-80 hp-text-color-dark-30">
-                                                <path
-                                                    d="M8.4 6.5h7.2c3.4 0 3.74 1.59 3.97 3.53l.9 7.5C20.76 19.99 20 22 16.5 22H7.51C4 22 3.24 19.99 3.54 17.53l.9-7.5C4.66 8.09 5 6.5 8.4 6.5Z"
-                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                                <path d="M8 8V4.5C8 3 9 2 10.5 2h3C15 2 16 3 16 4.5V8M20.41 17.03H8"
-                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                            </svg>
-                                            @if ($cartSession_items->isNotEmpty())
-                                            <span
-                                            class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
-                                            style="width: 6px; height: 6px; top: 12px; left: 26px;"></span>
-                                            @endif
-                                            
-                                        </a>
-
-                                        <div class="hp-basket-dropdown" style="width: 430px;" >
-                                            <div class="row px-0 justify-content-between align-items-center">
-                                                <h5 class="mb-0 w-auto hp-text-color-dark-15">My Cart</h5>
-
-                                                <div class="w-auto px-0 me-8">
+                                        <div class="me-2 hp-basket-dropdown-button w-auto px-0 position-relative">
+                                            <a href="{{ route('cart.show') }}"
+                                                class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
+                                                style="height: 40px;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                    viewBox="0 0 24 24" fill="none"
+                                                    class="hp-text-color-black-80 hp-text-color-dark-30">
+                                                    <path
+                                                        d="M8.4 6.5h7.2c3.4 0 3.74 1.59 3.97 3.53l.9 7.5C20.76 19.99 20 22 16.5 22H7.51C4 22 3.24 19.99 3.54 17.53l.9-7.5C4.66 8.09 5 6.5 8.4 6.5Z"
+                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round"></path>
+                                                    <path d="M8 8V4.5C8 3 9 2 10.5 2h3C15 2 16 3 16 4.5V8M20.41 17.03H8"
+                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round"></path>
+                                                </svg>
+                                                @if ($cartSession_items->isNotEmpty())
                                                     <span
-                                                        class="d-inline-block hp-caption fw-medium w-auto hp-text-color-black-80 hp-text-color-dark-30">
-                                                        
-                                                        Total: ${{ number_format($cartSession_total, 2, '.', ' ') }}</span>
-                                                </div>
-                                            </div>
+                                                        class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
+                                                        style="width: 6px; height: 6px; top: 12px; left: 26px;"></span>
+                                                @endif
 
-                                            <div class="divider mt-24 mb-4"></div>
+                                            </a>
 
-                                            @foreach ($cartSession_items as $item)
-                                            <div class="hp-basket-dropdown-list">
-                                                <div class="hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded py-8 px-10 hp-overflow-x-auto"
-                                                    style="margin-left: -10px; margin-right: -10px;">
-                                                    <div
-                                                        class="row flex-nowrap justify-content-between align-items-center">
-                                                        <div class="col mt-4 pe-0" style="flex: 0 0 32px;">
-                                                            <a href="javascript:;">
-                                                                <div class="avatar-item d-flex align-items-center justify-content-center hp-bg-black-0 hp-bg-dark-100 rounded-circle"
-                                                                    style="width: 35px; height: 35px;">
-                                                                    <img
-                                                                        src="{{ Storage::url($item['product']->image) }}">
-                                                                </div>
-                                                            </a>
-                                                        </div>
+                                            <div class="hp-basket-dropdown" style="width: 430px;">
+                                                <div class="row px-0 justify-content-between align-items-center">
+                                                    <h5 class="mb-0 w-auto hp-text-color-dark-15">My Cart</h5>
 
-                                                        <div class="col ms-10 px-0" style="flex: 0 0 120px;">
-                                                            <a href="{{ route('product.detail', $item['product']->slug) }}">
-                                                                <h5
-                                                                    class="mb-0 fw-medium hp-p1-body hp-text-color-black-100 hp-text-color-dark-15">
-                                                                    {{ $item['product']->name }}</h5>
-                                                                <p class="mb-0 hp-caption hp-text-color-black-60"
-                                                                    style="margin-top: 1px;">By <span
-                                                                        class="hp-text-color-black-80">{{ $item['product']->brand->name }}</span></p>
-                                                            </a>
-                                                        </div>
+                                                    <div class="w-auto px-0 me-8">
+                                                        <span
+                                                            class="d-inline-block hp-caption fw-medium w-auto hp-text-color-black-80 hp-text-color-dark-30">
 
-                                                        <div class="col hp-d-flex hp-d-flex-column ms-8 px-0"
-                                                            style="flex: 0 0 70px;">
-                                                            <div class="input-number input-number-sm"
-                                                                style="width: 65px;">
-                                                                <div class="input-number-handler-wrap">
-
-                                                                    
-                                                                </div>
-
-                                                                <div class="input-number-input-wrap">
-                                                                    <input class="input-number-input" type="number"
-                                                                        min="1" max="10" value="{{ $item['quantity'] }}">
-                                                                </div>
-                                                            </div>
-
-                                                            <div
-                                                                class="hp-cursor-pointer mt-4 hp-input-description fw-medium text-black-60 text-decoration-underline">
-                                                                ${{ $item['price'] }}/unit</div>
-                                                        </div>
-
-                                                        <div class="col ps-0 text-end">
-                                                            <p
-                                                                class="hp-basket-dropdown-list-item-price hp-p1-body mb-0 hp-text-color-black-80 hp-text-color-dark-30 fw-medium">
-                                                                ${{ $item['total'] }}</p>
-                                                                
-                                                                
-                                                        </div>
-                                                        <div class="col ps-0 text-end" style="margin-left: 0px;">
-                                                            <form action="{{ route('cart_session.increase', $item['product']->id) }}" method="POST">
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-link p-0">↑</button>
-                                                            </form>
-                                                            
-                                                        </div>
-                                                        <div class="col ps-0 text-end">
-                                                            <form action="{{ route('cart_session.decrease', $item['product']->id) }}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-link p-0">↓</button>
-                                                            </form>
-                                                            
-                                                        </div>
-                                                        <div class="col ps-0 text-end">
-                                                            <form action="{{ route('cart_session.remove', $item['product']->id) }}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-link p-0">x</button>
-                                                            </form>
-                                                            
-                                                        </div>
-                                                        
+                                                            Total:
+                                                            ${{ number_format($cartSession_total, 2, '.', ' ') }}</span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            @endforeach
-                                           
 
-                                            <div class="divider mt-4 mb-12"></div>
+                                                <div class="divider mt-24 mb-4"></div>
 
-                                            <div class="row">
-                                                @if ($cartSession_items->isEmpty())
-                                                <div class="col-6 px-8">
-                                                    <a href="{{ route('product.shop') }}">
-                                                        <button type="button"
-                                                            class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
-                                                            View Shop
-                                                        </button>
-                                                    </a>
+                                                @foreach ($cartSession_items as $item)
+                                                    <div class="hp-basket-dropdown-list">
+                                                        <div class="hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded py-8 px-10 hp-overflow-x-auto"
+                                                            style="margin-left: -10px; margin-right: -10px;">
+                                                            <div
+                                                                class="row flex-nowrap justify-content-between align-items-center">
+                                                                <div class="col mt-4 pe-0" style="flex: 0 0 32px;">
+                                                                    <a href="javascript:;">
+                                                                        <div class="avatar-item d-flex align-items-center justify-content-center hp-bg-black-0 hp-bg-dark-100 rounded-circle"
+                                                                            style="width: 35px; height: 35px;">
+                                                                            <img
+                                                                                src="{{ Storage::url($item['product']->image) }}">
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="col ms-10 px-0" style="flex: 0 0 120px;">
+                                                                    <a
+                                                                        href="{{ route('product.detail', $item['product']->slug) }}">
+                                                                        <h5
+                                                                            class="mb-0 fw-medium hp-p1-body hp-text-color-black-100 hp-text-color-dark-15">
+                                                                            {{ $item['product']->name }}</h5>
+                                                                        <p class="mb-0 hp-caption hp-text-color-black-60"
+                                                                            style="margin-top: 1px;">By <span
+                                                                                class="hp-text-color-black-80">{{ $item['product']->brand->name }}</span>
+                                                                        </p>
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="col hp-d-flex hp-d-flex-column ms-8 px-0"
+                                                                    style="flex: 0 0 70px;">
+                                                                    <div class="input-number input-number-sm"
+                                                                        style="width: 65px;">
+                                                                        <div class="input-number-handler-wrap">
+
+
+                                                                        </div>
+
+                                                                        <div class="input-number-input-wrap">
+                                                                            <input class="input-number-input"
+                                                                                type="number" min="1"
+                                                                                max="10"
+                                                                                value="{{ $item['quantity'] }}">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="hp-cursor-pointer mt-4 hp-input-description fw-medium text-black-60 text-decoration-underline">
+                                                                        ${{ $item['price'] }}/unit</div>
+                                                                </div>
+
+                                                                <div class="col ps-0 text-end">
+                                                                    <p
+                                                                        class="hp-basket-dropdown-list-item-price hp-p1-body mb-0 hp-text-color-black-80 hp-text-color-dark-30 fw-medium">
+                                                                        ${{ $item['total'] }}</p>
+
+
+                                                                </div>
+                                                                <div class="col ps-0 text-end" style="margin-left: 0px;">
+                                                                    <form
+                                                                        action="{{ route('cart_session.increase', $item['product']->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            class="btn btn-link p-0">↑</button>
+                                                                    </form>
+
+                                                                </div>
+                                                                <div class="col ps-0 text-end">
+                                                                    <form
+                                                                        action="{{ route('cart_session.decrease', $item['product']->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="btn btn-link p-0">↓</button>
+                                                                    </form>
+
+                                                                </div>
+                                                                <div class="col ps-0 text-end">
+                                                                    <form
+                                                                        action="{{ route('cart_session.remove', $item['product']->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="btn btn-link p-0">x</button>
+                                                                    </form>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
+
+                                                <div class="divider mt-4 mb-12"></div>
+
+                                                <div class="row">
+                                                    @if ($cartSession_items->isEmpty())
+                                                        <div class="col-6 px-8">
+                                                            <a href="{{ route('product.shop') }}">
+                                                                <button type="button"
+                                                                    class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
+                                                                    View Shop
+                                                                </button>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-6 px-8">
+                                                            <a href="{{ route('cart.show') }}">
+                                                                <button type="button"
+                                                                    class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
+                                                                    View Cart
+                                                                </button>
+                                                            </a>
+                                                        </div>
+                                                    @else
+                                                        <div class="col-6 px-8">
+                                                            <a href="{{ route('cart.show') }}">
+                                                                <button type="button"
+                                                                    class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
+                                                                    View Cart
+                                                                </button>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-6 px-8">
+                                                            <a href="{{ route('user.login') }}">
+                                                                <button type="button"
+                                                                    class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
+                                                                    Login
+                                                                </button>
+                                                            </a>
+                                                        </div>
+                                                    @endif
+
                                                 </div>
-                                                <div class="col-6 px-8">
-                                                    <a href="{{ route('cart.show') }}">
-                                                        <button type="button"
-                                                            class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
-                                                            View Cart
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                                @else
-                                                <div class="col-6 px-8">
-                                                    <a href="{{ route('cart.show') }}">
-                                                        <button type="button"
-                                                            class="btn btn-text w-100 hp-bg-black-20 hp-text-color-black-100 hp-hover-text-color-primary-1 hp-hover-bg-primary-4">
-                                                            View Cart
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                                <div class="col-6 px-8">
-                                                    <a href="{{ route('user.login') }}">
-                                                        <button type="button"
-                                                            class="btn btn-text hp-text-color-black-0 hp-bg-black-100 hp-hover-bg-primary-1 w-100">
-                                                            Login
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                                @endif
-                        
                                             </div>
                                         </div>
-                                    </div>
                                     @endguest
 
                                     <div class="hover-dropdown-fade w-auto px-0 ms-6 position-relative">
                                         @auth
-                                        <div class="hp-cursor-pointer rounded-4 border hp-border-color-dark-80">
-                                            <div class="rounded-3 overflow-hidden m-4 d-flex">
-                                                <a href="{{ route('user.profile.information') }}" class="avatar-item hp-bg-info-4 d-flex"
-                                                    style="width: 32px; height: 32px;">
-                                                    <img src="{{ Storage::url($user->image) }}">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        
-                                        <div class="hp-header-profile-menu dropdown-fade position-absolute pt-18"
-                                        style="top: 100%; width: 260px;">
-                                        <div class="rounded hp-bg-black-0 hp-bg-dark-100 px-18 py-24">
-                                         
-
-                                            <a href="{{ route('user.profile.information') }}"
-                                                class="hp-p1-body fw-medium hp-hover-text-color-primary-2">View
-                                                Profile</a>
-
-                                        
-
-                                            <div class="row">
-                                                @auth
-                                                <form action="{{ route('user.logout') }}" method="post">
-                                                    @csrf
-                                                    <div class="col-12 mt-24">
-                                                        <a class="hp-p1-body fw-medium" href="{{ route('user.logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
-                                                    </div>
-                                                </form>
-                                                @else
-                                                <div class="col-12 mt-24">
-                                                    <a class="hp-p1-body fw-medium" href="{{ route('user.login') }}">Login</a>
+                                            <div class="hp-cursor-pointer rounded-4 border hp-border-color-dark-80">
+                                                <div class="rounded-3 overflow-hidden m-4 d-flex">
+                                                    <a href="{{ route('user.profile.information') }}"
+                                                        class="avatar-item hp-bg-info-4 d-flex"
+                                                        style="width: 32px; height: 32px;">
+                                                        <img src="{{ Storage::url($user->image) }}">
+                                                    </a>
                                                 </div>
-                                                @endguest
                                             </div>
-                                        </div>
-                                    </div>
-                                        @else
-                                        <div class="hp-cursor-pointer rounded-4 border hp-border-color-dark-80">
-                                            <div  class="rounded-3 overflow-hidden m-12 d-flex">
-                                                <a href="{{ route('user.login') }}" class=""
-                                                    style="">Login
 
-                                                </a>
+
+                                            <div class="hp-header-profile-menu dropdown-fade position-absolute pt-18"
+                                                style="top: 100%; width: 260px;">
+                                                <div class="rounded hp-bg-black-0 hp-bg-dark-100 px-18 py-24">
+
+
+                                                    <a href="{{ route('user.profile.information') }}"
+                                                        class="hp-p1-body fw-medium hp-hover-text-color-primary-2">View
+                                                        Profile</a>
+
+
+
+                                                    <div class="row">
+                                                        @auth
+                                                            <form action="{{ route('user.logout') }}" method="post">
+                                                                @csrf
+                                                                <div class="col-12 mt-24">
+                                                                    <a class="hp-p1-body fw-medium"
+                                                                        href="{{ route('user.logout') }}"
+                                                                        onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                                                                </div>
+                                                            </form>
+                                                        @else
+                                                            <div class="col-12 mt-24">
+                                                                <a class="hp-p1-body fw-medium"
+                                                                    href="{{ route('user.login') }}">Login</a>
+                                                            </div>
+                                                        @endguest
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @else
+                                            <div class="hp-cursor-pointer rounded-4 border hp-border-color-dark-80">
+                                                <div class="rounded-3 overflow-hidden m-12 d-flex">
+                                                    <a href="{{ route('user.login') }}" class=""
+                                                        style="">Login
+
+                                                    </a>
+                                                </div>
+                                            </div>
                                         @endguest
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -822,10 +860,10 @@
                     </div>
                 </div>
 
-            
+
             </div>
 
-           @yield('content')
+            @yield('content')
 
         </div>
     </main>
@@ -870,8 +908,7 @@
 
                     <div>
                         <button type="button" class="btn btn-text hp-bg-dark-85">
-                            <i class="ri-close-fill text-black-80 hp-text-color-dark-0"
-                                style="font-size: 16px;"></i>
+                            <i class="ri-close-fill text-black-80 hp-text-color-dark-0" style="font-size: 16px;"></i>
                         </button>
                     </div>
                 </div>

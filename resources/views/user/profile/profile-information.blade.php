@@ -64,25 +64,6 @@
                                 </a>
                             </li>
 
-                            <li class="mt-4 mb-16">
-                                <a href="profile-notifications.html" class="position-relative text-black-80 hp-text-color-dark-30 hp-hover-text-color-primary-1 hp-hover-text-color-dark-0 py-12 px-24 d-flex align-items-center">
-                                    <i class="iconly-Curved-Notification me-16"></i>
-                                    <span>Notifications</span>
-
-                                    <span class="hp-menu-item-line position-absolute opacity-0 h-100 top-0 end-0 bg-primary hp-bg-dark-0" style="width: 2px;"></span>
-                                </a>
-                            </li>
-
-                            <li class="mt-4 mb-16">
-                                <a href="profile-activity.html" class="position-relative text-black-80 hp-text-color-dark-30 hp-hover-text-color-primary-1 hp-hover-text-color-dark-0 py-12 px-24 d-flex align-items-center">
-                                    <i class="iconly-Curved-Activity me-16"></i>
-                                    <span>Activity Monitor</span>
-
-                                    <span class="hp-menu-item-line position-absolute opacity-0 h-100 top-0 end-0 bg-primary hp-bg-dark-0" style="width: 2px;"></span>
-                                </a>
-                            </li>
-
-                            
                         </ul>
                     </div>
 

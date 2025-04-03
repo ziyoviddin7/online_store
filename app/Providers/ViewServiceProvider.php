@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Services\Cart\Cart;
 use App\Services\Cart\CartService;
 use App\Services\Cart\CartSession;
@@ -11,6 +12,7 @@ use App\Services\Favorites\Favorites;
 use App\Services\Favorites\FavoritesService;
 use App\Services\Favorites\FavoritesSession;
 use App\Services\Favorites\FavoritesSessionService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -33,7 +35,7 @@ class ViewServiceProvider extends ServiceProvider
         
         // Передача user во все Blade-шаблоны
         View::composer('*', function ($view) {
-            $view->with('user', auth()->user());
+            $view->with('user', Auth::user());
         });
 
         // Передача categories во все Blade-шаблоны
@@ -67,6 +69,12 @@ class ViewServiceProvider extends ServiceProvider
             $favorites = app(FavoritesService::class);
             $favorites_items = $favorites->getFavoritesItems();
             $view->with(compact('favorites_items'));
+        });
+
+        View::composer('*', function ($view) {
+            $userID = Auth::id();
+            $orders = Order::where('user_id', $userID)->get();
+            $view->with(compact('orders'));
         });
         
     }

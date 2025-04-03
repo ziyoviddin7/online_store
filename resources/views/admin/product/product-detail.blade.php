@@ -219,23 +219,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12">
-                                    <div class="row g-8">
-                                        <div class="col-12 d-flex align-items-center">
-                                            <i class="ri-truck-line text-primary"></i>
-                                            <span
-                                                class="hp-caption text-black-80 hp-text-color-dark-30 fw-normal text-decoration-underline ms-4">Free
-                                                Shipping Worldwide</span>
-                                        </div>
-
-                                        <div class="col-12 d-flex align-items-center">
-                                            <i class="ri-checkbox-circle-line text-primary"></i>
-                                            <span
-                                                class="hp-caption text-black-80 hp-text-color-dark-30 fw-normal text-decoration-underline ms-4">Available
-                                                in stocks</span>
-                                        </div>
-                                    </div>
-                                </div>
+                       
                             </div>
 
                             <div class="divider"></div>
@@ -250,11 +234,8 @@
 
                                         <div class="col px-0">
                                             <span
-                                                class="d-block hp-p1-body fw-medium text-black-100 hp-text-color-dark-0">1
-                                                Year Warranty</span>
-                                            <span
-                                                class="d-block hp-input-description fw-normal text-black-80 hp-text-color-dark-30">Lorem
-                                                Ipsum Dolor Sıt Amet</span>
+                                                class="d-block hp-p1-body fw-medium text-black-100 hp-text-color-dark-0">Created_at: {{ $product->created_at->translatedFormat('j F Y H:i') }}</span>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -268,11 +249,8 @@
 
                                         <div class="col px-0">
                                             <span
-                                                class="d-block hp-p1-body fw-medium text-black-100 hp-text-color-dark-0">14
-                                                Days Replacement</span>
-                                            <span
-                                                class="d-block hp-input-description fw-normal text-black-80 hp-text-color-dark-30">Lorem
-                                                Ipsum Dolor Sıt Amet</span>
+                                                class="d-block hp-p1-body fw-medium text-black-100 hp-text-color-dark-0">Updated_at: {{ $product->updated_at->translatedFormat('j F Y H:i') }}</span>
+                                            
                                         </div>
                                     </div>
                                 </div>
