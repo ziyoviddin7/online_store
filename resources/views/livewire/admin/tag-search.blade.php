@@ -91,6 +91,10 @@
 
                     
                 </div>
+                <br>
+                <br>
+                <br>
+                {{ $tags->links('livewire::bootstrap') }}
                 <!-- /all-attribute -->
             </div>
             <!-- /main-content-wrap -->

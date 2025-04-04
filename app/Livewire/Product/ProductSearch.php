@@ -4,33 +4,35 @@ namespace App\Livewire\Product;
 
 use App\Models\Product;
 use App\Models\Tag;
-use Illuminate\Database\Eloquent\Collection;
+use Livewire\WithPagination;
 use Livewire\Component;
 
 
 class ProductSearch extends Component
 {
-    public Collection $products;
+    use WithPagination;
     public string $search = '';
 
-    public function mount()
+    public $selectedTags = [];
+
+    public function updatedSearch()
     {
-        $this->products = Product::all();
+        $this->resetPage();
     }
 
     public function render()
     {
-        if ($this->search)
-        {
-            $this->products = Product::search($this->search)->get();
-        } else {
-            $this->products = Product::all();
-        }
+        $products = $this->search 
+            ? Product::search($this->search)->paginate(9) 
+            : Product::paginate(9);
 
         $tags = Tag::all();
         $favorites_session = session()->get('favorites', []);
-        //$favorites = session()->get('favorites', []);
 
-        return view('livewire.product.product-search', compact('tags', 'favorites_session'));
+        return view('livewire.product.product-search', [
+            'products' => $products,
+            'tags' => $tags,
+            'favorites_session' => $favorites_session
+        ]);
     }
 }

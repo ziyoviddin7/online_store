@@ -3,27 +3,27 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Tag;
-use Illuminate\Database\Eloquent\Collection;
+use Livewire\WithPagination;
+
 use Livewire\Component;
 
 class TagSearch extends Component
 {
-    public Collection $tags;
-    public string $search = '';
+    use WithPagination;
 
-    public function mount()
+    public string $search = '';
+    
+    public $selectedTags = [];
+    public function updatedSearch()
     {
-        $this->tags = Tag::all();
+        $this->resetPage();
     }
 
     public function render()
     {
-        if ($this->search)
-        {
-            $this->tags = Tag::search($this->search)->get();
-        } else {
-            $this->tags = Tag::all();
-        }
-        return view('livewire.admin.tag-search');
+        $tags = $this->search 
+            ? Tag::search($this->search)->paginate(15) 
+            : Tag::paginate(15);
+        return view('livewire.admin.tag-search', ['tags' => $tags] );
     }
 }

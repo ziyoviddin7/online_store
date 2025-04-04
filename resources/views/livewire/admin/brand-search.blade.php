@@ -31,7 +31,8 @@
                             <form class="form-search">
                                 <fieldset class="name">
                                     <input type="text" placeholder="Search here..." class="" name="name"
-                                    wire:model.live="search" tabindex="2" value="" aria-required="true" required="">
+                                        wire:model.live="search" tabindex="2" value="" aria-required="true"
+                                        required="">
                                 </fieldset>
                                 <div class="button-submit">
                                     <button class="" type="submit"><i class="icon-search"></i></button>
@@ -63,7 +64,8 @@
                             <ul class="flex flex-column">
                                 <li class="attribute-item flex items-center justify-between gap20">
                                     <div class="name">
-                                        <a href="{{ route('admin.brand.show', $brand->id) }}" class="body-title-2">{{ $brand->name }}</a>
+                                        <a href="{{ route('admin.brand.show', $brand->id) }}"
+                                            class="body-title-2">{{ $brand->name }}</a>
                                     </div>
                                     <div class="body-text">{{ $brand->products()->count() }}</div>
 
@@ -90,6 +92,11 @@
                     </div>
 
                 </div>
+                <br>
+                <br>
+                <br>
+                {{ $brands->links('livewire::bootstrap') }}
+
                 <!-- /all-attribute -->
             </div>
             <!-- /main-content-wrap -->

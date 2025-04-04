@@ -3,27 +3,28 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Brand;
-use Illuminate\Database\Eloquent\Collection;
+use Livewire\WithPagination;
+
 use Livewire\Component;
 
 class BrandSearch extends Component
 {
-    public Collection $brands;
-    public string $search = '';
+    use WithPagination;
 
-    public function mount()
+    public string $search = '';
+    
+    public $selectedTags = [];
+
+    public function updatedSearch()
     {
-        $this->brands = Brand::all();
+        $this->resetPage();
     }
 
     public function render()
     {
-        if ($this->search)
-        {
-            $this->brands = Brand::search($this->search)->get();
-        } else {
-            $this->brands = Brand::all();
-        }
-        return view('livewire.admin.brand-search');
+        $brands = $this->search 
+            ? Brand::search($this->search)->paginate(15) 
+            : Brand::paginate(15);
+        return view('livewire.admin.brand-search', ['brands' => $brands]);
     }
 }

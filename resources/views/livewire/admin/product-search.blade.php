@@ -147,13 +147,15 @@
                                     
                                 @endforeach
                                 
-                                {{-- <div style="margin-left: 800px">
-                                    {{ $products->links() }}
-                                </div> --}}
-
+                            
 
                             </div>
                         </div>
+                        <br>
+                        <br>
+                        <br>
+
+                        {{ $products->links('livewire::bootstrap') }}
 
 
                     </div>

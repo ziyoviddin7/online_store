@@ -3,29 +3,26 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Category;
-use Illuminate\Database\Eloquent\Collection;
+use Livewire\WithPagination;
+
 use Livewire\Component;
 
 
 class CategorySearch extends Component
 {
-    public Collection $categories;
+    use WithPagination;
     public string $search = '';
+    public $selectedTags = [];
 
-    public function mount()
+    public function updatedSearch()
     {
-        $this->categories = Category::all();
+        $this->resetPage();
     }
-
     public function render()
     {
-        if ($this->search)
-        {
-            $this->categories = Category::search($this->search)->get();
-        } else {
-            $this->categories = Category::all();
-        }
-        return view('livewire.admin.category-search');
+        $categories = $this->search
+            ? Category::search($this->search)->paginate(15)
+            : Category::paginate(15);
+        return view('livewire.admin.category-search', ['categories' => $categories]);
     }
-    
 }

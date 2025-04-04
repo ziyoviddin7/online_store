@@ -3,27 +3,27 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Collection;
+use Livewire\WithPagination;
+
 use Livewire\Component;
 
 class ProductSearch extends Component
 {
-    public Collection $products;
-    public string $search = '';
+    use WithPagination;
 
-    public function mount()
+    public string $search = '';
+    
+    public $selectedTags = [];
+    public function updatedSearch()
     {
-        $this->products = Product::all();
+        $this->resetPage();
     }
 
     public function render()
     {
-        if ($this->search)
-        {
-            $this->products = Product::search($this->search)->get();
-        } else {
-            $this->products = Product::all();
-        }
-        return view('livewire.admin.product-search');
+        $products = $this->search 
+            ? Product::search($this->search)->paginate(9) 
+            : Product::paginate(9);
+        return view('livewire.admin.product-search', ['products' => $products]);
     }
 }
