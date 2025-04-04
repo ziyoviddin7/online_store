@@ -327,7 +327,7 @@
                                     @auth
                                         <div
                                             class="hover-dropdown-fade w-auto px-0 d-flex align-items-center position-relative">
-                                            <a href="{{ route('order.all_orders') }}"
+                                            <a href="{{ route('order.order_list') }}"
                                                 class="btn btn-icon-only bg-transparent border-0 hp-hover-bg-black-10 hp-hover-bg-dark-100 hp-transition d-flex align-items-center justify-content-center"
                                                 style="height: 40px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"

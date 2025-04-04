@@ -141,5 +141,6 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Order',
     'middleware' => 'auth',
 ], function () {
-    Route::get('/my/orders', [ShowOrderController::class, 'all_orders'])->name('order.all_orders');
+    Route::get('/my/order_list', [ShowOrderController::class, 'order_list'])->name('order.order_list');
+    Route::get('/my/order_details/{order}', [ShowOrderController::class, 'order_details'])->name('order.order_details');
 });

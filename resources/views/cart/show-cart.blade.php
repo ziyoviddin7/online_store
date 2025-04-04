@@ -117,7 +117,7 @@
                                                     
 
                                                     <div class="input-number-input-wrap">
-                                                        <input class="input-number-input" type="number" min="1" max="10" value="{{ $item['quantity'] }}">
+                                                        <input class="input-number-input" type="number" value="{{ $item['quantity'] }}">
                                                     </div>
                                                 </div>
 

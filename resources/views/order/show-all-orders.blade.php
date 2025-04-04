@@ -78,12 +78,13 @@
                                         <tbody>
 
                                             @foreach ($orders as $order)
+                                            
                                                 <tr>
                                                     <td>
-                                                        <span class="text-color-dark-0">#{{ $order->id }}</span>
+                                                        <a href="{{ route('order.order_details', $order->id) }}" style="color: black">#{{ $order->id }}</a>
                                                     </td>
                                                     <td>
-                                                        <span class="text-color-dark-0">{{ $order->created_at->translatedFormat('j F Y') }}</span>
+                                                        <a href="{{ route('order.order_details', $order->id) }}" style="color: black">{{ $order->created_at->translatedFormat('j F Y') }}</a>
                                                     </td>
                                                     <td>
                                                         @if ($order->status == 'pending')
@@ -102,7 +103,7 @@
 
                                                     </td>
                                                     <td>
-                                                        <div
+                                                        <a href="{{ route('order.order_details', $order->id) }}"
                                                             class="bg-black-20 hp-bg-color-dark-70 hp-img-container rounded text-center p-4 d-flex align-items-center">
                                                             @foreach ($order->products->take(7) as $product)
                                                                 <img src="{{ Storage::url($product->image) }}"
@@ -110,15 +111,16 @@
                                                             @endforeach
 
 
-                                                        </div>
+                                                        </a>
                                                     </td>
 
 
                                                     <td>
-                                                        <span class="text-color-dark-0">$ {{ $order->total_price }}</span>
+                                                        <a href="{{ route('order.order_details', $order->id) }}" style="color: black">$ {{ $order->total_price }}</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                            
 
                                         </tbody>
                                     </table>

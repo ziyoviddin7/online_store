@@ -76,7 +76,7 @@
 
                     <p class="mb-32 hp-p1-body hp-text-color-black-100 hp-text-color-dark-0">Thank you for your purchase! Your order has been successfully placed</p>
 
-                    <a href="/" class="btn router-link-active btn-primary">
+                    <a href="{{ route('order.order_details', $order->id) }}" class="btn router-link-active btn-primary">
                         <span>View Order</span>
                     </a>
                 </div>
