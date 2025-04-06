@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Favorites;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Services\Favorites\FavoritesSession;
 use App\Services\Favorites\FavoritesSessionService;
 use Illuminate\Http\Request;
 

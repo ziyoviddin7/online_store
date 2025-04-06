@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin\CategoryTagBrand;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NameRequest;
 use App\Models\Tag;
-use App\Services\Tag\Service;
 use App\Services\Tag\TagService;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -36,9 +34,6 @@ class TagController extends Controller
         return redirect()->route('admin.tag.index')->with('success', 'Тег успешно создан.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Tag $tag)
     {
         $products = $tag->products()->paginate(15);

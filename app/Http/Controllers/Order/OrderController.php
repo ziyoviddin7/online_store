@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\OrderStoreRequest;
 use App\Services\Cart\CartService;
 use App\Services\Order\YooKassaService;
-use YooKassa\Client;
 
 use Illuminate\Http\Request;
 

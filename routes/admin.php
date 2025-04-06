@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\AuthController;
+
 use App\Http\Controllers\Admin\CategoryTagBrand\BrandController;
 use App\Http\Controllers\Admin\CategoryTagBrand\CategoryController;
 use App\Http\Controllers\Admin\CategoryTagBrand\TagController;
@@ -16,7 +17,6 @@ use App\Http\Controllers\Admin\Product\UpdateController;
 use Illuminate\Support\Facades\Route;
 
 
-
 Route::middleware('guest:admin')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login_process', [AuthController::class, 'login'])->name('login_process');
@@ -25,13 +25,11 @@ Route::middleware('guest:admin')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/products', IndexController::class)->name('product_list');
 
     Route::get('/products', IndexController::class)->name('product_list');
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
     Route::get('/brands', [BrandController::class, 'index'])->name('brand.index');
-
 
     Route::get('/product_create', CreateController::class)->name('product.create');
     Route::get('/product/{product}', ShowController::class)->name('product.show');
@@ -49,7 +47,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/tag/{tag}', [TagController::class, 'show'])->name('tag.show');
     Route::post('/new_tag', [TagController::class, 'store'])->name('tag.store');
     Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
-
 
     Route::get('/new_brand', [BrandController::class, 'create'])->name('brand.create');
     Route::get('/brand/{brand}', [BrandController::class, 'show'])->name('brand.show');

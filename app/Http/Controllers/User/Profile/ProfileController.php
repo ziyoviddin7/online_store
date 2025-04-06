@@ -3,14 +3,9 @@
 namespace App\Http\Controllers\User\Profile;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\Auth\LoginStoreRequest;
 use App\Http\Requests\User\Profile\UserAvatarRequest;
 use App\Http\Requests\User\Profile\UserProfileRequest;
-use App\Providers\RouteServiceProvider;
-use App\Services\Cart\CartService;
-use App\Services\Favorites\FavoritesService;
 use App\Services\User\Profile\UserProfileService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Product\DetailController;
@@ -9,30 +11,22 @@ use App\Http\Controllers\User\Auth\ForgotPasswordController;
 use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\User\Auth\RegisterController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
-use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\User\Profile\ProfileController;
 
 use App\Http\Controllers\Cart\CartSessionController;
 use App\Http\Controllers\Cart\CartController;
 
 use App\Http\Controllers\Favorites\FavoritesController;
 use App\Http\Controllers\Favorites\FavoritesSessionController;
+
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Order\ShowOrderController;
-use App\Http\Controllers\User\Profile\ProfileController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 // Home Paige
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 // User Auth
 Route::group(['namespace' => 'App\Http\Controllers\User\Auth'], function () {
@@ -89,7 +83,7 @@ Route::get('/my/cart', function () {
 })->name('cart.show');
 
 // Cart (для авторизованных пользователей)
-Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => ['auth']], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => 'auth'], function () {
     Route::post('/cart', [CartController::class, 'add'])->name('cart.add');
     Route::delete('/cart/{product}', [CartController::class, 'remove'])->name('cart.remove');
     Route::delete('/cart/{product}/decrease', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
@@ -112,7 +106,7 @@ Route::get('/my/favorites', function () {
 })->name('favorites.show');
 
 // Favorites (для авторизованных пользователей)
-Route::group(['namespace' => 'App\Http\Controllers\Favorites', 'middleware' => ['auth']], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Favorites', 'middleware' => 'auth'], function () {
     Route::post('/favorites', [FavoritesController::class, 'add'])->name('favorites.add');
     Route::delete('/favorites/{product}', [FavoritesController::class, 'remove'])->name('favorites.remove');
 });

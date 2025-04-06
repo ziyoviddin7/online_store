@@ -34,9 +34,6 @@ class BrandController extends Controller
         return redirect()->route('admin.brand.index')->with('success', 'Категория успешна создана.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Brand $brand)
     {
         $products = $brand->products()->paginate(15);
