@@ -11,13 +11,14 @@ use Livewire\Component;
 class CategorySearch extends Component
 {
     use WithPagination;
+    
     public string $search = '';
-    public $selectedTags = [];
 
     public function updatedSearch()
     {
         $this->resetPage();
     }
+
     public function render()
     {
         $categories = $this->search

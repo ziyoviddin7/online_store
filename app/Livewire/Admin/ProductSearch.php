@@ -10,10 +10,9 @@ use Livewire\Component;
 class ProductSearch extends Component
 {
     use WithPagination;
-
-    public string $search = '';
     
-    public $selectedTags = [];
+    public string $search = '';
+
     public function updatedSearch()
     {
         $this->resetPage();

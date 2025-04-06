@@ -10,10 +10,9 @@ use Livewire\Component;
 class TagSearch extends Component
 {
     use WithPagination;
-
+    
     public string $search = '';
     
-    public $selectedTags = [];
     public function updatedSearch()
     {
         $this->resetPage();

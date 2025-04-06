@@ -7,17 +7,13 @@
         <div class="col-12">
             <div class="row g-32">
 
-
-
+                
                 <div class="col flex-grow-1 hp-ecommerce-app-content">
 
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="list-grid" role="tabpanel"
                             aria-labelledby="list-grid-tab">
                             <div class="row g-32">
-
-
-
 
                                 <!-- Поисковая строка -->
                                 <div class="mb-40" style="margin-left: 640px; margin-top: -20px; font-size: 50px;">
@@ -144,11 +140,8 @@
                                         </div>
                                         
                                     </div>
-                                    
                                 @endforeach
                                 
-                            
-
                             </div>
                         </div>
                         <br>

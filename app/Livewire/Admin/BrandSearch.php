@@ -10,11 +10,9 @@ use Livewire\Component;
 class BrandSearch extends Component
 {
     use WithPagination;
-
+    
     public string $search = '';
     
-    public $selectedTags = [];
-
     public function updatedSearch()
     {
         $this->resetPage();

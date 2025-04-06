@@ -7,98 +7,107 @@
                 <div class="col hp-ecommerce-app-sidebar" style="flex: 0 0 270px;">
                     <div
                         class="row mx-0 rounded overflow-hidden border border-black-40 hp-border-color-dark-80 bg-black-0 hp-bg-color-dark-100 px-24 py-16">
-                        <div class="col-12 px-0">
-                            <h5 class="mb-4 text-black-80 hp-text-color-dark-30">All Products</h5>
-                           
-                        </div>
 
-                        <div class="divider px-0"></div>
+
 
                         <div class="col-12 px-0">
-                            <a class="collapsed" data-bs-toggle="collapse" href="#sidebar-menu-1" role="button"
-                                aria-expanded="false" aria-controls="sidebar-menu-1">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h5 class="mb-0 text-black-80 hp-text-color-dark-30">Categories</h5>
-                                    <i class="ri-arrow-right-s-line hp-collapse-arrow hp-text-color-black-60 lh-1"
-                                        style="font-size: 24px;"></i>
+
+                            <div class="col-12 mt-16">
+                                <div class="col-12 px-0">
+                                    <h5 class="mb-4 text-black-80 hp-text-color-dark-30">Categories</h5>
+
                                 </div>
-                            </a>
-
-                            <div class="collapse" id="sidebar-menu-1">
-                                <div class="row mt-16">
-
+                                <select wire:model.live="byCategory" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="">No selected</option>
                                     @foreach ($categories as $category)
-                                        <div class="col-12 mt-18">
-                                            <a href="javascript:;" style="font-size: 13px"
-                                                class="hp-badge-text d-block text-black-80 hp-text-color-dark-30">{{ $category->name }}
-                                            </a>
-                                        </div>
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
-                                </div>
+                                </select>
                             </div>
                         </div>
-
-                        <div class="divider px-0"></div>
-
 
 
 
                         <div class="col-12 px-0">
-                            <a class="collapsed" data-bs-toggle="collapse" href="#sidebar-menu-3" role="button"
-                                aria-expanded="false" aria-controls="sidebar-menu-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h5 class="mb-0 text-black-80 hp-text-color-dark-30">Price Range</h5>
-                                    <i class="ri-arrow-right-s-line hp-collapse-arrow hp-text-color-black-60 lh-1"
-                                        style="font-size: 24px;"></i>
+
+                            <div class="col-12 mt-16">
+                                <div class="col-12 px-0">
+                                    <h5 class="mb-4 text-black-80 hp-text-color-dark-30">Tag</h5>
+
                                 </div>
-                            </a>
-
-                            <div class="collapse" id="sidebar-menu-3">
-                                <div class="row mt-16">
-                                    <div class="col-12">
-                                        <input type="range" class="form-range">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="divider px-0"></div>
-
-                        <div class="col-12 px-0">
-                            <a class="collapsed" data-bs-toggle="collapse" href="#sidebar-menu-4" role="button"
-                                aria-expanded="false" aria-controls="sidebar-menu-4">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h5 class="mb-0 text-black-80 hp-text-color-dark-30">Tags</h5>
-                                    <i class="ri-arrow-right-s-line hp-collapse-arrow hp-text-color-black-60 lh-1"
-                                        style="font-size: 24px;"></i>
-                                </div>
-                            </a>
-
-                            <div class="collapse" id="sidebar-menu-4">
-                                <div class="row mt-16">
-
+                                <select wire:model.live="byTag" class="form-select" aria-label="Default select example">
+                                    <option value="">No selected</option>
                                     @foreach ($tags as $tag)
-                                        <div class="col-12 mt-6">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="form-check">
-                                                    <a href="" class="form-check-label dark"
-                                                        style="color: black;">
-                                                        {{ $tag->name }}
-                                                    </a>
-                                                </div>
+                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
-                                                <span
-                                                    class="hp-caption text-black-80 hp-text-color-dark-30">{{ $tag->products->count() }}</span>
+                        <div class="col-12 px-0">
+
+                            <div class="col-12 mt-16">
+                                <div class="col-12 px-0">
+                                    <h5 class="mb-4 text-black-80 hp-text-color-dark-30">Brand</h5>
+
+                                </div>
+                                <select wire:model.live="byBrand" class="form-select"
+                                    aria-label="Default select example">
+                                    <option value="">No selected</option>
+                                    @foreach ($brands as $brand)
+                                        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 px-0">
+                            <div class="col-12 px-0">
+
+                                <div class="col-12 mt-16">
+                                    <div class="col-12 px-0">
+                                        <h5 class="mb-4 text-black-80 hp-text-color-dark-30">Price</h5>
+
+                                    </div>
+                                    <div class="row mt-16">
+                                        <div class="col-12">
+                                            <select wire:model.live="sortPrice" class="form-select mb-3">
+                                                <option value="">No selected</option>
+
+                                                <option value="asc">Low to High</option>
+                                                <option value="desc">High to Low</option>
+                                            </select>
+                                            <br>
+                                            <div class="d-flex gap-2">
+                                                <input type="number" wire:model.live="minPrice" placeholder="Min"
+                                                    class="form-control">
+                                                <input type="number" wire:model.live="maxPrice" placeholder="Max"
+                                                    class="form-control">
                                             </div>
                                         </div>
-                                    @endforeach
-
-
+                                    </div>
                                 </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-12 px-0">
+
+                            <div class="col-12 mt-16">
+                                <button wire:click="resetAllFilters" style="margin-left: 17px" class="btn btn-outline-secondary">
+                                    <i class="fas fa-undo"></i> Reset All Filters
+                                </button>
                             </div>
                         </div>
 
+
                     </div>
+
+
                 </div>
 
                 <div class="col flex-grow-1 hp-ecommerce-app-content">
@@ -142,8 +151,7 @@
 
                                                                             <button type="submit"
                                                                                 class="border-0 bg-transparent p-0">
-                                                                                <i
-                                                                                    class="ri-heart-fill lh text-danger"></i>
+                                                                                <i class="ri-heart-fill lh text-danger"></i>
 
                                                                             </button>
                                                                         </form>
@@ -176,8 +184,7 @@
 
                                                                             <button type="submit"
                                                                                 class="border-0 bg-transparent p-0">
-                                                                                <i
-                                                                                    class="ri-heart-fill lh text-danger"></i>
+                                                                                <i class="ri-heart-fill lh text-danger"></i>
 
                                                                             </button>
                                                                         </form>
@@ -185,7 +192,8 @@
                                                                 @else
                                                                     <div
                                                                         class="d-flex d-flex align-items-center justify-content-center w-auto w-100 h-100 lh-1 hp-wish-button hp-cursor-pointer rounded-circle remix-icon p-8 text-black-40 hp-text-color-dark-70 bg-black-10 hp-bg-color-dark-90">
-                                                                        <form action="{{ route('favorites_session.add') }}"
+                                                                        <form
+                                                                            action="{{ route('favorites_session.add') }}"
                                                                             method="post">
                                                                             @csrf
                                                                             <input type="hidden" name="product_id"
@@ -244,7 +252,8 @@
 
                                                         <div class="row g-8">
                                                             <div class="col-12">
-                                                                <a href="{{ route('product.detail', $product->slug) }}">
+                                                                <a
+                                                                    href="{{ route('product.detail', $product->slug) }}">
                                                                     <button type="button"
                                                                         class="btn w-100 text-black-60 hp-hover-text-color-primary-1 hp-hover-text-color-dark-primary-2">
                                                                         <span>Check Detail</span>
@@ -313,9 +322,9 @@
 
 
                             </div>
-                            
+
                         </div>
-                        
+
                         <br>
                         <br>
                         <br>
@@ -323,7 +332,7 @@
                         {{ $products->links('livewire::bootstrap') }}
 
                     </div>
-                   
+
                 </div>
             </div>
         </div>
