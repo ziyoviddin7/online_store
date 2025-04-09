@@ -37,11 +37,6 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('user', Auth::user());
         });
-
-        // Передача categories во все Blade-шаблоны
-        View::composer('*', function ($view) {
-            $view->with('categories', Category::all());
-        });
         
         // Передача items из Session Cart во все Blade-шаблоны
         View::composer('*', function ($view) {

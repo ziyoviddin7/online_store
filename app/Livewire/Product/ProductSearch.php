@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Cache;
 use Livewire\WithPagination;
 use Livewire\Component;
 
@@ -59,6 +60,18 @@ class ProductSearch extends Component
         //     ? Product::search($this->search)->paginate(9) 
         //     : Product::paginate(9);
 
+        $categories = Cache::remember('categories:all', 3600, function() {
+            return Category::all();
+        });
+
+        $tags = Cache::remember('tags:all', 3600, function () {
+            return Tag::all();
+        });
+    
+        $brands = Cache::remember('brands:all', 3600, function () {
+            return Brand::all();
+        });
+
         $query = Product::query();
 
         // Поиск
@@ -97,9 +110,9 @@ class ProductSearch extends Component
 
         return view('livewire.product.product-search', [
             'products' => $query->paginate(9),
-            'categories' => Category::all(),
-            'tags' => Tag::all(),
-            'brands' => Brand::all(),
+            'categories' => $categories,
+            'tags' => $tags,
+            'brands' => $brands,
             'favorites_session' => session()->get('favorites', [])
         ]);
     }
