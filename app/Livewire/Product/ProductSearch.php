@@ -60,60 +60,81 @@ class ProductSearch extends Component
         //     ? Product::search($this->search)->paginate(9) 
         //     : Product::paginate(9);
 
-        $categories = Cache::remember('categories:all', 3600, function() {
+        $categories = Cache::remember('categories:all', 3600, function () {
             return Category::all();
         });
 
         $tags = Cache::remember('tags:all', 3600, function () {
             return Tag::all();
         });
-    
+
         $brands = Cache::remember('brands:all', 3600, function () {
             return Brand::all();
         });
 
-        $query = Product::query();
+        // Генерация ключа кэша на основе параметров
+        $cacheKey = $this->getProductsCacheKey();
 
-        // Поиск
-        if ($this->search) {
-            $query->where('name', 'like', '%' . $this->search . '%');
-        }
+        $products = Cache::tags(['products'])->remember($cacheKey, 600, function () {
+            $query = Product::query();
 
-        // Фильтры
-        if ($this->byCategory) {
-            $query->where('category_id', $this->byCategory);
-        }
+            // Поиск
+            if ($this->search) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            }
 
-        if ($this->byBrand) {
-            $query->where('brand_id', $this->byBrand);
-        }
+            // Фильтры
+            if ($this->byCategory) {
+                $query->where('category_id', $this->byCategory);
+            }
 
-        if ($this->byTag) {
-            $query->whereHas('tags', function ($q) {
-                $q->where('tags.id', $this->byTag);
-            });
-        }
+            if ($this->byBrand) {
+                $query->where('brand_id', $this->byBrand);
+            }
 
-        // Цена
-        if ($this->minPrice !== null) {
-            $query->where('price', '>=', $this->minPrice);
-        }
+            if ($this->byTag) {
+                $query->whereHas('tags', function ($q) {
+                    $q->where('tags.id', $this->byTag);
+                });
+            }
 
-        if ($this->maxPrice !== null) {
-            $query->where('price', '<=', $this->maxPrice);
-        }
+            // Цена
+            if ($this->minPrice !== null) {
+                $query->where('price', '>=', $this->minPrice);
+            }
 
-        // Сортировка
-        if ($this->sortPrice) {
-            $query->orderBy('price', $this->sortPrice);
-        }
+            if ($this->maxPrice !== null) {
+                $query->where('price', '<=', $this->maxPrice);
+            }
+
+            // Сортировка
+            if ($this->sortPrice) {
+                $query->orderBy('price', $this->sortPrice);
+            }
+
+            return $query->paginate(9);
+        });
 
         return view('livewire.product.product-search', [
-            'products' => $query->paginate(9),
+            'products' => $products,
             'categories' => $categories,
             'tags' => $tags,
             'brands' => $brands,
             'favorites_session' => session()->get('favorites', [])
         ]);
+    }
+
+    private function getProductsCacheKey(): string
+    {
+        return 'products:' . md5(serialize([
+            $this->search,
+            $this->byCategory,
+            $this->byTag,
+            $this->byBrand,
+            $this->sortPrice,
+            $this->minPrice,
+            $this->maxPrice,
+            $this->getPage()
+        ]));
     }
 }
