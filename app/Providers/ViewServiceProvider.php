@@ -13,6 +13,7 @@ use App\Services\Favorites\FavoritesService;
 use App\Services\Favorites\FavoritesSession;
 use App\Services\Favorites\FavoritesSessionService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -32,12 +33,12 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
+
         // Передача user во все Blade-шаблоны
         View::composer('*', function ($view) {
             $view->with('user', Auth::user());
         });
-        
+
         // Передача items из Session Cart во все Blade-шаблоны
         View::composer('*', function ($view) {
             $cart = app(CartSessionService::class);
@@ -49,9 +50,9 @@ class ViewServiceProvider extends ServiceProvider
         // Передача items из Cart во все Blade-шаблоны
         View::composer('*', function ($view) {
             $cart = app(CartService::class);
-            $cart_items = $cart->getCartItems();
+            $cart_items_main = $cart->getCartItems();
             $total = $cart->getTotal();
-            $view->with(compact('cart_items', 'total'));
+            $view->with(compact('cart_items_main', 'total'));
         });
 
         View::composer('*', function ($view) {
@@ -62,8 +63,8 @@ class ViewServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
             $favorites = app(FavoritesService::class);
-            $favorites_items = $favorites->getFavoritesItems();
-            $view->with(compact('favorites_items'));
+            $favorites_items_main = $favorites->getFavoritesItems();
+            $view->with(compact('favorites_items_main'));
         });
 
         View::composer('*', function ($view) {
@@ -71,6 +72,5 @@ class ViewServiceProvider extends ServiceProvider
             $orders = Order::where('user_id', $userID)->get();
             $view->with(compact('orders'));
         });
-        
     }
 }

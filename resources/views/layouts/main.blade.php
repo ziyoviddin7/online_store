@@ -191,7 +191,7 @@
                                                 </path>
                                             </svg>
                                             @auth
-                                                @if ($favorites_items->isNotEmpty())
+                                                @if ($favorites_items_main->isNotEmpty())
                                                     <span
                                                         class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
                                                         style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>
@@ -224,7 +224,7 @@
                                                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                                         stroke-linejoin="round"></path>
                                                 </svg>
-                                                @if ($cart_items->isNotEmpty())
+                                                @if ($cart_items_main->isNotEmpty())
                                                     <span
                                                         class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
                                                         style="width: 6px; height: 6px; top: 12px; left: 26px;"></span>
@@ -246,7 +246,7 @@
 
                                                 <div class="divider mt-24 mb-4"></div>
 
-                                                @foreach ($cart_items as $item)
+                                                @foreach ($cart_items_main as $item)
                                                     <div class="hp-basket-dropdown-list">
                                                         <div class="hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded py-8 px-10 hp-overflow-x-auto"
                                                             style="margin-left: -10px; margin-right: -10px;">
@@ -346,7 +346,7 @@
                                                 <div class="divider mt-4 mb-12"></div>
 
                                                 <div class="row">
-                                                    @if ($cart_items->isEmpty())
+                                                    @if ($cart_items_main->isEmpty())
                                                         <div class="col-6 px-8">
                                                             <a href="{{ route('product.shop') }}">
                                                                 <button type="button"

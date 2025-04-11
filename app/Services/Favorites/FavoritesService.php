@@ -8,6 +8,7 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class FavoritesService
 {
@@ -22,29 +23,6 @@ class FavoritesService
 
         return $user;
     }
-
-    // public function syncSessionFavorites()
-    // {
-    //     $user = $this->getUser();
-    //     if (!$user) {
-    //         return;
-    //     }
-
-    //     $sessionFavorites  = session()->get('favorites', []);
-
-    //     if ($sessionFavorites) {
-    //         foreach ($sessionFavorites as $product_id => $item) {
-    //             $isInFavorites = $user->favorites()->where('product_id', $product_id)->exists();
-
-    //             if (!$isInFavorites) {
-    //                 $user->favorites()->create([
-    //                     'product_id' => $product_id,
-    //                 ]);
-    //             }
-    //         }
-    //         session()->forget('favorites');
-    //     }
-    // }
 
     public function syncSessionFavorites()
     {
@@ -98,6 +76,8 @@ class FavoritesService
             'user_id' => $user->id,
             'product_id' => $product_id,
         ]);
+        
+        Cache::forget("favorites_items_show:{$user->id}:all");
 
         return response()->json([
             'success' => true,
@@ -123,6 +103,8 @@ class FavoritesService
         }
 
         $user->favorites()->where('product_id', $product_id)->delete();
+
+        Cache::forget("favorites_items_show:{$user->id}:all");
 
         return response()->json(['success' => true, 'message' => 'Товар удален из избранного']);
     }

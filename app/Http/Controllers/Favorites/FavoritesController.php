@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Services\Favorites\FavoritesService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class FavoritesController extends Controller
 {
@@ -27,7 +29,10 @@ class FavoritesController extends Controller
 
     public function show()
     {
-        $favorites_items = $this->favoritesService->getFavoritesItems();
+        $user = Auth::user();
+        $favorites_items = Cache::remember("favorites_items_show:{$user->id}:all", 600, function() {
+            return $this->favoritesService->getFavoritesItems();
+        });
         $favorites_total_quantity = $this->favoritesService->getTotalQuantity();
         return view('favorites.show-favorites', compact('favorites_items', 'favorites_total_quantity'));
     }
