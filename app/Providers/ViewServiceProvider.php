@@ -69,8 +69,8 @@ class ViewServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
             $userID = Auth::id();
-            $orders = Order::where('user_id', $userID)->get();
-            $view->with(compact('orders'));
+            $orders_main = Order::where('user_id', $userID)->get();
+            $view->with(compact('orders_main'));
         });
     }
 }

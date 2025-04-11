@@ -162,7 +162,7 @@
                                                         stroke-linejoin="round">
                                                     </path>
                                                 </svg>
-                                                @if ($orders->isNotEmpty())
+                                                @if ($orders_main->isNotEmpty())
                                                     <span
                                                         class="position-absolute translate-middle p-2 rounded-circle bg-primary hp-notification-circle"
                                                         style="width: 6px; height: 6px; top: 12px; left: 27px;"></span>

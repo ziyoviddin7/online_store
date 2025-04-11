@@ -5,6 +5,7 @@ namespace App\Services\Order;
 use App\Models\Order;
 use App\Services\Cart\CartService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class OrderService
@@ -55,7 +56,10 @@ class OrderService
                 ];
             }
             DB::table('order_product')->insert($items);
-            
+
+            $userId = Auth::id();
+            Cache::forget("order_list:{$userId}:list");
+
             return $order;
         });
     }
