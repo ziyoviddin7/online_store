@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Cart as ModelsCart;
 use App\Models\CartItem;
+use Illuminate\Support\Facades\Cache;
 
 class CartService
 {
@@ -82,6 +83,7 @@ class CartService
                 'quantity' => $quantity,
             ]);
         }
+        Cache::forget("cart_items_main:{$cart->id}:all");
 
         return response()->json(['success' => true, 'message' => 'Товар добавлен в корзину']);
     }
@@ -124,6 +126,7 @@ class CartService
         if ($cart) {
             $cart->cart_items()->where('product_id', $product_id)->delete();
         }
+        Cache::forget("cart_items_main:{$cart->id}:all");
     }
 
     public function decreaseQuantityOrRemove($product_id)
@@ -149,6 +152,7 @@ class CartService
                 }
             }
         }
+        Cache::forget("cart_items_main:{$cart->id}:all");
     }
 
     public function increaseQuantity($product_id)
@@ -166,6 +170,7 @@ class CartService
                 ->where('product_id', $product_id)
                 ->increment('quantity');
         }
+        Cache::forget("cart_items_main:{$cart->id}:all");
     }
 
     public function getTotalQuantity()
@@ -181,7 +186,6 @@ class CartService
         if ($cart) {
             return $cart->cart_items()->sum('quantity');
         }
-
         return 0;
     }
 

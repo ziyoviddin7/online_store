@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Services\Cart\CartService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class CartController extends Controller
 {
@@ -29,7 +31,10 @@ class CartController extends Controller
 
     public function show()
     {
-        $cart_items = $this->cartService->getCartItems();
+        $user = Auth::user();
+        $cart_items = Cache::remember("cart_items_show:{$user->cart->id}:all", 600, function() {
+            return $this->cartService->getCartItems();
+        });
         $cart_total = $this->cartService->getTotal();
         $cart_total_quantity = $this->cartService->getTotalQuantity();
         return view('cart.show-cart', compact('cart_items', 'cart_total', 'cart_total_quantity'));
