@@ -573,7 +573,7 @@
                                                     <a href="{{ route('user.profile.information') }}"
                                                         class="avatar-item hp-bg-info-4 d-flex"
                                                         style="width: 32px; height: 32px;">
-                                                        <img src="{{ Storage::url($user->image) }}">
+                                                        <img src="{{ Storage::url($user_main->image) }}">
                                                     </a>
                                                 </div>
                                             </div>

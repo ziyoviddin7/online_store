@@ -7,6 +7,7 @@ use App\Http\Requests\User\Profile\UserAvatarRequest;
 use App\Http\Requests\User\Profile\UserProfileRequest;
 use App\Services\User\Profile\UserProfileService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ProfileController extends Controller
 {
@@ -19,8 +20,10 @@ class ProfileController extends Controller
 
     public function information()
     {
-        $user = Auth::user();
-        return view('user.profile.profile-information');
+        $user = Cache::remember('user:detail', 3600, function() {
+            return Auth::user();
+        });
+        return view('user.profile.profile-information', compact('user'));
     }
 
     public function edit(UserProfileRequest $userProfileRequest, )
@@ -36,7 +39,6 @@ class ProfileController extends Controller
 
     public function editProfileAvatar(UserAvatarRequest $userAvatarRequest)
     {
-
         $user = Auth::user();
 
         $data = $userAvatarRequest->validated();

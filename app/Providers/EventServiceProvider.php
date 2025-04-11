@@ -7,11 +7,13 @@ use App\Models\CartItem;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
+use App\Models\User;
 use App\Observers\BrandObserver;
 use App\Observers\CartItemObserver;
 use App\Observers\CategoryObserver;
 use App\Observers\ProductObserver;
 use App\Observers\TagObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -39,6 +41,7 @@ class EventServiceProvider extends ServiceProvider
         Category::observe(CategoryObserver::class);
         Tag::observe(TagObserver::class);
         Brand::observe(BrandObserver::class);
+        User::observe(UserObserver::class);
     }
 
     /**

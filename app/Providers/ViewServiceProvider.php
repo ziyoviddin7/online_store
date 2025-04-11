@@ -33,10 +33,9 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
         // Передача user во все Blade-шаблоны
         View::composer('*', function ($view) {
-            $view->with('user', Auth::user());
+            $view->with('user_main', Auth::user());
         });
 
         // Передача items из Session Cart во все Blade-шаблоны
