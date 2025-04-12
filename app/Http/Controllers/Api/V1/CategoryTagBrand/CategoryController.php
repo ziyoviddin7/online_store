@@ -26,6 +26,7 @@ class CategoryController extends Controller
     {
         $data = $name_request->validated();
         $category = $this->categoryService->store($data);
+        
         return new CategoryResource($category);
     }
 
@@ -45,6 +46,7 @@ class CategoryController extends Controller
             ]);
         }
         $category->delete();
+        
         return response()->json([
             "message" => "Category removed"
         ]);

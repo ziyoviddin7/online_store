@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\CategoryTagBrand\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 
+// Category
 Route::group([
     'namespace' => 'App\Http\Controllers\Api\V1\CategoryTagBrand;',
     'prefix' => '/v1'
@@ -13,3 +14,4 @@ Route::group([
     Route::post('/new_category', [CategoryController::class, 'store'])->name('category.store');
     Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
+
