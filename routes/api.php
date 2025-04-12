@@ -1,19 +1,15 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\V1\CategoryTagBrand\CategoryController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+    'namespace' => 'App\Http\Controllers\Api\V1\CategoryTagBrand;',
+    'prefix' => '/v1'
+], function () {
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
+    Route::post('/new_category', [CategoryController::class, 'store'])->name('category.store');
+    Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 });

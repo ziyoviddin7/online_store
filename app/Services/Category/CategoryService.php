@@ -9,6 +9,6 @@ class CategoryService
 {
     public function store($data)
     {
-        Category::create($data);
+        return Category::create($data);
     }
 }

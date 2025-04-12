@@ -194,7 +194,7 @@
                                             id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="header-user wg-user">
                                                 <span class="flex flex-column" style="margin-left: 70px">
-                                                    <span class="body-title mb-2">{{ $user->name }}</span>
+                                                    <span class="body-title mb-2">{{ $user_main->name }}</span>
                                                     <span class="text-tiny" style="color: black">Admin</span>
                                                 </span>
                                             </span>
