@@ -9,6 +9,6 @@ class BrandService
 {
     public function store($data)
     {
-        Brand::create($data);
+        return Brand::create($data);
     }
 }

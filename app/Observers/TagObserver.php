@@ -28,7 +28,7 @@ class TagObserver
      */
     public function deleted(Tag $tag): void
     {
-        //
+        Cache::forget('tags:all');
     }
 
     /**

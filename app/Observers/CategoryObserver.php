@@ -28,7 +28,7 @@ class CategoryObserver
      */
     public function deleted(Category $category): void
     {
-        //
+        Cache::forget('categories:all');
     }
 
     /**

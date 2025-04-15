@@ -28,7 +28,7 @@ class BrandObserver
      */
     public function deleted(Brand $brand): void
     {
-        //
+        Cache::forget('brands:all');
     }
 
     /**

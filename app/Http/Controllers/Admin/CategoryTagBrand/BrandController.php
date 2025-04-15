@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NameRequest;
 use App\Models\Brand;
 use App\Services\Brand\BrandService;
+use Illuminate\Support\Facades\Cache;
 
 class BrandController extends Controller
 {
@@ -46,6 +47,8 @@ class BrandController extends Controller
             return redirect()->route('admin.brand.index')->with('error', "Unable to delete the '{$brand->name}' brand: related products exist");
         }
         $brand->delete();
+        Cache::forget("brand:{$brand->id}:detail");
+        
         return redirect()->route('admin.brand.index');
     }
 }

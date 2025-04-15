@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Api\V1\CategoryTagBrand;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NameRequest;
+use App\Http\Resources\V1\Brand\BrandResource;
 use App\Models\Brand;
 use App\Services\Brand\BrandService;
+use Illuminate\Support\Facades\Cache;
+
 
 class BrandController extends Controller
 {
@@ -18,34 +21,41 @@ class BrandController extends Controller
 
     public function index()
     {
-        $brands = Brand::all();
-        return view('admin.category_tag_brand.brand.brand-list', compact('brands'));
-    }
-
-    public function create()
-    {
-        return view('admin.category_tag_brand.brand.new-brand'); 
+        $brands = Cache::remember('brands:all', 3600, function () {
+            return Brand::all();
+        });
+        return BrandResource::collection($brands);
     }
 
     public function store(NameRequest $name_request)
     {
         $data = $name_request->validated();
-        $this->brandService->store($data);
-        return redirect()->route('admin.brand.index')->with('success', 'Категория успешна создана.');
+        $brand = $this->brandService->store($data);
+        return new BrandResource($brand);
     }
 
     public function show(Brand $brand)
     {
-        $products = $brand->products()->paginate(15);
-        return view('admin.category_tag_brand.brand.show-brand', compact('products', 'brand'));
+        $brandWithProducts = Cache::remember("brand:{$brand->id}:detail", 3600, function () use ($brand) {
+            return $brand->load('products');
+        });
+
+        return new BrandResource($brandWithProducts);
     }
 
     public function destroy(Brand $brand)
     {
         if ($brand->products()->exists()) {
-            return redirect()->route('admin.brand.index')->with('error', "Unable to delete the '{$brand->name}' brand: related products exist");
+            return response()->json([
+                "error" => "Unable to delete the '{$brand->name}' brand: related products exist"
+            ]);
         }
+
         $brand->delete();
-        return redirect()->route('admin.brand.index');
+        Cache::forget("brand:{$brand->id}:detail");
+        
+        return response()->json([
+            "message" => "Brand removed"
+        ]);
     }
 }
