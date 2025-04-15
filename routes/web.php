@@ -29,34 +29,30 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 // User Auth
-Route::group(['namespace' => 'App\Http\Controllers\User\Auth'], function () {
-    Route::get('/register', [RegisterController::class, 'index'])->middleware('guest')->name('user.register');
-    Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [RegisterController::class, 'index'])->name('user.register');
+    Route::post('/register', [RegisterController::class, 'store']);
 
-    Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('user.login');
-    Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
+    Route::get('/login', [LoginController::class, 'index'])->name('user.login');
+    Route::post('/login', [LoginController::class, 'store']);
 
-    Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('user.logout');
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
 
-    Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->middleware('guest')->name('password.request');
-    Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->middleware('guest')->name('password.email');
-
-    Route::get('/reset-password', [ResetPasswordController::class, 'index'])->middleware('guest')->name('password.reset');
-    Route::post('/reset-password', [ResetPasswordController::class, 'store'])->middleware('guest')->name('password.update');
+    Route::get('/reset-password', [ResetPasswordController::class, 'index'])->name('password.reset');
+    Route::post('/reset-password', [ResetPasswordController::class, 'store'])->name('password.update');
 });
+Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('user.logout');
 
 
 // User Profile
-Route::group([
-    'namespace' => 'App\Http\Controllers\User\Profile',
-    'middleware' => 'auth',
-    'prefix' => '/my/profile'
-], function () {
-    Route::get('/information', [ProfileController::class, 'information'])->name('user.profile.information');
-    Route::patch('/information/edit', [ProfileController::class, 'edit'])->name('user.profile.edit');
-    Route::patch('/information/avatar/edit', [ProfileController::class, 'editProfileAvatar'])->name('user.profile.avatar');
+Route::prefix('/my/profile')->middleware('auth')->group(function () {
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/information', 'information')->name('user.profile.information');
+        Route::patch('/information/edit', 'edit')->name('user.profile.edit');
+        Route::patch('/information/avatar/edit', 'editProfileAvatar')->name('user.profile.avatar');
+    });
 });
-
 
 
 // Shop
@@ -66,8 +62,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Product'], function () {
 });
 
 
-// Cart Session (для гостей)
-Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => 'web'], function () {
+// Guest Cart
+Route::middleware('web')->group(function () {
     Route::post('/cart_session', [CartSessionController::class, 'add'])->name('cart_session.add');
     Route::delete('/cart_session/{product}', [CartSessionController::class, 'remove'])->name('cart_session.remove');
     Route::delete('/cart_session/{product}/decrease', [CartSessionController::class, 'decreaseQuantity'])->name('cart_session.decrease');
@@ -82,8 +78,9 @@ Route::get('/my/cart', function () {
     }
 })->name('cart.show');
 
-// Cart (для авторизованных пользователей)
-Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => 'auth'], function () {
+
+// Auth Cart
+Route::middleware('auth')->group(function () {
     Route::post('/cart', [CartController::class, 'add'])->name('cart.add');
     Route::delete('/cart/{product}', [CartController::class, 'remove'])->name('cart.remove');
     Route::delete('/cart/{product}/decrease', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
@@ -91,8 +88,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Cart', 'middleware' => 'auth'
 });
 
 
-// Favorites Session (для гостей)
-Route::group(['namespace' => 'App\Http\Controllers\Favorites', 'middleware' => 'web'], function () {
+// Guest Favorites
+Route::middleware('web')->group(function () {
     Route::post('/favorites_session', [FavoritesSessionController::class, 'add'])->name('favorites_session.add');
     Route::delete('/favorites_session/{product}', [FavoritesSessionController::class, 'remove'])->name('favorites_session.remove');
 });
@@ -105,19 +102,15 @@ Route::get('/my/favorites', function () {
     }
 })->name('favorites.show');
 
-// Favorites (для авторизованных пользователей)
-Route::group(['namespace' => 'App\Http\Controllers\Favorites', 'middleware' => 'auth'], function () {
+// Auth Favorites
+Route::middleware('auth')->group(function () {
     Route::post('/favorites', [FavoritesController::class, 'add'])->name('favorites.add');
     Route::delete('/favorites/{product}', [FavoritesController::class, 'remove'])->name('favorites.remove');
 });
 
 
 // Create Order And YooKassa Payment
-Route::group([
-    'namespace' => 'App\Http\Controllers\Order',
-    'middleware' => 'auth',
-    'prefix' => '/order'
-], function () {
+Route::prefix('/order')->middleware('auth')->group(function () {
     Route::get('/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
     Route::get('/callback/{order_id}', [OrderController::class, 'callback'])->name('order.callback');
 
@@ -125,16 +118,10 @@ Route::group([
 });
 
 // YooKassa Webhook
-Route::group(['namespace' => 'App\Http\Controllers\Order', 'prefix' => '/order'], function () {
-    Route::post('/webhook', [OrderController::class, 'handleWebhook'])->name('order.checkout.webhook');
-});
-
+Route::post('/order/webhook', [OrderController::class, 'handleWebhook'])->name('order.checkout.webhook');
 
 // Show Order
-Route::group([
-    'namespace' => 'App\Http\Controllers\Order',
-    'middleware' => 'auth',
-], function () {
+Route::middleware('auth')->group(function () {
     Route::get('/my/order_list', [ShowOrderController::class, 'order_list'])->name('order.order_list');
     Route::get('/my/order_details/{order}', [ShowOrderController::class, 'order_details'])->name('order.order_details');
 });
