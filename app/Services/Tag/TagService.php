@@ -9,7 +9,7 @@ class TagService
 {
     public function store($data)
     {
-        Tag::create($data);
+        return Tag::create($data);
     }
 
     public function update($task, $data)

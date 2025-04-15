@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\CategoryTagBrand;
+namespace App\Http\Controllers\Api\V1\CategoryTagBrand;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NameRequest;
+use App\Http\Resources\V1\Tag\TagResource;
 use App\Models\Tag;
 use App\Services\Tag\TagService;
+use Illuminate\Support\Facades\Cache;
 
 class TagController extends Controller
 {
@@ -18,33 +20,38 @@ class TagController extends Controller
 
     public function index()
     {
-        $tags = Tag::all();
-        return view('admin.category_tag_brand.tag.tag-list', compact('tags'));
-    }
-
-    public function create()
-    {
-        return view('admin.category_tag_brand.tag.new-tag'); 
+        $tags = Cache::remember('tags:all', 3600, function () {
+            return Tag::all();
+        });
+        return TagResource::collection($tags);
     }
 
     public function store(NameRequest $name_request)
     {
         $data = $name_request->validated();
-        $this->tagService->store($data);
-        return redirect()->route('admin.tag.index')->with('success', 'Тег успешно создан.');
+        $tag = $this->tagService->store($data);
+        return new TagResource($tag);
     }
 
     public function show(Tag $tag)
     {
-        $products = $tag->products()->paginate(15);
-        return view('admin.category_tag_brand.tag.show-tag', compact('products', 'tag'));
+        $tagWithProducts = Cache::remember("tag:{$tag->id}:detail", 3600, function () use ($tag) {
+            return $tag->load('products');
+        });
+
+        return new TagResource($tagWithProducts);
     }
+
     public function destroy(Tag $tag)
     {
         if ($tag->products()->exists()) {
-            return redirect()->route('admin.tag.index')->with('error', "Unable to delete the '{$tag->name}' tag: related products exist");
+            return response()->json([
+                "error" => "Unable to delete the '{$tag->name}' tag: related products exist"
+            ]);
         }
         $tag->delete();
-        return redirect()->route('admin.tag.index');
+        return response()->json([
+            "message" => "Brand '{$tag->name}' removed"
+        ]);
     }
 }

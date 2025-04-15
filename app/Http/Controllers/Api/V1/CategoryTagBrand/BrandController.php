@@ -54,7 +54,7 @@ class BrandController extends Controller
         $brand->delete();
                 
         return response()->json([
-            "message" => "Brand removed"
+            "message" => "Brand '{$brand->name}' removed"
         ]);
     }
 }

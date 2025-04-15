@@ -53,7 +53,7 @@ class CategoryController extends Controller
         }
         $category->delete();
         return response()->json([
-            "message" => "Category removed"
+            "message" => "Category '{$category->name}' removed"
         ]);
     }
 }
