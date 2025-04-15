@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\CategoryTagBrand;
+namespace App\Http\Controllers\Api\V1\CategoryTagBrand;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NameRequest;
