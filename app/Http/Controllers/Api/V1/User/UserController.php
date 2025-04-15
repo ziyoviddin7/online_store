@@ -41,48 +41,4 @@ class UserController extends Controller
         });
         return new UserResource($cachedUser);
     }
-
-    // public function store(RegisterStoreRequest $registerStoreRequest)
-    // {
-    //     $registerStoreRequest->validated();
-
-    //     $user = User::create([
-    //         'name' => $registerStoreRequest->name,
-    //         'email' => $registerStoreRequest->email,
-    //         'password' => Hash::make($registerStoreRequest->password),
-    //     ]);
-    //     //event(new Registered($user));
-
-    //     Auth::login($user);
-
-    //     $cart = new CartService();
-    //     $favorites = new FavoritesService();
-
-    //     $cart->syncSessionCart();
-    //     $favorites->syncSessionFavorites();
-
-    //     return redirect(RouteServiceProvider::HOME);
-    // }
-
-    // public function edit(UserProfileRequest $userProfileRequest)
-    // {
-    //     $user = Auth::user();
-
-    //     $data = $userProfileRequest->validated();
-
-    //     $this->userProfileService->update($user, $data);
-
-    //     return redirect()->back();
-    // }
-
-    // public function editProfileAvatar(UserAvatarRequest $userAvatarRequest)
-    // {
-    //     $user = Auth::user();
-
-    //     $data = $userAvatarRequest->validated();
-
-    //     $this->userProfileService->uploadImage($user, $data);
-
-    //     return redirect()->back();
-    // }
 }

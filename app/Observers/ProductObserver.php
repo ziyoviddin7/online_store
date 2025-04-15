@@ -13,7 +13,7 @@ class ProductObserver
     public function created(Product $product): void
     {
         Cache::tags(['products'])->flush();
-        Cache::forget('home_products:all');
+        Cache::forget('products:all');
     }
 
     /**
@@ -22,7 +22,7 @@ class ProductObserver
     public function updated(Product $product): void
     {
         Cache::tags(['products'])->flush();
-        Cache::forget('home_products:all');
+        Cache::forget('products:all');
         Cache::forget("product_detail:{$product->id}:detail");
     }
 
@@ -32,7 +32,7 @@ class ProductObserver
     public function deleted(Product $product): void
     {
         Cache::tags(['products'])->flush();
-        Cache::forget('home_products:all');
+        Cache::forget('products:all');
         Cache::forget("product_detail:{$product->id}:detail");
         
     }

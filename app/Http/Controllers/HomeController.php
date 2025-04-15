@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Cache:: remember('home_products:all', 3600, function() {
+        $products = Cache:: remember('products:all', 3600, function() {
             return Product::all();
         });
         $favorites_session = session()->get('favorites', []);

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\CategoryTagBrand\BrandController;
 use App\Http\Controllers\Api\V1\CategoryTagBrand\CategoryController;
 use App\Http\Controllers\Api\V1\CategoryTagBrand\TagController;
+use App\Http\Controllers\Api\V1\Product\ProductController;
 use App\Http\Controllers\Api\V1\User\UserController;
 
 
@@ -13,8 +14,16 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/v1')->group(function () {
     Route::get('/users', [UserController::class, 'all_users'])->name('users.all');
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
-    // Route::patch('/user/{user}', [UserController::class, 'edit'])->name('user.profile.edit');
-    // Route::patch('/information/avatar/edit', [UserController::class, 'editProfileAvatar'])->name('user.profile.avatar');
+});
+
+
+// Product
+Route::prefix('/v1')->group(function () {
+    Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+    Route::post('/product_create', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+    Route::patch('/product/{product}', [ProductController::class, 'edit'])->name('product.update');
+    Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 });
 
 

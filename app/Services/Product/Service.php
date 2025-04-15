@@ -16,6 +16,7 @@ class Service
 
         $product = Product::create($data);
         $product->tags()->attach($tag_id);
+        return $product;
     }
 
     public function update($product, $data)
@@ -25,10 +26,12 @@ class Service
         } else {
             unset($data['image']);
         }
-
-        $tag_id = $data['tag_id'];
+        
+        if (array_key_exists('tag_id', $data)) {
+            $product->tags()->sync($data['tag_id']);
+        }
 
         $product->update($data);
-        $product->tags()->sync($tag_id);
+        return $product;
     }
 }
