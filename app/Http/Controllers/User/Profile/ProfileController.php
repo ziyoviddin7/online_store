@@ -21,13 +21,13 @@ class ProfileController extends Controller
     public function information()
     {
         $userId = Auth::id();
-        $user = Cache::remember("user:{$userId}:detail", 3600, function () use ($userId) {
+        $user = Cache::remember("user:{$userId}:detail", 3600, function () {
             return Auth::user();
         });
         return view('user.profile.profile-information', compact('user'));
     }
 
-    public function edit(UserProfileRequest $userProfileRequest,)
+    public function edit(UserProfileRequest $userProfileRequest)
     {
         $user = Auth::user();
 
