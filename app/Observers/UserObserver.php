@@ -20,7 +20,7 @@ class UserObserver
      */
     public function updated(User $user): void
     {
-        Cache::forget('user:detail');
+        Cache::forget("user:{$user->id}:detail");
     }
 
     /**
@@ -28,7 +28,7 @@ class UserObserver
      */
     public function deleted(User $user): void
     {
-        //
+        Cache::forget("user:{$user->id}:detail");
     }
 
     /**

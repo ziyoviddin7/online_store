@@ -48,7 +48,6 @@ class CategoryController extends Controller
             return redirect()->route('admin.category.index')->with('error', "Unable to delete the '{$category->name}' category: related products exist");
         }
         $category->delete();
-        Cache::forget("category:{$category->id}:detail");
 
         return redirect()->route('admin.category.index');
     }

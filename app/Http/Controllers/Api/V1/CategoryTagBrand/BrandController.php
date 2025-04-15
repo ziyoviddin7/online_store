@@ -52,8 +52,7 @@ class BrandController extends Controller
         }
 
         $brand->delete();
-        Cache::forget("brand:{$brand->id}:detail");
-        
+                
         return response()->json([
             "message" => "Brand removed"
         ]);

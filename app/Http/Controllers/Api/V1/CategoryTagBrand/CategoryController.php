@@ -52,8 +52,6 @@ class CategoryController extends Controller
             ]);
         }
         $category->delete();
-        Cache::forget("category:{$category->id}:detail");
-
         return response()->json([
             "message" => "Category removed"
         ]);

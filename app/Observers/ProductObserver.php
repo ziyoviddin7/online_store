@@ -33,6 +33,8 @@ class ProductObserver
     {
         Cache::tags(['products'])->flush();
         Cache::forget('home_products:all');
+        Cache::forget("product_detail:{$product->id}:detail");
+        
     }
 
     /**
