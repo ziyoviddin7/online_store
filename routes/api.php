@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Auth\AuthController;
 use App\Http\Controllers\Api\V1\CategoryTagBrand\BrandController;
 use App\Http\Controllers\Api\V1\CategoryTagBrand\CategoryController;
 use App\Http\Controllers\Api\V1\CategoryTagBrand\TagController;
@@ -10,8 +11,15 @@ use App\Http\Controllers\Api\V1\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::prefix('v1')->middleware(['throttle:api'])->group(function() {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+});
 
-Route::prefix('/v1')->middleware(['throttle:api'])->group(function () {
+
+Route::prefix('/v1')->middleware(['throttle:api', 'auth:sanctum'])->group(function () {
+
+    Route::get('logout', [AuthController::class, 'logout']);
 
     // User
     Route::get('/users', [UserController::class, 'all_users'])->name('users.all');

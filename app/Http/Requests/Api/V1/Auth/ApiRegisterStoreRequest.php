@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User\Auth;
+namespace App\Http\Requests\Api\V1\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterStoreRequest extends FormRequest
+class ApiRegisterStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class RegisterStoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required',
         ];
     }
 }

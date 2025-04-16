@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Product\StoreRequest;
-use App\Http\Requests\Api\Product\ApiUpdateRequest;
+use App\Http\Requests\Api\V1\Product\ApiUpdateRequest;
 use App\Http\Resources\V1\Product\ProductResource;
 use App\Models\Product;
 
