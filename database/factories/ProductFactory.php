@@ -16,6 +16,7 @@ class ProductFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    
     public function definition(): array
     {
         return [
@@ -23,7 +24,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->paragraph, 
             'price' => $this->faker->randomFloat(2, 10, 1000), 
             'stock' => $this->faker->numberBetween(0, 100),
-            'image' => $this->faker->imageUrl(),
+            'image' => $this->faker->imageUrl(4000, 4000, 'products', true, 'Faker', false),
             'category_id' => Category::get()->random()->id, 
             'brand_id' => Brand::get()->random()->id,
         ];

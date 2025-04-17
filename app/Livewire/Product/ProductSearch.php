@@ -112,7 +112,7 @@ class ProductSearch extends Component
                 $query->orderBy('price', $this->sortPrice);
             }
 
-            return $query->paginate(9);
+            return $query->paginate(6);
         });
 
         return view('livewire.product.product-search', [

@@ -112,19 +112,7 @@
                                 @enderror
                             </fieldset>
 
-                            <div class="row">
-                                <fieldset class="category">
-                                    <div class="body-title mb-10">Tag <span class="tf-color-1">*</span></div>
-                                    <div class="select">
-                                        <select class="" name="tag_id">
-                                            @foreach ($tags as $tag)
-                                                <option {{ $product->tags->contains($tag->id) ? ' selected' : '' }}
-                                                    value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </fieldset>
-                            </div>
+                  
 
                             <div class="gap22 cols">
                                 <fieldset class="category">
@@ -147,6 +135,19 @@
                                             @foreach ($brands as $brand)
                                                 <option {{ $brand->id == $product->brand_id ? ' selected' : '' }}
                                                     value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="row">
+                                <fieldset class="category">
+                                    <div class="body-title mb-10">Tag <span class="tf-color-1">*</span></div>
+                                    <div class="select">
+                                        <select class="" name="tag_id">
+                                            @foreach ($tags as $tag)
+                                                <option {{ $product->tags->contains($tag->id) ? ' selected' : '' }}
+                                                    value="{{ $tag->id }}">{{ $tag->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

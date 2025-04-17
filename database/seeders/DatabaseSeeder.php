@@ -27,9 +27,13 @@ class DatabaseSeeder extends Seeder
 
         AdminUser::factory(1)->create();
 
-        Category::factory(10)->create();
-        Brand::factory(10)->create();
-        Tag::factory(10)->create();
-        Product::factory(100)->create();
+        // Category::factory(10)->create();
+        // Brand::factory(10)->create();
+        // Tag::factory(10)->create();
+        // Product::factory(100)->create();
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(BrandsTableSeeder::class);
+        $this->call(TagsTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
     }
 }

@@ -141,6 +141,7 @@
                                     <div class="body-title mb-10">Tag <span class="tf-color-1">*</span></div>
                                     <div class="select">
                                         <select class="" name="tag_id">
+                                            <option value="Tag"></option>
                                             @foreach ($tags as $tag)
                                                 <option {{ old('tag_id') == $tag->id ? ' selected' : '' }}
                                                     value="{{ $tag->id }}">{{ $tag->name }}</option>
