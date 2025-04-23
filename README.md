@@ -111,3 +111,9 @@ php artisan migrate:fresh --seed
 
 ### Admin Product Create
 ![Главная страница магазина](screenshots/127.0.0.1_8080_admin_product_create.png)
+
+### My favorites
+![Главная страница магазина](screenshots/my_favorites.png)
+
+### Admin Categories
+![Главная страница магазина](screenshots/127.0.0.1_8080_admin_categories.png)
