@@ -43,7 +43,7 @@ class OrderService
                 'payment_id' => '',
             ]);
 
-            // Добавляем товары в заказ
+            // Добавляем товары в заказ из корзины
             $items = [];
             foreach ($this->cartService->getCartItems() as $item) {
                 $items[] = [

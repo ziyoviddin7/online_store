@@ -72,7 +72,7 @@ class YooKassaService
             $notificationObject = $factory->factory($data);
             $responseObject = $notificationObject->getObject();
 
-            // response from Webhook
+            // ответ от Webhook
             $response_payment_id = $responseObject->getId();
             $response_payment_status = $responseObject->getStatus();
 
@@ -80,14 +80,14 @@ class YooKassaService
             $order = Order::where('payment_id', $response_payment_id)->first();
 
             if (!$order) {
-                return response()->json(['error' => 'Order not found'], 404);
+                return response()->json(['error' => 'Заказ не найден'], 404);
             }
-            // a request to Yookassa to get the payment status
+            // запрос в Yookassa для получения статуса платежа
             $paymentInfo = $this->client->getPaymentInfo($order->payment_id);
             $paymentStatus = $paymentInfo->getStatus();
 
             if ($response_payment_status !== $paymentStatus) {
-                return response()->json(['error' => 'Payment status from webhook does not match YooKassa'], 400);
+                return response()->json(['error' => 'Статус платежа из вебхука не соответствует YooKassa'], 400);
             }
 
             switch ($notificationObject->getEvent()) {
@@ -115,7 +115,7 @@ class YooKassaService
             $order = Order::where('id', $order_id)->first();
 
             if (!$order) {
-                return response()->json(['error' => 'Order not found'], 404);
+                return response()->json(['error' => 'Заказ не найден'], 404);
             }
 
             $paymentInfo = $this->client->getPaymentInfo($order->payment_id);
