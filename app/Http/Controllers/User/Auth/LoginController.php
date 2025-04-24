@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    protected $cartService;
+    protected $favoritesService;
+
+    public function __construct(CartService $cartService, FavoritesService $favoritesService)
+    {
+        $this->cartService = $cartService;
+        $this->favoritesService = $favoritesService;
+    }
+
     public function index()
     {
         return view('user.auth.login');
@@ -22,11 +31,8 @@ class LoginController extends Controller
         $credentials = $loginStoreRequest->validated();
 
         if (Auth::attempt($credentials, $loginStoreRequest->boolean('remember'))) {
-            $cart = new CartService();
-            $favorites = new FavoritesService();
-
-            $cart->syncSessionCart();
-            $favorites->syncSessionFavorites();
+            $this->cartService->syncSessionCart();
+            $this->favoritesService->syncSessionFavorites();
 
             $loginStoreRequest->session()->regenerate();
 

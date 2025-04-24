@@ -60,6 +60,7 @@ class FavoritesService
                 }
 
                 session()->forget('favorites');
+                Cache::forget("favorites_items_show:{$user->id}:all");
             });
         }
     }
@@ -76,7 +77,7 @@ class FavoritesService
             'user_id' => $user->id,
             'product_id' => $product_id,
         ]);
-        
+
         Cache::forget("favorites_items_show:{$user->id}:all");
 
         return response()->json([

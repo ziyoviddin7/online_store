@@ -14,6 +14,15 @@ use App\Http\Controllers\Controller;
 
 class RegisterController extends Controller
 {
+    protected $cartService;
+    protected $favoritesService;
+
+    public function __construct(CartService $cartService, FavoritesService $favoritesService)
+    {
+        $this->cartService = $cartService;
+        $this->favoritesService = $favoritesService;
+    }
+
     public function index()
     {
         return view('user.auth.register');
@@ -32,11 +41,8 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        $cart = new CartService();
-        $favorites = new FavoritesService();
-
-        $cart->syncSessionCart();
-        $favorites->syncSessionFavorites();
+        $this->cartService->syncSessionCart();
+        $this->favoritesService->syncSessionFavorites();
 
         return redirect(RouteServiceProvider::HOME);
     }

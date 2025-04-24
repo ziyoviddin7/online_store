@@ -55,6 +55,7 @@ class CartService
                 }
 
                 session()->forget('cart');
+                Cache::forget("cart_items_show:{$cart->id}:all");
             });
         }
     }
