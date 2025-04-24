@@ -28,8 +28,6 @@ class FavoritesSessionService
         $products = Product::whereIn('id', $productIds)->get();
 
         return $products->map(function ($product) use ($favorites) {
-            $favoritesItem = $favorites[$product->id];
-
             return [
                 'product' => $product,
             ];

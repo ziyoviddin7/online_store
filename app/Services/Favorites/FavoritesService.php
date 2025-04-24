@@ -35,7 +35,7 @@ class FavoritesService
 
         if (!empty($sessionFavorites)) {
             DB::transaction(function () use ($user, $sessionFavorites) {
-                // Получаем существующие избранные товары пользователя
+                // Достаем все товары из бд, у которых ID товара совпадает с тем, что есть в сессии
                 $existingFavorites = $user->favorites()
                     ->whereIn('product_id', array_keys($sessionFavorites))
                     ->pluck('product_id')

@@ -25,8 +25,9 @@ class CartService
             DB::transaction(function () use ($userId, $sessionCart) {
                 $cart = ModelsCart::firstOrCreate(['user_id' => $userId]);
 
-                // Получаем существующие товары в корзине
-                $existingCartItems = $cart->cart_items()->whereIn('product_id', array_keys($sessionCart))
+                // Достаем все товары из бд, у которых ID товара совпадает с тем, что есть в сессии
+                $existingCartItems = $cart->cart_items()
+                    ->whereIn('product_id', array_keys($sessionCart))
                     ->get()
                     ->keyBy('product_id');
 
